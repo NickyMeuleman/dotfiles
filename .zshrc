@@ -38,6 +38,15 @@ SAVEHIST=100000
 # vim bindings
 bindkey -v
 
+# Add custom completions dir to fpath
+fpath=($ZDIR/completions $fpath)
+
+# Enable the completion system
+autoload compinit
+
+# Initialize all completions on $fpath and ignore (-i) all insecure files and directories
+compinit -i
+
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
@@ -51,3 +60,5 @@ eval "$(starship init zsh)"
 # fnm
 export PATH="/home/nicky/.local/share/fnm:$PATH"
 eval "$(fnm env --use-on-cd)"
+# generate completions file, only needs to be ran once per update of fnm
+# fnm completions --shell=zsh > $ZDIR/completions/_fnm 
