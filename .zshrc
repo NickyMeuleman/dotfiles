@@ -47,3 +47,7 @@ zsh_add_file "aliases.zsh"
 
 # Prompt
 eval "$(starship init zsh)"
+
+# fnm
+export PATH="/home/nicky/.local/share/fnm:$PATH"
+eval "$(fnm env --use-on-cd)"
