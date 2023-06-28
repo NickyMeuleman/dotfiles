@@ -2,3 +2,5 @@
 wslu/
 .config/zsh/completions/_fnm
 .config/zsh/.zsh_history
+.config/zsh/plugins/*
+!.config/zsh/plugins/.gitkeep
