@@ -54,11 +54,20 @@ zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 # Aliases
 zsh_add_file "aliases.zsh"
 
-# Prompt
+# Prompt: starship
 eval "$(starship init zsh)"
 
-# fnm
-export PATH="/home/nicky/.local/share/fnm:$PATH"
+# node manager: fnm
 eval "$(fnm env --use-on-cd)"
 # generate completions file, only needs to be ran once per update of fnm
-# fnm completions --shell=zsh > $ZDIR/completions/_fnm 
+# fnm completions --shell=zsh > $ZDIR/completions/_fnm
+
+# smart cd: zoxide
+eval "$(zoxide init zsh)"
+
+# fuzzy finder: fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+--color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
