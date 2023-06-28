@@ -67,11 +67,23 @@ eval "$(zoxide init zsh)"
 
 # fuzzy finder: fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# catppuccin latte theme
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
 --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
+# use fd as default finder
+export FZF_DEFAULT_COMMAND='fd --type file'
 
 # find replacement: fd
 # generate symlink from fdfind to fd, only needs to be ran once per update of fd-find
 # ln -s $(which fdfind) ~/.local/bin/fd
+
+# use wslview instead of xdg-open to open everything that uses xdg-open in windows
+# examples:
+#  - xdg-open https://google.com opens the default internet browser on windows
+#  - xdg-open a-video.mp4 opens the default video player on windows
+#  - xdg-open a-photo.jpg opens the default image viewer on windows
+# create a symlink to where xdg-open would normally be (protected route, so sudo is needed)
+# only create symlink once per install, run this manually instead of uncommenting
+# sudo ln -s $(which wslview) /usr/local/bin/xdg-open
