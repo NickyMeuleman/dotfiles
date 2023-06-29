@@ -7,8 +7,9 @@ add_newline = true
 # the colours used in 'style'
 palette = "catppuccin_frappe"
 
-format = '$all'
-right_format = """
+format = """
+$all\
+$fill\
 $git_branch\
 $git_commit\
 $git_state\
@@ -16,11 +17,16 @@ $git_metrics\
 $git_status\ 
 $cmd_duration\
 $time\
+$line_break\
+$character\
 """
 
 [directory]
 disabled = false
 style = 'sapphire'
+
+[fill]
+symbol = ' '
 
 [git_branch]
 disabled = false
