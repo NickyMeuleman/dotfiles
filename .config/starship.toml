@@ -1,0 +1,51 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+format = '$all'
+right_format = """
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\ 
+$cmd_duration\
+$time\
+"""
+
+[directory]
+disabled = false
+style = 'cyan'
+
+[git_branch]
+disabled = false
+style = 'purple'
+
+[git_commit]
+disabled = false
+style = 'green'
+
+[git_state]
+disabled = false
+style = 'yellow'
+
+[git_metrics]
+disabled = false
+format = '[+$added]($added_style)/[-$deleted]($deleted_style) '
+added_style = 'green'
+deleted_style = 'red'
+
+[git_status]
+disabled = false
+style = 'red'
+
+[cmd_duration]
+disabled = false
+min_time = 500
+style = 'yellow'
+
+[time]
+disabled = false
+style = 'green'
