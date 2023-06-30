@@ -49,7 +49,13 @@ compinit -i
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
+# clone https://github.com/catppuccin/zsh-syntax-highlighting to $ZDIR/plugins first
+# tip: the gh cli is conventient for this: 
+# gh repo clone catppuccin/zsh-syntax-highlighting $ZDIR/plugins/catppuccin-zsh-syntax-highlighting
+zsh_add_file "plugins/catppuccin-zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+# Until I investigate catppuccin for zdharma, use zsh-users syntax highlighting
+# zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 
 # Aliases
 zsh_add_file "aliases.zsh"
