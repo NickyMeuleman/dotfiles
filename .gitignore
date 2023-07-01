@@ -4,3 +4,4 @@ wslu/
 .config/zsh/.zsh_history
 .config/zsh/plugins/*
 !.config/zsh/plugins/.gitkeep
+htop

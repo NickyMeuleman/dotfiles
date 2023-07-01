@@ -5,10 +5,12 @@
 ### Windows side
 
 - Install the [Windows Terminal](https://github.com/microsoft/terminal)
+
 Set it as [default terminal application](https://learn.microsoft.com/en-us/windows/terminal/customize-settings/startup#default-terminal-application) in the settings (need the GUI as this is an OS setting) under startup.
 Theme it: [Catppuccin for Windows Terminal](https://github.com/catppuccin/windows-terminal)
 
 - Install [git](https://git-scm.com/) for Windows
+
 Store your credentials so you aren't asked for your password every time you try to push to a github repo.either do it manually, or do it once and let the GCM do the work for you.
 https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
 
@@ -22,6 +24,7 @@ Manually: Add a "Windows Credential" to the credential manager:
 In the Windows command prompt, [install WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 The Windows Terminal now has an option to launch the Linux distro prompt.
+
 Set it as [default profile](https://learn.microsoft.com/en-us/windows/terminal/customize-settings/startup#default-profile) so that starts up when you launch Windows Terminal.
 
 ### Linux side
@@ -47,7 +50,7 @@ git config --global core.autocrlf input
 git config --global init.defaultBranch main
 ```
 
-### Install some tools other tools depend on
+#### Install some tools other tools depend on
 
 `sudo apt install build-essential`
 `sudo apt install cmake`
@@ -66,7 +69,7 @@ Change the default (`bash`) to `zsh` so it launches whenever you open the shell.
 Install the `starship` prompt by following the linux install directions
 https://starship.rs/
 
-### WSL utilities: `wslu`
+#### WSL utilities: `wslu`
 
 https://github.com/wslutilities/wslu
 
@@ -105,12 +108,17 @@ Don't do the Windows one, I want my tools on the Linux side, not the Windows sid
 
 https://www.rust-lang.org/
 
-### Node manager: `fnm`
+#### Node manager: `fnm`
 
 Install `fnm`
 https://github.com/Schniz/fnm
 
-### Smarter `cd`: `zoxide`
+#### Smarter `cd`: `zoxide`
 
 Install `zoxide`.
 https://github.com/ajeetdsouza/zoxide
+
+#### Better `ls`: `exa`
+
+Install `exa`
+https://github.com/ogham/exa
