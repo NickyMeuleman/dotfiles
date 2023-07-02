@@ -93,3 +93,9 @@ export FZF_DEFAULT_COMMAND='fd --type file'
 # create a symlink to where xdg-open would normally be (protected route, so sudo is needed)
 # only create symlink once per install, run this manually instead of uncommenting
 # sudo ln -s $(which wslview) /usr/local/bin/xdg-open
+
+# Rust language
+# generate completions file, only needs to be ran once per update of rustup
+# rustup completions zsh > $ZDIR/completions/_rustup
+# generate completions file, only needs to be ran once per update of cargo
+# rustup completions zsh cargo > $ZDIR/completions/_cargo

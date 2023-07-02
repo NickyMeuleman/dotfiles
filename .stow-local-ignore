@@ -1,4 +1,5 @@
 ^/README.*
+NOTES.md
 \.git
 \.gitignore
 \.gitkeep
