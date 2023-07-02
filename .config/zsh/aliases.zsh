@@ -31,4 +31,4 @@ alias lt="exabase --tree --level=3"
 alias lta="lt --all"
 # long tree
 alias llt="ll --tree --level=3"
-alias llta="llk --all"
+alias llta="llt --all"
