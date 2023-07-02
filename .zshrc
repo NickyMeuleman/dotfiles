@@ -61,6 +61,8 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_file "aliases.zsh"
 
 # Prompt: starship
+# generate completions file, only needs to be ran once per update of starship
+# starship completions zsh > $ZDIR/completions/_starship
 eval "$(starship init zsh)"
 
 # node manager: fnm
