@@ -36,6 +36,7 @@ So if you can choose between Windows and Linux in some installation instructions
 #### Update all the things!
 
 `sudo apt update`
+
 `sudo apt upgrade`
 
 #### git
@@ -53,8 +54,12 @@ git config --global init.defaultBranch main
 #### Install some tools other tools depend on
 
 `sudo apt install build-essential`
+
 `sudo apt install cmake`
+
 `sudo apt install unzip`
+
+`sudo apt install tree`
 
 #### Shell: zsh
 
@@ -68,6 +73,8 @@ Change the default (`bash`) to `zsh` so it launches whenever you open the shell.
 
 Install the `starship` prompt by following the linux install directions
 https://starship.rs/
+
+Add completions to shell by adding the output of `starship completions zsh` to `$ZDIR/completions/_starship`
 
 #### WSL utilities: `wslu`
 
@@ -107,6 +114,8 @@ Install `rust` using the command that installs it on WSL.
 Don't do the Windows one, I want my tools on the Linux side, not the Windows side.
 
 https://www.rust-lang.org/
+
+Add completions to shell for both `rustup` and `cargo`: `rustup help completions`
 
 #### Node manager: `fnm`
 
