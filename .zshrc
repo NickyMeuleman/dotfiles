@@ -75,13 +75,64 @@ eval "$(zoxide init zsh)"
 
 # fuzzy finder: fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# catppuccin latte theme
+# add catppuccin latte theme + extra options
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
 --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
---color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
+--color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
+--height 75% \
+--layout=reverse \
+--border \
+--cycle"
 # use fd as default finder
-export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DEFAULT_COMMAND="fd \
+--type file \
+--follow \
+--hidden \
+--exclude .git \
+--strip-cwd-prefix"
+# fzf ctrl-t hotkey
+# Preview file content using bat (https://github.com/sharkdp/bat)
+# get rid of the lines around the bat window, and bind a key to toggle where the preview is shown
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_OPTS=" \
+--preview 'bat --number --color=always {}' \
+--bind 'ctrl-/:change-preview-window(down|hidden|)' \
+--cycle"
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into the Windows clipboard
+export FZF_CTRL_R_OPTS=" \
+--preview 'echo {}' --preview-window up:3:hidden:wrap \
+--bind 'ctrl-/:toggle-preview' \
+--bind 'ctrl-y:execute-silent(echo -n {2..} | clip.exe)+abort' \
+--color header:italic \
+--header 'Press CTRL-Y to copy command into OS clipboard' \
+--cycle"
+# Print tree structure in the preview window
+# CTRL-/ to toggle small preview window with the tree
+export FZF_ALT_C_COMMAND="fd \
+--type directory \
+--strip-cwd-prefix \
+--hidden \
+--exclude .git \
+--color=never"
+export FZF_ALT_C_OPTS=" \
+--preview 'tree -C {}' \
+--bind 'ctrl-/:toggle-preview' \
+--cycle"
+# overwrite fzf functions that get called by trigger-sequence tabbing
+# things like `vim **<tab>` run _fzf_compgen_path()
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+    fd --hidden --follow --exclude ".git" . "$@"
+}
+# `cd **<tab>` runs _fzf_compgen_dir()
+_fzf_compgen_dir() {
+    fd --type directory --hidden --follow --exclude ".git" . "$@"
+}
 
 # find replacement: fd
 # generate symlink from fdfind to fd, only needs to be ran once per update of fd-find
