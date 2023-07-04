@@ -13,4 +13,7 @@ path+=("$HOME/.local/share/fnm")
 # zoxide
 path+=("$HOME/.local/bin")
 
+# Golang
+path+=(/usr/local/go/bin)
+
 export PATH
