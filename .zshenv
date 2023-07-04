@@ -1,3 +1,6 @@
+# windows terminal doesn't set this for some reason
+[[ -n $WT_SESSION ]] && export COLORTERM="truecolor"
+
 # shortcuts to often used folders
 export DOTFILES=$HOME/dotfiles
 export ZDIR=$HOME/.config/zsh
