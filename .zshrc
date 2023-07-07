@@ -70,9 +70,6 @@ eval "$(fnm env --use-on-cd)"
 # generate completions file, only needs to be ran once per update of fnm
 # fnm completions --shell=zsh > $ZDIR/completions/_fnm
 
-# smart cd: zoxide
-eval "$(zoxide init zsh)"
-
 # fuzzy finder: fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # add catppuccin latte theme + extra options
@@ -96,13 +93,13 @@ export FZF_DEFAULT_COMMAND="fd \
 # get rid of the lines around the bat window, and bind a key to toggle where the preview is shown
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS=" \
---preview 'bat --number --color=always {}' \
+--preview 'bat --number --color=always --line-range=:500 {}' \
 --bind 'ctrl-/:change-preview-window(down|hidden|)' \
 --cycle"
 # CTRL-/ to toggle small preview window to see the full command
 # CTRL-Y to copy the command into the Windows clipboard
 export FZF_CTRL_R_OPTS=" \
---preview 'echo {}' --preview-window up:3:hidden:wrap \
+--preview 'echo {2..} | bat --plain --language=sh --color=always --line-range=:500' --preview-window up:3:hidden:wrap \
 --bind 'ctrl-/:toggle-preview' \
 --bind 'ctrl-y:execute-silent(echo -n {2..} | clip.exe)+abort' \
 --color header:italic \
@@ -117,7 +114,7 @@ export FZF_ALT_C_COMMAND="fd \
 --exclude .git \
 --color=never"
 export FZF_ALT_C_OPTS=" \
---preview 'tree -C {}' \
+--preview 'exa --color=always --tree --level 3 --icons {}'
 --bind 'ctrl-/:toggle-preview' \
 --cycle"
 # overwrite fzf functions that get called by trigger-sequence tabbing
@@ -133,6 +130,17 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
     fd --type directory --hidden --follow --exclude ".git" . "$@"
 }
+
+# smart cd: zoxide
+eval "$(zoxide init zsh)"
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS \
+--no-multi \
+--no-sort \
+--exit-0 \
+--select-1 \
+--preview 'exa --color=always --tree --level 3 --icons {2..}' \
+--bind 'ctrl-/:change-preview-window(down|hidden|)' \
+"
 
 # find replacement: fd
 # generate symlink from fdfind to fd, only needs to be ran once per update of fd-find

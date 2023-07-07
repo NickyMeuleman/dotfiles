@@ -6,3 +6,6 @@ wslu/
 .config/zsh/plugins/*
 !.config/zsh/plugins/.gitkeep
 htop
+.config/bat/themes/*
+!.config/bat/themes/.gitkeep
+.config/broot

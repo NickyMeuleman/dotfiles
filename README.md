@@ -59,8 +59,6 @@ git config --global init.defaultBranch main
 
 `sudo apt install unzip`
 
-`sudo apt install tree`
-
 #### Shell: zsh
 
 `sudo apt install zsh`
