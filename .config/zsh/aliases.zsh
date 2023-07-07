@@ -32,3 +32,6 @@ alias lta="lt --all"
 # long tree
 alias llt="ll --tree --level=3"
 alias llta="llt --all"
+
+# use bat instead of cat
+alias cat="bat --paging=never"

@@ -65,3 +65,14 @@ So if you did `vim pota`, hit `CTRL-t` and chose `potatoes.txt`, your final prom
 
 The fuzzy finder uses some vim motion keys to navigate.
 https://github.com/junegunn/fzf#using-the-finder
+
+#### Better `cat`: `bat`
+
+Install `bat`
+https://github.com/sharkdp/bat
+
+If you installed via apt, the `bat` binary might be named `batcat`
+Make `bat` available by symlinking `batcat` as `bat` into a spot that's in the PATH
+
+Configure theme
+https://github.com/catppuccin/bat

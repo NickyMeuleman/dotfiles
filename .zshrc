@@ -160,3 +160,13 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS \
 # rustup completions zsh > $ZDIR/completions/_rustup
 # generate completions file, only needs to be ran once per update of cargo
 # rustup completions zsh cargo > $ZDIR/completions/_cargo
+
+# better cat: bat
+# if you installed via apt, the bat binary might be named batcat
+# make `bat` available by symlinking it as `bat` into a spot that's in the PATH
+# mkdir -p ~/.local/bin
+# ln -s /usr/bin/batcat ~/.local/bin/bat
+# use bat as colorizing pager fan `man`
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# allow mouse scrolling in bat pager
+export BAT_PAGER="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
