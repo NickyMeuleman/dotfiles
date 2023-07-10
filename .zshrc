@@ -12,21 +12,6 @@ function zsh_add_plugin() {
     fi
 }
 
-function zsh_add_completion() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDIR/plugins/$PLUGIN_NAME" ]; then 
-		completion_file_path=$(ls $ZDIR/plugins/$PLUGIN_NAME/_*)
-		fpath+="$(dirname "${completion_file_path}")"
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDIR/plugins/$PLUGIN_NAME"
-		fpath+=$(ls $ZDIR/plugins/$PLUGIN_NAME/_*)
-        [ -f $ZDIR/.zccompdump ] && $ZDIR/.zccompdump
-    fi
-	completion_file="$(basename "${completion_file_path}")"
-	if [ "$2" = true ] && compinit "${completion_file:1}"
-}
-
 # Only run in interactive mode.
 [[ $- != *i* ]] && return
 
@@ -39,12 +24,14 @@ SAVEHIST=100000
 bindkey -v
 
 # Add custom completions dir to fpath
-fpath=($ZDIR/completions $fpath)
+fpath+=($ZDIR/completions)
+export fpath
 
-# Enable the completion system
-autoload compinit
+# Enable the completion system, suppress alias expansion with -U
+autoload -U compinit
 
 # Initialize all completions on $fpath and ignore (-i) all insecure files and directories
+# so: only load completion files the current user owns
 compinit -i
 
 # Plugins
@@ -61,14 +48,10 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_file "aliases.zsh"
 
 # Prompt: starship
-# generate completions file, only needs to be ran once per update of starship
-# starship completions zsh > $ZDIR/completions/_starship
 eval "$(starship init zsh)"
 
 # node manager: fnm
 eval "$(fnm env --use-on-cd)"
-# generate completions file, only needs to be ran once per update of fnm
-# fnm completions --shell=zsh > $ZDIR/completions/_fnm
 
 # fuzzy finder: fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -155,12 +138,6 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS \
 # only create symlink once per install, run this manually instead of uncommenting
 # sudo ln -s $(which wslview) /usr/local/bin/xdg-open
 
-# Rust language
-# generate completions file, only needs to be ran once per update of rustup
-# rustup completions zsh > $ZDIR/completions/_rustup
-# generate completions file, only needs to be ran once per update of cargo
-# rustup completions zsh cargo > $ZDIR/completions/_cargo
-
 # better cat: bat
 # if you installed via apt, the bat binary might be named batcat
 # make `bat` available by symlinking it as `bat` into a spot that's in the PATH
@@ -170,3 +147,20 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS \
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # allow mouse scrolling in bat pager
 export BAT_PAGER="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+
+install_completions() {
+    # prompt: starship
+    starship completions zsh > $ZDIR/completions/_starship
+    # GitHub CLI: gh
+    gh completion -s zsh > $ZDIR/completions/_gh
+    # Rust language: rustup
+    rustup completions zsh > $ZDIR/completions/_rustup
+    # Rust language package tool: cargo
+    rustup completions zsh cargo > $ZDIR/completions/_cargo
+    # node manager: fnm
+    fnm completions --shell=zsh > $ZDIR/completions/_fnm
+    # better cat: bat
+    echo 'manually copy bat completions from the /out/assets/completions folder inside target/release'
+    # smart cd: zoxide
+    echo 'manually copy zoxide completions from the /contrib/completions folder'
+}

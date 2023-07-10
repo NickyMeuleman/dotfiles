@@ -63,7 +63,7 @@ git config --global init.defaultBranch main
 
 `sudo apt install zsh`
 
-Change the default (`bash`) to `zsh` so it launches whenever you open the shell.
+Change the default shell (`bash`) to `zsh` so it launches whenever you open the terminal.
 
 `chsh -s $(which zsh)`
 
@@ -72,7 +72,10 @@ Change the default (`bash`) to `zsh` so it launches whenever you open the shell.
 Install the `starship` prompt by following the linux install directions
 https://starship.rs/
 
-Add completions to shell by adding the output of `starship completions zsh` to `$ZDIR/completions/_starship`
+Add completions to shell by adding the output of `starship completions zsh` to a direcory in `$fpath`.
+Name it underscore starship to follow conventions.
+
+`starship completions zsh > $ZDIR/completions/_starship`
 
 #### WSL utilities: `wslu`
 
