@@ -111,7 +111,7 @@ It's slow and unnecessary imo.
 
 #### Rust language
 
-Install `rust` using the command that installs it on WSL.
+Install `rustup` using the command that installs it on WSL.
 Don't do the Windows one, I want my tools on the Linux side, not the Windows side.
 
 https://www.rust-lang.org/
@@ -128,7 +128,18 @@ https://github.com/Schniz/fnm
 Install `zoxide`.
 https://github.com/ajeetdsouza/zoxide
 
+#### Document conversion tool: `pandoc`
+
+Install `pandoc`
+https://github.com/jgm/pandoc
+
+#### Better `make`: `just`
+
+Install `just`
+https://github.com/casey/just
+
 #### Better `ls`: `exa`
 
 Install `exa`
 https://github.com/ogham/exa
+
