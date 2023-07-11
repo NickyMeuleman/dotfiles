@@ -25,8 +25,19 @@ function install_completions() {
     fnm completions --shell=zsh > $ZDIR/completions/_fnm
     # better cat: bat
     echo 'manually copy bat completions from the /out/assets/completions folder inside target/release'
+    # build bat with `cargo build --release` and copy the completions from the built output
+    # cp $HOME/projects/sharkdp/bat/target/release/build/bat-c95ebc37c4f6628f/out/assets/completions/bat.zsh $ZDIR/completions/_bat
     # smart cd: zoxide
     echo 'manually copy zoxide completions from the /contrib/completions folder'
+    # cp $HOME/projects/ajeetdsouza/zoxide/contrib/completions/_zoxide $ZDIR/completions/_zoxide
+    # better find: fd
+    # This command works, but the repo has a better completions file in it you should use instead
+    # fd --gen-completions zsh > $ZDIR/completions/_fd
+    # see: https://github.com/sharkdp/fd/commit/ef1bfc750862b751de1e235a5bf7e112c5378187
+    echo 'manually copy fd completions from the /contrib/completion folder'
+    # cp $HOME/projects/sharkdp/fd/contrib/completion/_fd $ZDIR/completions/_fd
+    # better `make`: `just`
+    just --completions zsh > $ZDIR/completions/_just
 }
 
 # overwrite fzf functions that get called by trigger-sequence tabbing
