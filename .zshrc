@@ -1,17 +1,3 @@
-function zsh_add_file() {
-    [ -f "$ZDIR/$1" ] && source "$ZDIR/$1"
-}
-
-function zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDIR/plugins/$PLUGIN_NAME" ]; then 
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        git clone "https://github.com/$1.git" "$ZDIR/plugins/$PLUGIN_NAME"
-    fi
-}
-
 # Only run in interactive mode.
 [[ $- != *i* ]] && return
 
@@ -30,18 +16,16 @@ autoload -U compinit
 # so: only load completion files the current user owns
 compinit -i
 
-# Plugins
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-# clone https://github.com/catppuccin/zsh-syntax-highlighting to $ZDIR/plugins first
-# tip: the gh cli is conventient for this: 
-# gh repo clone catppuccin/zsh-syntax-highlighting $ZDIR/plugins/catppuccin-zsh-syntax-highlighting
-zsh_add_file "plugins/catppuccin-zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
-# Until I investigate catppuccin for zdharma, use zsh-users syntax highlighting
-# zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
+# Helper functions
+source "$ZDIR/functions.zsh"
 
 # Aliases
 zsh_add_file "aliases.zsh"
+
+# Plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_file "plugins/catppuccin-zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh"
+zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 # Prompt: starship
 eval "$(starship init zsh)"
@@ -51,20 +35,6 @@ eval "$(fnm env --use-on-cd)"
 
 # fuzzy finder: fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# overwrite fzf functions that get called by trigger-sequence tabbing
-# things like `vim **<tab>` run _fzf_compgen_path()
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-    fd --hidden --follow --exclude ".git" . "$@"
-}
-# `cd **<tab>` runs _fzf_compgen_dir()
-_fzf_compgen_dir() {
-    fd --type directory --hidden --follow --exclude ".git" . "$@"
-}
 
 # smart cd: zoxide
 eval "$(zoxide init zsh)"
@@ -87,20 +57,3 @@ eval "$(zoxide init zsh)"
 # make `bat` available by symlinking it as `bat` into a spot that's in the PATH
 # mkdir -p ~/.local/bin
 # ln -s /usr/bin/batcat ~/.local/bin/bat
-
-install_completions() {
-    # prompt: starship
-    starship completions zsh > $ZDIR/completions/_starship
-    # GitHub CLI: gh
-    gh completion -s zsh > $ZDIR/completions/_gh
-    # Rust language: rustup
-    rustup completions zsh > $ZDIR/completions/_rustup
-    # Rust language package tool: cargo
-    rustup completions zsh cargo > $ZDIR/completions/_cargo
-    # node manager: fnm
-    fnm completions --shell=zsh > $ZDIR/completions/_fnm
-    # better cat: bat
-    echo 'manually copy bat completions from the /out/assets/completions folder inside target/release'
-    # smart cd: zoxide
-    echo 'manually copy zoxide completions from the /contrib/completions folder'
-}
