@@ -143,3 +143,9 @@ https://github.com/casey/just
 Install `exa`
 https://github.com/ogham/exa
 
+#### Simplified manpages with Tealdeer: `tldr`
+
+Install tealdeer
+https://github.com/dbrgn/tealdeer
+
+Executable named `tldr`
