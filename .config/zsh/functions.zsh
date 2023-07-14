@@ -38,6 +38,10 @@ function install_completions() {
     # cp $HOME/projects/sharkdp/fd/contrib/completion/_fd $ZDIR/completions/_fd
     # better `make`: `just`
     just --completions zsh > $ZDIR/completions/_just
+    # CLI benchmarks: `hyperfine`
+    # The maintainer doesn't like this approach of generating completions: https://github.com/sharkdp/hyperfine/issues/293
+    # cp $HOME/projects/sharkdp/hyperfine/target/release/build/hyperfine-813f970f0b8c8f10/out/_hyperfine $ZDIR/completions/_hyperfine
+    echo 'manually copy hyperfine completions from the /out folder inside target/release/build/hyperfine-<some string>/'
 }
 
 # overwrite fzf functions that get called by trigger-sequence tabbing
