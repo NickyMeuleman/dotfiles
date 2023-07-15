@@ -202,18 +202,64 @@ https://github.com/ajeetdsouza/zoxide/issues/9#issuecomment-986195030
 
 #### Document conversion tool: `pandoc`
 
-Install `pandoc`
 https://github.com/jgm/pandoc
+
+Version in `apt` was old.
+
+https://github.com/jgm/pandoc/blob/main/INSTALL.md#linux
+
+This is a Haskell tool, so I used the prepackaged `.deb` to install this.
+
+I'm on Ubuntu, not on an ARM CPU so I chose the `amd64.deb`
+
+Installed it with:
+```sh
+sudo dpkg -i pandoc-3.1.5-1-amd64.deb
+```
+
+This automatically adds completions and manpages
 
 #### Better `make`: `just`
 
-Install `just`
 https://github.com/casey/just
+
+This wasn't in `apt`, so I built it from source.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/just $HOME/.local/bin`
+4. Move man page to its dedicated directory
+    - `mv man/just.1 $HOME/.local/share/man/man1/just.1`
+5. Move completions to a directory in `$fpath`
+    - `mv completions/just.zsh $ZDIR/completions/_just`
+    - Alternatively generate them (see below)
+
+The `just` binary can generate shell completions.
+Put the output for the specific shell in a file in the `$fpath`
+
+```sh
+just --completions zsh > $ZDIR/completions/_just
+```
 
 #### Better `ls`: `exa`
 
-Install `exa`
 https://github.com/ogham/exa
+
+The version in `apt` did not have the `git` feature enabled.
+
+So I built the project manually.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/exa $HOME/.local/bin/`
+5. Build man pages with `just man`
+5. Move man page to its dedicated directory
+    - `mv target/man/exa.1 $HOME/.local/share/man/man1/`
+    - `mv target/man/exa_colors.5 $HOME/.local/share/man/man5/`
+4. Move completions to a directory in `$fpath`
+    - In my case `mv completions/zsh/_exa $ZDIR/completions/_exa`
 
 #### Simplified manpages with Tealdeer: `tldr`
 

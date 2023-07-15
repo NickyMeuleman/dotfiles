@@ -70,52 +70,6 @@ So I cloned the repo and built the project manually.
 5. Move man page to its dedicated directory
     - `mv doc/fd.1 $HOME/.local/share/man/man1/fd.1`
 
-## Document conversion tool: `pandoc`
-
-The version in `apt` was old.
-
-So I downloaded a release and installed that.
-https://github.com/jgm/pandoc/releases
-https://github.com/jgm/pandoc/blob/main/INSTALL.md
-
-I'm on Ubuntu, not on an ARM CPU so I chose the `amd64.deb`
-Installed it with:
-`sudo dpkg -i pandoc-3.1.5-1-amd64.deb`
-
-This automatically adds completions and manpages.
-
-## Better `make`: `just`
-
-This wasn't in `apt`, so I built it from source.
-https://github.com/casey/just
-
-1. Clone repo and change directory into it
-2. Build for release with `cargo build --release`
-3. Move the executable to a directory in `$PATH`
-    - In my case `mv target/release/just $HOME/.local/bin`
-4. Move completions to a directory in `$fpath`
-    - In my case `mv completions/just.zsh $ZDIR/completions/_just`
-    - Alternatively `just --completions zsh > $ZDIR/completions/_just`
-5. Move man page to its dedicated directory
-    - `mv man/just.1 $HOME/.local/share/man/man1/just.1`
-
-## Better `ls`: `exa`
-
-The version in `apt` did not have the `git` feature enabled.
-
-So I cloned the repo and built the project manually.
-
-1. Clone repo and change directory into it
-2. Build for release with `cargo build --release`
-3. Move the executable to a directory in `$PATH`
-    - In my case `mv target/release/exa $HOME/.local/bin`
-4. Move completions to a directory in `$fpath`
-    - In my case `mv completions/zsh/_exa $ZDIR/completions/_exa`
-5. Build man pages with `just man`
-5. Move man page to its dedicated directory
-    - `mv target/man/exa.1 $HOME/.local/share/man/man1/`
-    - `mv target/man/exa_colors.5 $HOME/.local/share/man/man5/`
-
 ## tealdeer `tldr`
 
 https://github.com/dbrgn/tealdeer
