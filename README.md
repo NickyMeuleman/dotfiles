@@ -35,16 +35,21 @@ So if you can choose between Windows and Linux in some installation instructions
 
 #### Update all the things!
 
-`sudo apt update`
-
-`sudo apt upgrade`
-
-#### git
-
-Install with `sudo apt install git`
-
-Some default settings
+```sh
+sudo apt update && sudo apt upgrade
 ```
+
+#### `git`
+
+Install with `apt`
+
+```sh
+sudo apt install git
+```
+
+Some default settings:
+
+```sh
 git config --global user.name "Nicky Meuleman"
 git config --global user.email "nicky.dev@outlook.com"
 git config --global core.autocrlf input
@@ -53,36 +58,51 @@ git config --global init.defaultBranch main
 
 #### Install some tools other tools depend on
 
-`sudo apt install build-essential`
+```sh
+sudo apt install build-essential cmake unzip
+```
 
-`sudo apt install cmake`
+#### Shell: `zsh`
 
-`sudo apt install unzip`
-
-#### Shell: zsh
-
-`sudo apt install zsh`
+```sh
+sudo apt install zsh
+```
 
 Change the default shell (`bash`) to `zsh` so it launches whenever you open the terminal.
 
-`chsh -s $(which zsh)`
+```sh
+chsh -s $(which zsh)
+```
 
 #### Prompt: Starship
 
-Install the `starship` prompt by following the linux install directions
 https://starship.rs/
 
-Add completions to shell by adding the output of `starship completions zsh` to a direcory in `$fpath`.
-Name it underscore starship to follow conventions.
+Install the `starship` prompt by following the linux install directions
 
-`starship completions zsh > $ZDIR/completions/_starship`
+No manpage, so `man starship` does not work.
+See https://github.com/starship/starship/issues/2926
+
+`starship --help` works.
+
+`starship explain` is a handy tool that prints a quick summary of what every part of the current prompt is.
+
+The `starship` binary can generate shell completions.
+Put the output for the specific shell in a file in the `$fpath`
+
+```sh
+starship completions zsh > $ZDIR/completions/_starship
+```
 
 #### WSL utilities: `wslu`
 
 https://github.com/wslutilities/wslu
 
 Mainly used for the `wslview` tool.
+
 These tools all have man pages, eg. `man wslvar`
+
+None of these tools have shell completions.
 
 ##### wslview
 
@@ -111,22 +131,74 @@ It's slow and unnecessary imo.
 
 #### Rust language
 
+https://www.rust-lang.org/
+
 Install `rustup` using the command that installs it on WSL.
 Don't do the Windows one, I want my tools on the Linux side, not the Windows side.
 
-https://www.rust-lang.org/
+Manpages are weird.
+Cargo is under `rustup man cargo`
+
+Trying to use it gives a usage hint that says:
+```
+USAGE:
+    rustup man [OPTIONS] <command>
+```
+
+But I have no idea what `[OPTIONS] <command>` is, I only guessed `cargo`.
+
+Related: https://github.com/rust-lang/rustup/issues/1729
 
 Add completions to shell for both `rustup` and `cargo`: `rustup help completions`
 
+```sh
+rustup completions zsh > $ZDIR/completions/_rustup
+rustup completions zsh cargo > $ZDIR/completions/_cargo
+```
+
 #### Node manager: `fnm`
 
-Install `fnm`
 https://github.com/Schniz/fnm
+
+No manpage, so `man fnm` does not work.
+
+`fnm --help` works.
+
+A tl;dr is available: `tldr fnm`
+
+The `fnm` binary can generate shell completions.
+Put the output for the specific shell in a file in the `$fpath`
+
+```sh
+fnm completions --shell=zsh > $ZDIR/completions/_fnm
+```
 
 #### Smarter `cd`: `zoxide`
 
-Install `zoxide`.
 https://github.com/ajeetdsouza/zoxide
+
+The version in `apt` was old, I built from source.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/zoxide $HOME/.local/bin/`
+4. Move man page to its dedicated directory
+    - `mv -r man/ $HOME/.local/share/`
+5. Move completions to a directory in `$fpath`
+    - `mv contrib/completions/_zoxide $ZDIR/completions/_zoxide`
+
+Make sure to use the full name instead of the `z` alias when using it for anything other than the base jumping functionality.
+
+`zoxide --help` works, but `z --help` does not.
+
+zoxide integrates with `zsh-autocomplete` to show frecent (not a typo) directories when tabbing direcly after `z`.
+
+https://github.com/ajeetdsouza/zoxide/issues/9
+
+Pressing tab after a space triggers interactive completion (like you get when you use `zi`)
+eg. `z thing ` and then tabbing triggers the interactive searcher that uses `fzf` with "thing" as query.
+https://github.com/ajeetdsouza/zoxide/issues/9#issuecomment-986195030
 
 #### Document conversion tool: `pandoc`
 
@@ -149,3 +221,10 @@ Install tealdeer
 https://github.com/dbrgn/tealdeer
 
 Executable named `tldr`
+
+#### cli benchmark: `hyperfine`
+
+#### Better `du`: `dust`
+
+Install `dust`
+https://github.com/bootandy/dust
