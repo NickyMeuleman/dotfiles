@@ -314,10 +314,27 @@ So I built the project manually.
 
 #### Simplified manpages with Tealdeer: `tldr`
 
-Install tealdeer
 https://github.com/dbrgn/tealdeer
 
+This tool accesses the community pages on https://tldr.sh/.
+This is a rust version, the usual `tldr` tool is written in nodejs.
+
 Executable named `tldr`
+
+The version in `apt` was old.
+
+So I cloned the repo and built the project manually.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/tldr $HOME/.local/bin`
+4. Move completions to a directory in `$fpath`
+    - `mv completion/zsh_tealdeer $ZDIR/completions/_tldr`
+
+No manpage (but `tldr` has a `tldr` page! Hah!)
+The website functions as those docs https://dbrgn.github.io/tealdeer/
+
 
 #### cli benchmark: `hyperfine`
 

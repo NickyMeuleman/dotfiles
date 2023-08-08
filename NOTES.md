@@ -27,19 +27,3 @@ So I cloned the repo and built the project manually.
 
 Configure theme
 https://github.com/catppuccin/bat
-
-## tealdeer `tldr`
-
-https://github.com/dbrgn/tealdeer
-Not in `apt`, build from source. (at this point I'm going to default to building tools from source tbh)
-This tool accesses the community pages on https://tldr.sh/.
-This is a rust version, the usual `tldr` tool is written in nodejs.
-
-1. Clone repo and change directory into it
-2. Build for release with `cargo build --release`
-3. Move the executable to a directory in `$PATH`
-    - In my case `mv target/release/tldr $HOME/.local/bin`
-4. Move completions to a directory in `$fpath`
-    - In my case `mv completion/zsh_tealdeer $ZDIR/completions/_tldr`
-
-No manpages (but `tldr` has a `tldr` page! Hah!)
