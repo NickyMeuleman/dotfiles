@@ -9,3 +9,5 @@ htop
 .config/bat/themes/*
 !.config/bat/themes/.gitkeep
 .config/broot
+.config/bottom
+.config/btop
