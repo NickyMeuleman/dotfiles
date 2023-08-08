@@ -325,3 +325,22 @@ Executable named `tldr`
 
 Install `dust`
 https://github.com/bootandy/dust
+
+#### GitHub CLI: `gh`
+
+https://github.com/cli/cli
+
+after installing, authenticate with
+```sh
+gh auth login
+```
+
+That opens the browser using `xdg-open`.
+We don't have that, but these dotfiles have a commented out line to symlink `wslview` to where `xdg-open` would be so the browser opens on the Windows side.
+
+```sh
+sudo ln -s $(which wslview) /usr/local/bin/xdg-open
+```
+
+These dotfiles also provide a shortcut (`gh c`) to clone a github repo into a folder structure of OWNER/REPONAME.
+Usage is either `gh c owner/repo` or `gh c repo-url`
