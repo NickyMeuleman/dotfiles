@@ -173,6 +173,40 @@ Put the output for the specific shell in a file in the `$fpath`
 fnm completions --shell=zsh > $ZDIR/completions/_fnm
 ```
 
+#### Fuzzy finder: `fzf`
+
+https://github.com/junegunn/fzf
+
+The version in `apt` was old, installing by cloning the git repo again.
+They have a handy script that does it for us, neat!
+
+https://github.com/junegunn/fzf#using-git
+
+No traditional completions so it does not fill in flags.
+eg. when tabbing after `fzf -`.
+https://github.com/junegunn/fzf/issues/3349
+
+Fuzzy completion can be entered while typing a command pressing tax after the trigger sequence, which is "**" by default.
+
+eg. `vim **` and hitting tab will start a fuzzy search.
+When a file is selected the "**" will be replaced with the path to that file.
+
+You can start that fuzzy search off with a query by placing it before the trigger sequence before hitting tab. eg. `vim potatoes**` starts fzf off with "potatoes" already entered.
+
+https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh
+
+You can also do this with hotkeys
+
+https://github.com/junegunn/fzf#key-bindings-for-command-line
+
+`CTRL-t` does the almost same thing, it adds the selection to your prompt.
+It does NOT start the fuzzy search off with what you already entered.
+
+So if you did `vim pota`, hit `CTRL-t` and chose `potatoes.txt`, your final prompt would be `vim potapotatoes.txt`
+
+The fuzzy finder uses some vim motion keys to navigate.
+https://github.com/junegunn/fzf#using-the-finder
+
 #### Smarter `cd`: `zoxide`
 
 https://github.com/ajeetdsouza/zoxide
