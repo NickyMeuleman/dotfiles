@@ -219,6 +219,23 @@ sudo dpkg -i pandoc-3.1.5-1-amd64.deb
 
 This automatically adds completions and manpages
 
+#### Better `find`: `fd`
+
+https://github.com/sharkdp/fd
+
+The version in `apt` was old.
+
+So I cloned the repo and built the project manually.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/fd $HOME/.local/bin`
+4. Move completions to a directory in `$fpath`
+    - `mv contrib/completion/_fd $ZDIR/completions/_fd`
+5. Move man page to its dedicated directory
+    - `mv doc/fd.1 $HOME/.local/share/man/man1/fd.1`
+
 #### Better `make`: `just`
 
 https://github.com/casey/just

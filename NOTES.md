@@ -55,21 +55,6 @@ So I cloned the repo and built the project manually.
 Configure theme
 https://github.com/catppuccin/bat
 
-## Better `find`: `fd`
-
-The version in `apt` was old.
-
-So I cloned the repo and built the project manually.
-
-1. Clone repo and change directory into it
-2. Build for release with `cargo build --release`
-3. Move the executable to a directory in `$PATH`
-    - In my case `mv target/release/fd $HOME/.local/bin`
-4. Move completions to a directory in `$fpath`
-    - In my case `mv contrib/completion/_fd $ZDIR/completions/_fd`
-5. Move man page to its dedicated directory
-    - `mv doc/fd.1 $HOME/.local/share/man/man1/fd.1`
-
 ## tealdeer `tldr`
 
 https://github.com/dbrgn/tealdeer
