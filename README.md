@@ -335,6 +335,30 @@ So I cloned the repo and built the project manually.
 No manpage (but `tldr` has a `tldr` page! Hah!)
 The website functions as those docs https://dbrgn.github.io/tealdeer/
 
+#### Better `cat`: `bat`
+
+https://github.com/sharkdp/bat
+
+If you installed via apt, the `bat` binary might be named `batcat`
+Make `bat` available by symlinking `batcat` as `bat` into a spot that's in the PATH.
+
+I installed this one from source because the version in `apt` is old (Sound familiar huh?).
+
+So I built the project manually.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/bat $HOME/.local/bin/`
+5. Change dir to the location of the built output files
+    - In my case `cd build/bat-c95ebc37c4f6628f/out/assets`
+5. Move man page to its dedicated directory
+    - `mv manual/bat.1 $HOME/.local/share/man/man1/bat.1`
+4. Move completions to a directory in `$fpath`
+    - `mv completions/bat.zsh $ZDIR/completions/_bat`
+
+Configure theme:
+https://github.com/catppuccin/bat
 
 #### cli benchmark: `hyperfine`
 
