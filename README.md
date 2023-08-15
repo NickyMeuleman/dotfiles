@@ -362,6 +362,24 @@ https://github.com/catppuccin/bat
 
 #### cli benchmark: `hyperfine`
 
+https://github.com/sharkdp/hyperfine
+
+CLI benchmarking tool. Handy for quickly benchmarking some code without having to set up a proper benchmarking suite. (eg. using hyperfine instead of `criterion` to quickly bench something in Rust)
+
+As expected, the version in `apt` is old.
+So I built the project manually.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/hyperfine $HOME/.local/bin/`
+5. Move man page to its dedicated directory
+    - `mv doc/hyperfine.1 $HOME/.local/share/man/man1/hyperfine.1`
+5. Change dir to the location of the built output files
+    - In my case `cd build/hyperfine-813f970f0b8c8f10/out`
+4. Move completions to a directory in `$fpath`
+    - `mv _hyperfine $ZDIR/completions/_hyperfine`
+
 #### Better `du`: `dust`
 
 Install `dust`
