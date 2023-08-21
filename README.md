@@ -373,17 +373,29 @@ So I built the project manually.
 2. Build for release with `cargo build --release`
 3. Move the executable to a directory in `$PATH`
     - `mv target/release/hyperfine $HOME/.local/bin/`
-5. Move man page to its dedicated directory
+4. Move man page to its dedicated directory
     - `mv doc/hyperfine.1 $HOME/.local/share/man/man1/hyperfine.1`
 5. Change dir to the location of the built output files
     - In my case `cd build/hyperfine-813f970f0b8c8f10/out`
-4. Move completions to a directory in `$fpath`
+6. Move completions to a directory in `$fpath`
     - `mv _hyperfine $ZDIR/completions/_hyperfine`
 
 #### Better `du`: `dust`
 
-Install `dust`
 https://github.com/bootandy/dust
+
+This wasn't in `apt` at all.
+
+So I cloned the repo and built the project manually.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/dust $HOME/.local/bin/`
+4. Move man page to its dedicated directory
+    - `mv man-page/dust.1 $HOME/.local/share/man/man1/dust.1`
+5. Move completions to a directory in `$fpath`
+    - `mv _completions/_dust $ZDIR/completions/_dust`
 
 #### GitHub CLI: `gh`
 
