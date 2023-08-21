@@ -415,3 +415,18 @@ sudo ln -s $(which wslview) /usr/local/bin/xdg-open
 
 These dotfiles also provide a shortcut (`gh c`) to clone a github repo into a folder structure of OWNER/REPONAME.
 Usage is either `gh c owner/repo` or `gh c repo-url`
+
+#### `btop`
+
+https://github.com/aristocratos/btop
+
+Resource monitoring utility.
+
+Same deal, old `apt` version, building from source.
+
+They have a detailed section on how to build it in the README https://github.com/aristocratos/btop#installation
+
+To keep consistent with other installed tools, I installed the binary in /.local/bin. (the default is /usr/local)
+
+No manpage.
+No shell completions.
