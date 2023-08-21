@@ -430,3 +430,29 @@ To keep consistent with other installed tools, I installed the binary in /.local
 
 No manpage.
 No shell completions.
+
+#### Better `grep`: ripgrep `rg`
+
+https://github.com/BurntSushi/ripgrep
+
+The version in `apt` was old.
+
+So I cloned the repo and built the project manually.
+
+This project might be fully written in Rust, but it uses a ruby package (called gems I think) to build the manpages.
+https://github.com/BurntSushi/ripgrep/blob/962d47e6a1208cf2187cd34c2a7f6cf32e2a4903/build.rs#L97C46-L97C57
+So before building the project, install `asciidoctor`.
+
+It would be way easier to download the `.deb` that's included in each release and install that using `sudo dpkg -i that.deb`, but I'm not doing that, because I'm _learning_.
+https://github.com/BurntSushi/ripgrep#building
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/rg $HOME/.local/bin`
+4. Move completions to a directory in `$fpath`
+    - `mv complete/_rg $ZDIR/completions/_rg`
+5. Change dir to the location of the built output files
+    - In my case `cd ripgrep/target/release/build/ripgrep-5edee77a49c07109/out`
+6. Move man page to its dedicated directory
+    - `mv rg.1 $HOME/.local/share/man/man1/rg.1`
