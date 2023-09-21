@@ -24,8 +24,9 @@ fpath+=("$ZDIR/completions")
 
 # use bat as colorizing pager for `man`
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 # allow mouse scrolling in bat pager
-export BAT_PAGER="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
+# export BAT_PAGER="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
 
 # fzf
 # use fd as default finder
@@ -85,3 +86,5 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS \
 
 export PATH
 export fpath
+export GTK_THEME=Catppuccin-Frappe-Standard-Blue-Dark
+export QT_STYLE_OVERRIDE=kvantum
