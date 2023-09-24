@@ -278,3 +278,87 @@ Built from source.
     - `cp target/man/eza_colors-explanation.5 $HOME/.local/share/man/man5/`
 4. Move completions to a directory in `$fpath`
     - In my case `cp completions/zsh/_eza $ZDIR/completions/`
+
+### Simplified manpages with Tealdeer: `tldr`
+
+https://github.com/dbrgn/tealdeer
+
+This tool accesses the community pages on https://tldr.sh/.
+This is a rust version, the usual `tldr` tool is written in nodejs.
+
+Executable named `tldr`
+
+```sh
+sudo dnf install tealdeer
+```
+
+No manpage (but `tldr` has a `tldr` page! Hah!)
+The website functions as those docs https://dbrgn.github.io/tealdeer/
+
+### Better `cat`: `bat`
+
+https://github.com/sharkdp/bat
+
+```sh
+sudo dnf install bat
+```
+
+### cli benchmark: `hyperfine`
+
+https://github.com/sharkdp/hyperfine
+
+CLI benchmarking tool. Handy for quickly benchmarking some code without having to set up a proper benchmarking suite. (eg. using hyperfine instead of `criterion` to quickly bench something in Rust)
+
+```sh
+sudo dnf install hyperfine
+```
+
+### Better `du`: `dust`
+
+https://github.com/bootandy/dust
+
+Built from source.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `mv target/release/dust $HOME/.local/bin/`
+4. Move man page to its dedicated directory
+    - `mv man-page/dust.1 $HOME/.local/share/man/man1/dust.1`
+5. Move completions to a directory in `$fpath`
+    - `mv _completions/_dust $ZDIR/completions/_dust`
+
+### GitHub CLI: `gh`
+
+https://github.com/cli/cli
+
+```sh
+sudo sudo dnf install gh
+```
+
+after installing, authenticate with
+```sh
+gh auth login
+```
+
+These dotfiles also provide a shortcut (`gh c`) to clone a github repo into a folder structure of OWNER/REPONAME.
+Usage is either `gh c owner/repo` or `gh c repo-url`
+
+### Resource monitoring utility: `btop`
+
+https://github.com/aristocratos/btop
+
+```sh
+sudo dnf install btop
+```
+
+No manpage.
+No shell completions.
+
+### Better `grep`: ripgrep `rg`
+
+https://github.com/BurntSushi/ripgrep
+
+```sh
+sudo dnf install ripgrep
+```
