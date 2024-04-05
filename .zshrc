@@ -57,3 +57,6 @@ eval "$(zoxide init zsh)"
 # make `bat` available by symlinking it as `bat` into a spot that's in the PATH
 # mkdir -p ~/.local/bin
 # ln -s /usr/bin/batcat ~/.local/bin/bat
+
+# Run commands at startup
+macchina
