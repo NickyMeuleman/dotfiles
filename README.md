@@ -322,11 +322,11 @@ Built from source.
 1. Clone repo and change directory into it
 2. Build for release with `cargo build --release`
 3. Move the executable to a directory in `$PATH`
-    - `mv target/release/dust $HOME/.local/bin/`
+    - `cp target/release/dust $HOME/.local/bin/`
 4. Move man page to its dedicated directory
-    - `mv man-page/dust.1 $HOME/.local/share/man/man1/dust.1`
+    - `cp man-page/dust.1 $HOME/.local/share/man/man1/dust.1`
 5. Move completions to a directory in `$fpath`
-    - `mv _completions/_dust $ZDIR/completions/_dust`
+    - `cp _completions/_dust $ZDIR/completions/_dust`
 
 ### GitHub CLI: `gh`
 
@@ -362,3 +362,73 @@ https://github.com/BurntSushi/ripgrep
 ```sh
 sudo dnf install ripgrep
 ```
+
+### Count lines of code: `tokei`
+
+https://github.com/XAMPPRocky/tokei
+
+```sh
+sudo dnf install tokei
+```
+
+No manpages.
+
+No shell completions.
+
+### Delete build artifacts: `kondo`
+
+Removes `node_modules/` in JS projects, `target/` in Rust projects, and many more.
+
+https://github.com/tbillington/kondo
+
+Built from source.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+3. Move the executable to a directory in `$PATH`
+    - `cp target/release/kondo $HOME/.local/bin/`
+
+No manpages.
+
+No shell completions.
+
+### Resource monitor: `btm`
+
+An other terminal resource monitor because for some reason `btop` does not tell you anything about your GPU.
+This one is nicer anyway imo.
+
+https://github.com/ClementTsang/bottom
+
+Built from source.
+
+The generation of manpages and shell completions is only performed when an env variale is set.
+
+1. Clone repo and change directory into it
+2. Build for release with `BTM_GENERATE=true cargo build --release --locked`
+3. Move the executable to a directory in `$PATH`
+    - `cp target/release/btm $HOME/.local/bin/`
+4. Move man page to its dedicated directory
+    - `cp target/tmp/bottom/manpage/btm.1 $HOME/.local/share/man/man1/`
+5. Move completions to a directory in `$fpath`
+    - `cp target/tmp/bottom/completion/_btm $ZDIR/completions/`
+
+### Terminal startup fetch: `macchina`
+
+Something to differentiate terminal windows when I open up a bunch of clean ones.
+I didn't want to look for ASCII art, and a "fetch" script if fine, as long as it's fast.
+
+https://github.com/Macchina-CLI/macchina
+
+Installed from source.
+
+1. Clone repo and change directory into it
+2. Build for release with `cargo build --release`
+    - The produced binary is quite huge, consider stripping it to reduce its size
+    `strip target/release/macchina`
+3. Move the executable to a directory in `$PATH`
+    - `cp target/release/macchina $HOME/.local/bin/`
+4. Move man pages to its dedicated directory
+    - `cp doc/macchina.1 $HOME/.local/share/man/man1/`
+    - `cp doc/macchina.7 $HOME/.local/share/man/man7/`
+
+No shell completions.
