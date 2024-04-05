@@ -1,0 +1,10 @@
+import = ["/home/nicky/projects/catppuccin/alacritty/catppuccin-frappe.toml"]
+
+[window]
+padding = { x = 8, y = 8 }
+decorations = "none"
+opacity = 0.95
+
+[font]
+size = 18.0
+normal = { family = "JetBrainsMono Nerd Font" }

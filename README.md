@@ -432,3 +432,14 @@ Installed from source.
     - `cp doc/macchina.7 $HOME/.local/share/man/man7/`
 
 No shell completions.
+
+## Terminal: `alacritty`
+
+https://github.com/alacritty/alacritty
+
+```sh
+sudo sudo dnf install alacritty
+```
+
+This uses the [catppuccin theme](https://github.com/catppuccin/alacritty).
+I cloned that repo and referred to a file in the `.toml` config file.
