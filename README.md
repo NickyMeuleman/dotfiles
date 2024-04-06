@@ -443,3 +443,14 @@ sudo sudo dnf install alacritty
 
 This uses the [catppuccin theme](https://github.com/catppuccin/alacritty).
 I cloned that repo and referred to a file in the `.toml` config file.
+
+### Video player: Celluloid
+
+https://github.com/celluloid-player/celluloid
+
+Installed via flatpak:
+`flatpak install flathub io.github.celluloid_player.Celluloid`
+
+It's a frontend for [mpv](https://github.com/mpv-player/mpv).
+It supports some configuration files for mpv.
+I linked the `input.conf` file via preferences in the GUI to get the keybinds I am used to.
