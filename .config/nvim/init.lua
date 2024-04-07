@@ -6,6 +6,9 @@ vim.opt.tabstop = 2 -- number of spaces that a <Tab> counts for
 vim.opt.shiftwidth = 2 -- number of spaces used for a step of (auto)indenting. Used by <<, >>
 vim.opt.expandtab = true -- use spaces instead of a tab when a <Tab> is inserted and indenting with < and >
 
+-- Make sure to set `mapleader` before lazy so your mappings are correct
+vim.g.mapleader = " " -- character that replaces the special <leader> mapping in keybinds
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -20,7 +23,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  }
 }
 local opts = {}
 
@@ -30,3 +37,10 @@ require("catppuccin").setup({
   flavour = "frappe" 
 })
 vim.cmd("colorscheme catppuccin")
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>sf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>sg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>sb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>sh', builtin.help_tags, {})
