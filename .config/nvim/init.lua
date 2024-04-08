@@ -27,14 +27,15 @@ local plugins = {
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.6',
     dependencies = { 'nvim-lua/plenary.nvim' }
-  }
+  },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }
 }
 local opts = {}
 
 require("lazy").setup(plugins, opts)
 
 require("catppuccin").setup({
-  flavour = "frappe" 
+  flavour = "frappe"
 })
 vim.cmd("colorscheme catppuccin")
 
@@ -44,3 +45,35 @@ vim.keymap.set('n', '<leader>sf', builtin.find_files, {})
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>sb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, {})
+
+local configs = require("nvim-treesitter.configs")
+configs.setup({
+  -- install grammars for these languages so TS can parse them into a correct AST
+  ensure_installed = {
+    "bash",
+    "c",
+    "css",
+    "dockerfile",
+    "gitignore",
+    "graphql",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "prisma",
+    "query",
+    "rust",
+    "svelte",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml",
+  },
+  -- syntax highlighting based on TS grammars
+  highlight = { enable = true },
+  -- indentation logic uses ths TS grammars
+  indent = { enable = true },
+})
