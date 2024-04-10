@@ -8,7 +8,8 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    { "folke/neodev.nvim", opts = {} }
+    { "folke/neodev.nvim", opts = {} },
+    'hrsh7th/cmp-nvim-lsp' -- cmp source for lsp
   },
   config = function()
     require("mason").setup()
@@ -24,7 +25,11 @@ return {
 
     local lspconfig = require('lspconfig')
 
-    lspconfig["lua_ls"].setup({})
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+    lspconfig["lua_ls"].setup({
+      capabilities = capabilities
+    })
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
