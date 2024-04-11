@@ -28,7 +28,6 @@ return {
       [[ ██║ ╚████║██║╚██████╗██║  ██╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║  ]],
       [[ ╚═╝  ╚═══╝╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝  ]],
     }
-
     startify.section.header.opts.hl = "AlphaHeader"
 
     local cur_dir = vim.fn.getcwd()
@@ -92,16 +91,45 @@ return {
         end
 
         local time = vim.fn.strftime("%H:%M:%S")
-        local date = vim.fn.strftime("%d-%m-%Y")
+        local date = vim.fn.strftime("%Y-%m-%d")
 
         local line1 = " v" .. version.major .. "." .. version.minor .. "." .. version.patch .. dev
-        local line2 = "Loaded " .. stats.loaded .. " plugins  in " .. ms .. "ms"
-        local line3 = " " .. date ..  "  " .. time
+        local line2 = " Loaded " .. stats.loaded .. " plugins in " .. ms .. "ms"
+        local line3 = " " .. date ..  "  " .. time
 
         startify.section.footer.val = {
-          { type = "text", val = line1, opts = { hl = "AlphaFooter" } },
-          { type = "text", val = line2, opts = { hl = "AlphaFooter" } },
-          { type = "text", val = line3, opts = { hl = "AlphaFooter" } },
+          {
+            type = "text",
+            val = line1,
+            opts = {
+              hl = {
+                {"AlphaFooter", 0, 1},
+                {"none", 2, -1}
+              }
+            }
+          },
+          {
+            type = "text",
+            val = line2,
+            opts = {
+              hl = {
+                {"AlphaFooter", 0, 1},
+                {"none", 2, -1}
+              }
+            }
+          },
+          {
+            type = "text",
+            val = line3,
+            opts = {
+              hl = {
+                {"AlphaFooter", 0, 1},
+                {"none", 2, 14},
+                {"AlphaFooter", 15, 16},
+                {"none", 17, -1}
+              }
+            }
+          },
         }
 
         pcall(vim.cmd.AlphaRedraw)
