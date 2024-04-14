@@ -12,15 +12,6 @@ return {
 		"hrsh7th/cmp-nvim-lsp", -- cmp source for lsp
 	},
 	config = function()
-		require("mason").setup()
-
-		require("mason-lspconfig").setup({
-			ensure_installed = {
-				"lua_ls",
-				"rust_analyzer",
-			},
-		})
-
 		require("neodev").setup({})
 
 		local lspconfig = require("lspconfig")

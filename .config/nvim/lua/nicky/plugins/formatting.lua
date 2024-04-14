@@ -7,13 +7,6 @@ return {
 		},
 	},
 	config = function()
-		require("mason").setup()
-		require("mason-tool-installer").setup({
-			ensure_installed = {
-				"stylua",
-			},
-		})
-
 		local conform = require("conform")
 
 		conform.setup({
