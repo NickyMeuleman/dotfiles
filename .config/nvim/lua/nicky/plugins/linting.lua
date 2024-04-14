@@ -9,6 +9,8 @@ return {
 	config = function()
 		local lint = require("lint")
 
+    -- get filetype with :lua print(vim.bo.filetype)
+    -- linter names found in nvim-lint docs
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },

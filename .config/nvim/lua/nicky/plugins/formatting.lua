@@ -10,6 +10,8 @@ return {
 		local conform = require("conform")
 
 		conform.setup({
+			-- get filetype with :lua print(vim.bo.filetype)
+      -- formatters found in conform docs
 			formatters_by_ft = {
 				lua = { "stylua" },
 			},
