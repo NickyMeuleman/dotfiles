@@ -52,7 +52,16 @@ return {
 				end, opts)
 				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-				vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+				vim.keymap.set("n", "<space>ca", function()
+					-- pass in the current line as range, the default is the current cursor position
+					vim.lsp.buf.code_action({
+						range = {
+							start = { vim.fn.line(".") or 0, 0 },
+							["end"] = { vim.fn.line(".") or 0, vim.fn.col("$") or 0 },
+						},
+					})
+				end, opts)
+				vim.keymap.set("v", "<space>ca", vim.lsp.buf.code_action, opts)
 				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 			end,
 		})
