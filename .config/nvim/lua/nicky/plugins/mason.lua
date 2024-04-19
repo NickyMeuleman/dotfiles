@@ -21,6 +21,8 @@ return {
 				"stylua",
 				-- linters
 				"eslint_d",
+				-- debug adapters
+				"codelldb",
 			},
 		})
 	end,
