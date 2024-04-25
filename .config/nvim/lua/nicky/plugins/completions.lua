@@ -19,6 +19,8 @@ return {
 		local cmp = require("cmp")
 
 		require("luasnip.loaders.from_vscode").lazy_load()
+		require("luasnip").filetype_extend("mdx", { "markdown" })
+		require("luasnip").filetype_extend("markdoc", { "markdown" })
 
 		cmp.setup({
 			snippet = {

@@ -8,6 +8,7 @@ return {
 	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
+		vim.treesitter.language.register("markdown", { "markdoc", "mdx" })
 
 		configs.setup({
 			-- install grammars for these languages so TS can parse them into a correct AST

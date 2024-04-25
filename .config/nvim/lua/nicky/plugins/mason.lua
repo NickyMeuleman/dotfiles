@@ -12,6 +12,7 @@ return {
 				-- language servers
 				"lua_ls",
 				"rust_analyzer",
+        "marksman"
 			},
 		})
 
@@ -19,8 +20,10 @@ return {
 			ensure_installed = {
 				-- formatters
 				"stylua",
+        "prettier",
 				-- linters
 				"eslint_d",
+        "markdownlint",
 				-- debug adapters
 				"codelldb",
 			},

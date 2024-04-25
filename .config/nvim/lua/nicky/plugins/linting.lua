@@ -9,13 +9,16 @@ return {
 	config = function()
 		local lint = require("lint")
 
-    -- get filetype with :lua print(vim.bo.filetype)
-    -- linter names found in nvim-lint docs
+		-- get filetype with :lua print(vim.bo.filetype)
+		-- linter names found in nvim-lint docs
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
+			markdown = { "markdownlint" },
+			mdx = { "markdownlint" },
+			markdoc = { "markdownlint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
