@@ -1,0 +1,5 @@
+# https://github.com/artempyanykh/marksman/blob/main/docs/configuration.md
+# https://github.com/artempyanykh/marksman/blob/main/Tests/default.marksman.toml
+
+[core]
+markdown.file_extensions = ["md", "markdown", "mdx", "mdoc", "markdoc"]
