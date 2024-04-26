@@ -32,6 +32,7 @@ return {
 				markdoc = { "prettier", "injected" },
 				-- rust-analyzer uses this automatically, it's here explicit so the "injected" conform formatter uses it in codesnippets
 				rust = { "rustfmt" },
+				json = { "biome" },
 			},
 		})
 

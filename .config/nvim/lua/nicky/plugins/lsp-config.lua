@@ -23,13 +23,13 @@ return {
 			on_attach = function(_, bufnr)
 				vim.lsp.inlay_hint.enable(bufnr)
 			end,
-      settings = {
-        Lua = {
-          hint = {
-            enable = true,
-          }
-        }
-      }
+			settings = {
+				Lua = {
+					hint = {
+						enable = true,
+					},
+				},
+			},
 		})
 
 		lspconfig["marksman"].setup({
@@ -71,6 +71,62 @@ return {
 				end, { desc = "Go to next markdown header" })
 			end,
 		})
+
+		-- for .json and .jsonc, NOT .json5
+		lspconfig["jsonls"].setup({
+			capabilities = capabilities,
+			-- lazy-load schemastore when needed
+			on_new_config = function(new_config)
+				new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+				vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+			end,
+			settings = {
+				json = {
+					format = {
+						enable = true,
+					},
+					validate = {
+						enable = true,
+					},
+				},
+			},
+		})
+
+		lspconfig["yamlls"].setup({
+			capabilities = capabilities,
+			-- lazy-load schemastore when needed
+			on_new_config = function(new_config)
+				-- Not the same logic as jsonls because yaml schemas are a dict, not a list. https://github.com/LazyVim/LazyVim/commit/33c677a55e97ee115ad7050856856df7cd96b3e1
+				new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+					"force",
+					new_config.settings.yaml.schemas or {},
+					require("schemastore").yaml.schemas()
+				)
+			end,
+			settings = {
+				redhat = {
+					telemetry = {
+						enabled = false,
+					},
+				},
+				yaml = {
+					format = {
+						enable = true,
+					},
+					validate = true,
+					schemaStore = {
+						-- You must disable built-in schemaStore support if you want to use
+						-- schemas from Schemastore.nvim
+						enable = false,
+						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+						url = "",
+					},
+				},
+			},
+		})
+
+		-- taplo (lsp for .toml) already has SchemaStore configured
+		lspconfig["taplo"].setup({ capabilities = capabilities })
 
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
