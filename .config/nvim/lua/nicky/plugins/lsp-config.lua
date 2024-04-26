@@ -20,6 +20,16 @@ return {
 
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
+			on_attach = function(_, bufnr)
+				vim.lsp.inlay_hint.enable(bufnr)
+			end,
+      settings = {
+        Lua = {
+          hint = {
+            enable = true,
+          }
+        }
+      }
 		})
 
 		lspconfig["marksman"].setup({
