@@ -3,11 +3,16 @@ require("nicky.options")
 vim.g.mapleader = " " -- character that replaces the special <leader> mapping in keybinds
 require("nicky.keymaps")
 
--- allow vim to recognize filetypes it doesn't already know about 
+-- allow vim to recognize filetypes it doesn't already know about
 vim.filetype.add({
 	extension = {
 		mdx = "mdx",
-    mdoc = "markdoc"
+		mdoc = "markdoc",
+	},
+	pattern = {
+		[".*/yamllint/config"] = "yaml",
+		[".*/.yamlfmt"] = "yaml",
+		[".*/bat/config"] = "bash",
 	},
 })
 
