@@ -19,6 +19,9 @@ return {
 			markdown = { "markdownlint" },
 			mdx = { "markdownlint" },
 			markdoc = { "markdownlint" },
+			json = { "biomejs" },
+			jsonc = { "biomejs" },
+			yaml = { "yamllint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

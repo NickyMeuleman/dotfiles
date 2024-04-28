@@ -15,13 +15,19 @@ return {
 				-- https://github.com/stevearc/conform.nvim/blob/master/doc/formatter_options.md
 				prettier = {
 					options = {
-						ft_parsers = { markdoc = "markdown" },
+						ft_parsers = {
+							json5 = "json",
+							markdoc = "markdown",
+							mdx = "mdx",
+						},
 					},
 				},
 			},
 			-- get filetype with :lua print(vim.bo.filetype)
 			-- formatters found in conform docs
 			-- use prettier over prettierd, folke is smart, I trust him https://github.com/LazyVim/LazyVim/commit/57b504b9e8ae95c294c17e97e7f017f6f802ebbc
+			-- formatters listed in an inner list: only the first available one is used
+			-- formatters listed in the outer list: the formatters are applied sequentially
 			formatters_by_ft = {
 				lua = { "stylua" },
 				javascript = { "biome" },
@@ -33,6 +39,9 @@ return {
 				-- rust-analyzer uses this automatically, it's here explicit so the "injected" conform formatter uses it in codesnippets
 				rust = { "rustfmt" },
 				json = { "biome" },
+				jsonc = { "biome" },
+				json5 = { "prettier" },
+				yaml = { "yamlfmt" },
 			},
 		})
 
