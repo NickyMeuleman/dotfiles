@@ -22,6 +22,7 @@ return {
 		vim.g.rustaceanvim = {
 			-- plugin configuration
 			tools = {
+        enable_nextest = false,
 				code_actions = {
 					-- If you set the option vim.g.rustaceanvim.tools.code_actions.ui_select_fallback to true (defaults to false),
 					-- it will fall back to vim.ui.select if there are no grouped code actions.
@@ -40,7 +41,7 @@ return {
 					-- 	vim.cmd.RustLsp("codeAction")
 					-- end, { buffer = bufnr, desc = "Code actions (Rust)" })
 
-					vim.lsp.inlay_hint.enable(bufnr)
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 				end,
 				default_settings = {
 					-- https://github.com/rust-lang/rust-analyzer/blob/master/docs/user/generated_config.adoc

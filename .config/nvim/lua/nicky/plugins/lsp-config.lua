@@ -21,7 +21,7 @@ return {
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
 			on_attach = function(_, bufnr)
-				vim.lsp.inlay_hint.enable(bufnr)
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end,
 			settings = {
 				Lua = {
