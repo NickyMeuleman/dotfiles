@@ -18,6 +18,7 @@ return {
 				"yamlls",
 				"taplo",
 				"biome", -- also a linter and a formatter
+				"bashls", -- uses the shellcheck linter internally
 			},
 		})
 
@@ -28,10 +29,12 @@ return {
 				"stylua",
 				"prettier",
 				"yamlfmt",
+				"shfmt",
 				-- linters
 				"eslint_d",
 				"markdownlint",
 				"yamllint",
+				"shellcheck",
 				-- debug adapters
 				"codelldb",
 			},

@@ -8,7 +8,9 @@ return {
 	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
+
 		vim.treesitter.language.register("markdown", { "markdoc", "mdx" })
+		vim.treesitter.language.register("bash", { "zsh" })
 
 		configs.setup({
 			-- install grammars for these languages so TS can parse them into a correct AST
@@ -23,6 +25,7 @@ return {
 				"cmake",
 				"diff",
 				"dockerfile",
+				"gitcommit",
 				"gitignore",
 				"go",
 				"gomod",

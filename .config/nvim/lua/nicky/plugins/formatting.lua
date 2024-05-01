@@ -42,6 +42,8 @@ return {
 				jsonc = { "biome" },
 				json5 = { "prettier" },
 				yaml = { "yamlfmt" },
+				sh = { "shfmt" },
+				zsh = { "shfmt" },
 			},
 		})
 

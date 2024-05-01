@@ -128,6 +128,17 @@ return {
 		-- taplo (lsp for .toml) already has SchemaStore configured
 		lspconfig["taplo"].setup({ capabilities = capabilities })
 
+		lspconfig["bashls"].setup({
+			capabilities = capabilities,
+			filetypes = { "sh", "zsh" },
+			settings = {
+				-- INFO: options inside bashIde: https://github.com/bash-lsp/bash-language-server/blob/main/server/src/config.ts
+				bashIde = {
+					globPattern = "*@(.sh|.inc|.bash|.command|.zshrc|.zsh|zsh_*)",
+				},
+			},
+		})
+
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 		vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)

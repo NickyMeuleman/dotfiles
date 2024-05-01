@@ -9,10 +9,20 @@ vim.filetype.add({
 		mdx = "mdx",
 		mdoc = "markdoc",
 	},
+	filename = {
+		[".env"] = "dotenv",
+		[".zshrc"] = "zsh",
+		[".zshenv"] = "zsh",
+		[".stow-local-ignore"] = "gitignore",
+	},
 	pattern = {
 		[".*/yamllint/config"] = "yaml",
 		[".*/.yamlfmt"] = "yaml",
 		[".*/bat/config"] = "bash",
+		-- eg .env.local
+		["%.env%.[%w_.-]+"] = "dotenv",
+		-- eg .local.env
+		["%.[%w_.-]+%.env"] = "dotenv",
 	},
 })
 
@@ -29,24 +39,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
-  pattern = {
-    "PlenaryTestPopup",
-    "help",
-    "lspinfo",
-    "notify",
-    "qf",
-    "query",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
-    "neotest-output",
-    "checkhealth",
-    "neotest-summary",
-    "neotest-output-panel",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-  end,
+	group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
+	pattern = {
+		"PlenaryTestPopup",
+		"help",
+		"lspinfo",
+		"notify",
+		"qf",
+		"query",
+		"spectre_panel",
+		"startuptime",
+		"tsplayground",
+		"neotest-output",
+		"checkhealth",
+		"neotest-summary",
+		"neotest-output-panel",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
 })
