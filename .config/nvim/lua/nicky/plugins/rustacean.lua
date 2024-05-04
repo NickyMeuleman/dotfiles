@@ -22,7 +22,6 @@ return {
 		vim.g.rustaceanvim = {
 			-- plugin configuration
 			tools = {
-        enable_nextest = false,
 				code_actions = {
 					-- If you set the option vim.g.rustaceanvim.tools.code_actions.ui_select_fallback to true (defaults to false),
 					-- it will fall back to vim.ui.select if there are no grouped code actions.
