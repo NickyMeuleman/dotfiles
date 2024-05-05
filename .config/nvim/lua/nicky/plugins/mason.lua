@@ -21,6 +21,7 @@ return {
 				"bashls", -- uses the shellcheck linter internally
 				"tsserver",
 				"ruff",
+				"gopls",
 			},
 		})
 
@@ -32,6 +33,8 @@ return {
 				"prettier",
 				"yamlfmt",
 				"shfmt",
+				"goimports",
+				"gofumpt",
 				-- linters
 				"eslint_d",
 				"markdownlint",

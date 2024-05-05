@@ -29,6 +29,7 @@ return {
 			-- formatters listed in an inner list: only the first available one is used
 			-- formatters listed in the outer list: the formatters are applied sequentially
 			formatters_by_ft = {
+				go = { "goimports", "gofumpt" },
 				lua = { "stylua" },
 				-- biome is used automatically by the biome lsp, but setting it here explicitly so the "injected" conform formatter uses it in codesnippets
 				javascript = { "biome" },

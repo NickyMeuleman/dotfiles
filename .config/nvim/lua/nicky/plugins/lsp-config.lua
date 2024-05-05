@@ -223,6 +223,53 @@ return {
 
 		lspconfig["ruff"].setup({ capabilities = capabilities })
 
+		lspconfig["gopls"].setup({
+			capabilities = capabilities,
+			on_attach = function(_, bufnr)
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			end,
+			settings = {
+				-- INFO: https://github.com/golang/tools/blob/master/gopls/doc/vim.md
+				-- https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+				gopls = {
+					gofumpt = true,
+					codelenses = {
+						gc_details = false,
+						generate = true,
+						regenerate_cgo = true,
+						run_govulncheck = true,
+						test = true,
+						tidy = true,
+						upgrade_dependency = true,
+						vendor = true,
+					},
+					-- https://github.com/golang/tools/blob/master/gopls/doc/inlayHints.md
+					hints = {
+						assignVariableTypes = true,
+						compositeLiteralFields = true,
+						compositeLiteralTypes = true,
+						constantValues = true,
+						functionTypeParameters = true,
+						parameterNames = true,
+						rangeVariableTypes = true,
+					},
+					-- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
+					analyses = {
+						fieldalignment = true,
+						nilness = true,
+						unusedparams = true,
+						unusedwrite = true,
+						useany = true,
+					},
+					usePlaceholders = true,
+					completeUnimported = true,
+					staticcheck = true,
+					directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+					semanticTokens = true,
+				},
+			},
+		})
+
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 		vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
