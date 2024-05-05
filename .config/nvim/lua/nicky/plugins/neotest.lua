@@ -6,6 +6,7 @@ return {
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"mrcjkb/rustaceanvim",
+		"marilari88/neotest-vitest",
 	},
 	config = function()
 		local neotest = require("neotest")
@@ -13,6 +14,7 @@ return {
 		neotest.setup({
 			adapters = {
 				require("rustaceanvim.neotest"),
+				require("neotest-vitest"),
 			},
 		})
 

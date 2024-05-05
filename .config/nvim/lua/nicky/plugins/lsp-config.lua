@@ -139,6 +139,88 @@ return {
 			},
 		})
 
+		lspconfig["tsserver"].setup({
+			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				-- do not enable inlay hints by default in javascript and javascriptreact
+				vim.lsp.inlay_hint.enable(string.find(vim.bo.filetype, "javascript") == nil, { bufnr = bufnr })
+
+				-- never format with tsserver
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
+
+				-- INFO:  https://github.com/typescript-language-server/typescript-language-server?tab=readme-ov-file#code-actions-on-save
+				vim.keymap.set("n", "<leader>cS", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							---@diagnostic disable-next-line: assign-type-mismatch
+							only = { "source.sortImports.ts" },
+							diagnostics = {},
+						},
+					})
+				end)
+
+				vim.keymap.set("n", "<leader>cR", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							---@diagnostic disable-next-line: assign-type-mismatch
+							only = { "source.removeUnusedImports.ts" },
+							diagnostics = {},
+						},
+					})
+				end)
+			end,
+			settings = {
+				-- INFO: https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
+				-- https://github.com/typescript-language-server/typescript-language-server/blob/b224b878652438bcdd639137a6b1d1a6630129e4/src/features/fileConfigurationManager.ts#L89
+				typescript = {
+					inlayHints = {
+						includeInlayEnumMemberValueHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+					},
+					implementationsCodeLens = {
+						enabled = true,
+					},
+					referencesCodeLens = {
+						enabled = true,
+						showOnAllFunctions = true,
+					},
+				},
+				javascript = {
+					inlayHints = {
+						includeInlayEnumMemberValueHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+					},
+					implementationsCodeLens = {
+						enabled = true,
+					},
+					referencesCodeLens = {
+						enabled = true,
+						showOnAllFunctions = true,
+					},
+				},
+				completions = {
+					completeFunctionCalls = true,
+				},
+			},
+		})
+
+		lspconfig["biome"].setup({ capabilities = capabilities })
+
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 		vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)

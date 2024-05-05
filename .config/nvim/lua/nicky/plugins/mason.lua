@@ -19,6 +19,7 @@ return {
 				"taplo",
 				"biome", -- also a linter and a formatter
 				"bashls", -- uses the shellcheck linter internally
+				"tsserver",
 			},
 		})
 
@@ -37,6 +38,7 @@ return {
 				"shellcheck",
 				-- debug adapters
 				"codelldb",
+				"js-debug-adapter",
 			},
 		})
 	end,
