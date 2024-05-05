@@ -20,6 +20,7 @@ return {
 				"biome", -- also a linter and a formatter
 				"bashls", -- uses the shellcheck linter internally
 				"tsserver",
+				"ruff",
 			},
 		})
 
