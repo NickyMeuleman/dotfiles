@@ -12,7 +12,7 @@ And I set up [Flathub](https://flathub.org/nl/setup/Fedora).
 
 I then also did the multimedia steps the RMP Fusion site has.
 Apparently Fedora doesn't ship some media codecs you need to play a lot of videofiles.
-https://rpmfusion.org/Howto/Multimedia
+<https://rpmfusion.org/Howto/Multimedia>
 
 At this point, update all the things!
 `sudo dnf update && sudo dnf upgrade`
@@ -46,7 +46,7 @@ Then I made GDM (that's Gnome's login manager, in other words it's the screen wi
 I copied the file that setting up the monitors created and made sure the `gdm` user and group owned that file.
 
 ```sh
-sudo cp -v ~/.config/monitors.xml /var/lib/gdm/.config/ 
+sudo cp -v ~/.config/monitors.xml /var/lib/gdm/.config/
 sudo chown gdm:gdm /var/lib/gdm/.config/monitors.xml
 ```
 
@@ -96,12 +96,12 @@ chsh -s $(which zsh)
 
 ### Prompt: Starship
 
-https://starship.rs/
+<https://starship.rs/>
 
 Install using the command they provide.
 
 No manpage, so `man starship` does not work.
-See https://github.com/starship/starship/issues/2926
+See [issue #2926](https://github.com/starship/starship/issues/2926)
 
 `starship --help` works.
 
@@ -116,7 +116,7 @@ starship completions zsh > $ZDIR/completions/_starship
 
 ### Rust language
 
-https://www.rust-lang.org/
+<https://www.rust-lang.org/>
 
 Install using the command they provide.
 
@@ -124,14 +124,15 @@ Manpages are weird.
 Cargo is under `rustup man cargo`
 
 Trying to use it gives a usage hint that says:
-```
+
+```txt
 USAGE:
     rustup man [OPTIONS] <command>
 ```
 
 But I have no idea what `[OPTIONS] <command>` is, I only guessed `cargo`.
 
-Related: https://github.com/rust-lang/rustup/issues/1729
+Related: <https://github.com/rust-lang/rustup/issues/1729>
 
 Add completions to shell for both `rustup` and `cargo`: `rustup help completions`
 
@@ -142,7 +143,7 @@ rustup completions zsh cargo > $ZDIR/completions/_cargo
 
 ### Node manager: `fnm`
 
-https://github.com/Schniz/fnm
+<https://github.com/Schniz/fnm>
 
 Install using the command they provide.
 
@@ -161,29 +162,29 @@ fnm completions --shell=zsh > $ZDIR/completions/_fnm
 
 ### Fuzzy finder: `fzf`
 
-https://github.com/junegunn/fzf
+<https://github.com/junegunn/fzf>
 
 Installed from source.
 They have a handy script that does it for us, neat!
 
-https://github.com/junegunn/fzf#using-git
+<https://github.com/junegunn/fzf#using-git>
 
 No traditional completions so it does not fill in flags.
 eg. when tabbing after `fzf -`.
-https://github.com/junegunn/fzf/issues/3349
+<https://github.com/junegunn/fzf/issues/3349>
 
-Fuzzy completion can be entered while typing a command pressing tax after the trigger sequence, which is "**" by default.
+Fuzzy completion can be entered while typing a command pressing tax after the trigger sequence, which is "\*\*" by default.
 
 eg. `vim **` and hitting tab will start a fuzzy search.
-When a file is selected the "**" will be replaced with the path to that file.
+When a file is selected the "\*\*" will be replaced with the path to that file.
 
 You can start that fuzzy search off with a query by placing it before the trigger sequence before hitting tab. eg. `vim potatoes**` starts fzf off with "potatoes" already entered.
 
-https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh
+<https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh>
 
 You can also do this with hotkeys
 
-https://github.com/junegunn/fzf#key-bindings-for-command-line
+<https://github.com/junegunn/fzf#key-bindings-for-command-line>
 
 `CTRL-t` does the almost same thing, it adds the selection to your prompt.
 It does NOT start the fuzzy search off with what you already entered.
@@ -191,22 +192,22 @@ It does NOT start the fuzzy search off with what you already entered.
 So if you did `vim pota`, hit `CTRL-t` and chose `potatoes.txt`, your final prompt would be `vim potapotatoes.txt`
 
 The fuzzy finder uses some vim motion keys to navigate.
-https://github.com/junegunn/fzf#using-the-finder
+<https://github.com/junegunn/fzf#using-the-finder>
 
 ### Smarter `cd`: `zoxide`
 
-https://github.com/ajeetdsouza/zoxide
+<https://github.com/ajeetdsouza/zoxide>
 
 Installed from source.
 
 1. Clone repo and change directory into it
 2. Build for release with `cargo build --release`
 3. Move the executable to a directory in `$PATH`
-    - `cp target/release/zoxide $HOME/.local/bin/`
+   - `cp target/release/zoxide $HOME/.local/bin/`
 4. Move man page to its dedicated directory
-    - `cp -r man/ $HOME/.local/share/`
+   - `cp -r man/ $HOME/.local/share/`
 5. Move completions to a directory in `$fpath`
-    - `cp contrib/completions/_zoxide $ZDIR/completions/_zoxide`
+   - `cp contrib/completions/_zoxide $ZDIR/completions/_zoxide`
 
 Make sure to use the full name instead of the `z` alias when using it for anything other than the base jumping functionality.
 
@@ -214,18 +215,18 @@ Make sure to use the full name instead of the `z` alias when using it for anythi
 
 zoxide integrates with `zsh-autocomplete` to show frecent (not a typo) directories when tabbing direcly after `z`.
 
-https://github.com/ajeetdsouza/zoxide/issues/9
+<https://github.com/ajeetdsouza/zoxide/issues/9>
 
 Pressing tab after a space triggers interactive completion (like you get when you use `zi`)
-eg. `z thing ` and then tabbing triggers the interactive searcher that uses `fzf` with "thing" as query.
-https://github.com/ajeetdsouza/zoxide/issues/9#issuecomment-986195030
+eg. `z thing` and then tabbing triggers the interactive searcher that uses `fzf` with "thing" as query.
+<https://github.com/ajeetdsouza/zoxide/issues/9#issuecomment-986195030>
 
 ### Document conversion tool: `pandoc`
 
-https://github.com/jgm/pandoc
+<https://github.com/jgm/pandoc>
 
 I could download the release from github and install that via these instructions:
-https://github.com/jgm/pandoc/blob/main/INSTALL.md#linux
+<https://github.com/jgm/pandoc/blob/main/INSTALL.md#linux>
 
 Instead I opted for convenience and installed a slightly older version with
 
@@ -235,8 +236,7 @@ sudo dnf install pandoc
 
 ### Better `find`: `fd`
 
-https://github.com/sharkdp/fd
-
+<https://github.com/sharkdp/fd>
 
 ```sh
 sudo dnf install fd-find
@@ -246,7 +246,7 @@ The binary name is `fd`, not `fd-find`.
 
 ### Better `make`: `just`
 
-https://github.com/casey/just
+<https://github.com/casey/just>
 
 ```sh
 sudo dnf install just
@@ -263,27 +263,27 @@ just --completions zsh > $ZDIR/completions/_just
 
 I previously used [`exa`](https://github.com/ogham/exa), but that's unmaintained now.
 
-https://github.com/eza-community/eza
+<https://github.com/eza-community/eza>
 
 Built from source.
 
 1. Clone repo and change directory into it
 2. Build for release with `cargo build --release`
 3. Move the executable to a directory in `$PATH`
-    - `cp target/release/eza $HOME/.local/bin/`
-5. Build man pages with `just man`
+   - `cp target/release/eza $HOME/.local/bin/`
+4. Build man pages with `just man`
 5. Move man page to its dedicated directory
-    - `cp target/man/eza.1 $HOME/.local/share/man/man1/`
-    - `cp target/man/eza_colors.5 $HOME/.local/share/man/man5/`
-    - `cp target/man/eza_colors-explanation.5 $HOME/.local/share/man/man5/`
-4. Move completions to a directory in `$fpath`
-    - In my case `cp completions/zsh/_eza $ZDIR/completions/`
+   - `cp target/man/eza.1 $HOME/.local/share/man/man1/`
+   - `cp target/man/eza_colors.5 $HOME/.local/share/man/man5/`
+   - `cp target/man/eza_colors-explanation.5 $HOME/.local/share/man/man5/`
+6. Move completions to a directory in `$fpath`
+   - In my case `cp completions/zsh/_eza $ZDIR/completions/`
 
 ### Simplified manpages with Tealdeer: `tldr`
 
-https://github.com/dbrgn/tealdeer
+<https://github.com/dbrgn/tealdeer>
 
-This tool accesses the community pages on https://tldr.sh/.
+This tool accesses the community pages on <https://tldr.sh/>.
 This is a rust version, the usual `tldr` tool is written in nodejs.
 
 Executable named `tldr`
@@ -293,11 +293,11 @@ sudo dnf install tealdeer
 ```
 
 No manpage (but `tldr` has a `tldr` page! Hah!)
-The website functions as those docs https://dbrgn.github.io/tealdeer/
+The website functions as those docs <https://dbrgn.github.io/tealdeer/>
 
 ### Better `cat`: `bat`
 
-https://github.com/sharkdp/bat
+<https://github.com/sharkdp/bat>
 
 ```sh
 sudo dnf install bat
@@ -305,7 +305,7 @@ sudo dnf install bat
 
 ### cli benchmark: `hyperfine`
 
-https://github.com/sharkdp/hyperfine
+<https://github.com/sharkdp/hyperfine>
 
 CLI benchmarking tool. Handy for quickly benchmarking some code without having to set up a proper benchmarking suite. (eg. using hyperfine instead of `criterion` to quickly bench something in Rust)
 
@@ -315,28 +315,29 @@ sudo dnf install hyperfine
 
 ### Better `du`: `dust`
 
-https://github.com/bootandy/dust
+<https://github.com/bootandy/dust>
 
 Built from source.
 
 1. Clone repo and change directory into it
 2. Build for release with `cargo build --release`
 3. Move the executable to a directory in `$PATH`
-    - `cp target/release/dust $HOME/.local/bin/`
+   - `cp target/release/dust $HOME/.local/bin/`
 4. Move man page to its dedicated directory
-    - `cp man-page/dust.1 $HOME/.local/share/man/man1/dust.1`
+   - `cp man-page/dust.1 $HOME/.local/share/man/man1/dust.1`
 5. Move completions to a directory in `$fpath`
-    - `cp _completions/_dust $ZDIR/completions/_dust`
+   - `cp _completions/_dust $ZDIR/completions/_dust`
 
 ### GitHub CLI: `gh`
 
-https://github.com/cli/cli
+<https://github.com/cli/cli>
 
 ```sh
 sudo sudo dnf install gh
 ```
 
 after installing, authenticate with
+
 ```sh
 gh auth login
 ```
@@ -346,7 +347,7 @@ Usage is either `gh c owner/repo` or `gh c repo-url`
 
 ### Resource monitoring utility: `btop`
 
-https://github.com/aristocratos/btop
+<https://github.com/aristocratos/btop>
 
 ```sh
 sudo dnf install btop
@@ -357,7 +358,7 @@ No shell completions.
 
 ### Better `grep`: ripgrep `rg`
 
-https://github.com/BurntSushi/ripgrep
+<https://github.com/BurntSushi/ripgrep>
 
 ```sh
 sudo dnf install ripgrep
@@ -365,7 +366,7 @@ sudo dnf install ripgrep
 
 ### Count lines of code: `tokei`
 
-https://github.com/XAMPPRocky/tokei
+<https://github.com/XAMPPRocky/tokei>
 
 ```sh
 sudo dnf install tokei
@@ -379,14 +380,14 @@ No shell completions.
 
 Removes `node_modules/` in JS projects, `target/` in Rust projects, and many more.
 
-https://github.com/tbillington/kondo
+<https://github.com/tbillington/kondo>
 
 Built from source.
 
 1. Clone repo and change directory into it
 2. Build for release with `cargo build --release`
 3. Move the executable to a directory in `$PATH`
-    - `cp target/release/kondo $HOME/.local/bin/`
+   - `cp target/release/kondo $HOME/.local/bin/`
 
 No manpages.
 
@@ -397,7 +398,7 @@ No shell completions.
 An other terminal resource monitor because for some reason `btop` does not tell you anything about your GPU.
 This one is nicer anyway imo.
 
-https://github.com/ClementTsang/bottom
+<https://github.com/ClementTsang/bottom>
 
 Built from source.
 
@@ -406,36 +407,36 @@ The generation of manpages and shell completions is only performed when an env v
 1. Clone repo and change directory into it
 2. Build for release with `BTM_GENERATE=true cargo build --release --locked`
 3. Move the executable to a directory in `$PATH`
-    - `cp target/release/btm $HOME/.local/bin/`
+   - `cp target/release/btm $HOME/.local/bin/`
 4. Move man page to its dedicated directory
-    - `cp target/tmp/bottom/manpage/btm.1 $HOME/.local/share/man/man1/`
+   - `cp target/tmp/bottom/manpage/btm.1 $HOME/.local/share/man/man1/`
 5. Move completions to a directory in `$fpath`
-    - `cp target/tmp/bottom/completion/_btm $ZDIR/completions/`
+   - `cp target/tmp/bottom/completion/_btm $ZDIR/completions/`
 
 ### Terminal startup fetch: `macchina`
 
 Something to differentiate terminal windows when I open up a bunch of clean ones.
 I didn't want to look for ASCII art, and a "fetch" script if fine, as long as it's fast.
 
-https://github.com/Macchina-CLI/macchina
+<https://github.com/Macchina-CLI/macchina>
 
 Installed from source.
 
 1. Clone repo and change directory into it
 2. Build for release with `cargo build --release`
-    - The produced binary is quite huge, consider stripping it to reduce its size
-    `strip target/release/macchina`
+   - The produced binary is quite huge, consider stripping it to reduce its size
+     `strip target/release/macchina`
 3. Move the executable to a directory in `$PATH`
-    - `cp target/release/macchina $HOME/.local/bin/`
+   - `cp target/release/macchina $HOME/.local/bin/`
 4. Move man pages to its dedicated directory
-    - `cp doc/macchina.1 $HOME/.local/share/man/man1/`
-    - `cp doc/macchina.7 $HOME/.local/share/man/man7/`
+   - `cp doc/macchina.1 $HOME/.local/share/man/man1/`
+   - `cp doc/macchina.7 $HOME/.local/share/man/man7/`
 
 No shell completions.
 
-## Terminal: `alacritty`
+### Terminal: `alacritty`
 
-https://github.com/alacritty/alacritty
+<https://github.com/alacritty/alacritty>
 
 ```sh
 sudo sudo dnf install alacritty
@@ -446,7 +447,7 @@ I cloned that repo and referred to a file in the `.toml` config file.
 
 ### Video player: Celluloid
 
-https://github.com/celluloid-player/celluloid
+<https://github.com/celluloid-player/celluloid>
 
 Installed via flatpak:
 `flatpak install flathub io.github.celluloid_player.Celluloid`
@@ -454,3 +455,51 @@ Installed via flatpak:
 It's a frontend for [mpv](https://github.com/mpv-player/mpv).
 It supports some configuration files for mpv.
 I linked the `input.conf` file via preferences in the GUI to get the keybinds I am used to.
+
+### Git tool: `lazygit`
+
+### Clipboard tool: `wl-copy` and `wl-paste`
+
+Somehow Fedora came without a clipboard tool?
+Used mainly to make neovim aware of the system clipboard.
+
+`sudo dnf install wl-clipboard`
+
+### File watcher: `fswatch`
+
+Neovim `:checkhealth` recommended this.
+It's a faster file watching tool, so it speeds up a lot of LSPs
+
+`sudo dnf fswatch`
+
+### Rust testing: `cargo nextest`
+
+<https://nexte.st>
+
+`cargo install cargo-nextest --locked`
+
+### `treesitter`
+
+`cargo install tree-sitter-cli`
+
+Necessary because the treesitter grammar for LaTeX needs to be generated using the CLI-tool
+
+### Code screenshots: `silicon`
+
+<https://github.com/Aloxaf/silicon/>
+
+Install dependencies:
+
+```sh
+sudo dnf install \
+  cmake \
+  expat-devel fontconfig-devel libxcb-devel \
+  freetype-devel libxml2-devel \
+  harfbuzz
+```
+
+Install with `cargo`:
+
+```sh
+cargo install silicon
+```
