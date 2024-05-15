@@ -12,17 +12,17 @@ return {
 		-- get filetype with :lua print(vim.bo.filetype)
 		-- linter names found in nvim-lint docs
 		lint.linters_by_ft = {
-      -- don't enable biome, the lsp (set in lspconfig) already handles linting, setting it leads to duplicate messages
-			-- javascript = { "biomejs" },
-      -- TODO: make using eslint conditional
-			-- typescript = { "eslint_d" },
-			-- javascriptreact = { "eslint_d" },
-			-- typescriptreact = { "eslint_d" },
+			-- don't enable biome or eslint here, the lsp (set in lspconfig) already handles linting, setting it leads to duplicate messages
+			-- TODO: make all tools conditonal
+			-- javascript = { "" },
+			-- typescript = { "" },
+			-- javascriptreact = { "" },
+			-- typescriptreact = { "" },
 			markdown = { "markdownlint" },
 			mdx = { "markdownlint" },
 			markdoc = { "markdownlint" },
-			-- json = { "biomejs" },
-			-- jsonc = { "biomejs" },
+			-- json = { "" },
+			-- jsonc = { "" },
 			yaml = { "yamllint" },
 		}
 

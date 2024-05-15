@@ -140,6 +140,14 @@ return {
 		})
 
 		lspconfig["tsserver"].setup({
+			filetypes = {
+				"javascript",
+				"javascriptreact",
+				"javascript.jsx",
+				"typescript",
+				"typescriptreact",
+				"typescript.tsx",
+			},
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
 				-- do not enable inlay hints by default in javascript and javascriptreact
@@ -219,9 +227,9 @@ return {
 			},
 		})
 
-		lspconfig["biome"].setup({ capabilities = capabilities })
-
-		lspconfig["ruff"].setup({ capabilities = capabilities })
+		lspconfig["ruff"].setup({
+			capabilities = capabilities,
+		})
 
 		lspconfig["gopls"].setup({
 			capabilities = capabilities,
@@ -266,6 +274,88 @@ return {
 					staticcheck = true,
 					directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
 					semanticTokens = true,
+				},
+			},
+		})
+
+		lspconfig["biome"].setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig["eslint"].setup({
+			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				-- never use eslint as formatter: https://typescript-eslint.io/troubleshooting/formatting/
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
+
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					buffer = bufnr,
+					command = "EslintFixAll",
+				})
+			end,
+			settings = {
+				format = false,
+			},
+		})
+
+		lspconfig["html"].setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig["cssls"].setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig["emmet_language_server"].setup({
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"typescriptreact",
+				"javascriptreact",
+				"css",
+				"sass",
+				"scss",
+				"less",
+				"svelte",
+			},
+		})
+
+		lspconfig["tailwindcss"].setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig["astro"].setup({
+			capabilities = capabilities,
+			on_attach = function(_, bufnr)
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			end,
+      -- FIXME: inlay hints do not work
+			-- try to set the same settings as tsserver, https://github.com/withastro/language-tools/blob/main/packages/vscode/README.md#inlay-hints-dont-work
+			settings = {
+				-- INFO: https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
+				-- https://github.com/typescript-language-server/typescript-language-server/blob/b224b878652438bcdd639137a6b1d1a6630129e4/src/features/fileConfigurationManager.ts#L89
+				typescript = {
+					inlayHints = {
+						includeInlayEnumMemberValueHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+					},
+					implementationsCodeLens = {
+						enabled = true,
+					},
+					referencesCodeLens = {
+						enabled = true,
+						showOnAllFunctions = true,
+					},
+				},
+				completions = {
+					completeFunctionCalls = true,
 				},
 			},
 		})

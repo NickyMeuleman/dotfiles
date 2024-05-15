@@ -29,13 +29,14 @@ return {
 			-- formatters listed in an inner list: only the first available one is used
 			-- formatters listed in the outer list: the formatters are applied sequentially
 			formatters_by_ft = {
+				astro = { "prettier" },
 				go = { "goimports", "gofumpt" },
 				lua = { "stylua" },
 				-- biome is used automatically by the biome lsp, but setting it here explicitly so the "injected" conform formatter uses it in codesnippets
-				javascript = { "biome" },
-				typescript = { "biome" },
-				javascriptreact = { "biome" },
-				typescriptreact = { "biome" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
 				markdown = { "prettier", "injected" },
 				-- prettier v3 does not support mdx v2/3 fully yet: https://github.com/prettier/prettier/issues/12209
 				-- but I use it anyway, because not having formatting is a pain. Only multiline comments seem to be weird.

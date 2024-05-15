@@ -22,6 +22,12 @@ return {
 				"tsserver",
 				"ruff",
 				"gopls",
+				"html",
+				"cssls",
+				"tailwindcss",
+				"emmet_language_server",
+				"astro",
+        "eslint" -- linter implemented as lsp
 			},
 		})
 
@@ -36,7 +42,6 @@ return {
 				"goimports",
 				"gofumpt",
 				-- linters
-				"eslint_d",
 				"markdownlint",
 				"yamllint",
 				"shellcheck",

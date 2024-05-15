@@ -14,6 +14,8 @@ return {
 		"saadparwaiz1/cmp_luasnip", -- source for luasnip
 		"hrsh7th/cmp-buffer", -- source for buffer words
 		"hrsh7th/cmp-nvim-lsp", -- source for lsp
+		"onsails/lspkind-nvim", -- icons for completion kind (lsp/text/..)
+		"luckasRanarison/tailwind-tools.nvim", -- colors for tailwind classes
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -31,6 +33,12 @@ return {
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
+			},
+			---@diagnostic disable-next-line: missing-fields
+			formatting = {
+				format = require("lspkind").cmp_format({
+					before = require("tailwind-tools.cmp").lspkind_format,
+				}),
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
