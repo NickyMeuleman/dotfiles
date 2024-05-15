@@ -7,7 +7,6 @@ return {
 		crates.setup({
 			lsp = {
 				enabled = true,
-				---@diagnostic disable-next-line: unused-local
 				on_attach = function(client, bufnr)
 					local opts = { silent = true }
 

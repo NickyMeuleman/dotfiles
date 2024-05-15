@@ -30,7 +30,6 @@ return {
 			},
 			-- LSP configuration
 			server = {
-				---@diagnostic disable-next-line: unused-local
 				on_attach = function(client, bufnr)
 					-- This plugin gets loaded after lspconfig, for conflicting keymaps the ones in this function will win
 					-- not using grouped codeactions because they error with:
