@@ -503,3 +503,5 @@ Install with `cargo`:
 ```sh
 cargo install silicon
 ```
+
+`silicon` uses a lot of the same assets as `bat`, so I am reusing the theme files.

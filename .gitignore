@@ -11,3 +11,7 @@ htop
 .config/broot
 .config/bottom
 .config/btop
+.config/silicon/themes/*
+.config/silicon/syntaxes/*
+!.config/silicon/themes/.gitkeep
+!.config/silicon/syntaxes/.gitkeep
