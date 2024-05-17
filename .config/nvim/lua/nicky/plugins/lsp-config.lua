@@ -323,6 +323,19 @@ return {
 
 		lspconfig["tailwindcss"].setup({
 			capabilities = capabilities,
+			root_dir = function(fname)
+				-- activated by default way too easy, only activate when a config file is present
+				return require("lspconfig.util").root_pattern(
+					"tailwind.config.js",
+					"tailwind.config.cjs",
+					"tailwind.config.mjs",
+					"tailwind.config.ts",
+					"postcss.config.js",
+					"postcss.config.cjs",
+					"postcss.config.mjs",
+					"postcss.config.ts"
+				)(fname)
+			end,
 		})
 
 		lspconfig["astro"].setup({
@@ -330,7 +343,7 @@ return {
 			on_attach = function(_, bufnr)
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end,
-      -- FIXME: inlay hints do not work
+			-- FIXME: inlay hints do not work
 			-- try to set the same settings as tsserver, https://github.com/withastro/language-tools/blob/main/packages/vscode/README.md#inlay-hints-dont-work
 			settings = {
 				-- INFO: https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
