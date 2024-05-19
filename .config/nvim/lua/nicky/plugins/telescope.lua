@@ -1,20 +1,29 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.6",
+	cmd = "Telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	config = function()
+	keys = function()
 		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-		vim.keymap.set("n", "<leader>sf", builtin.find_files, {})
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, {})
-		vim.keymap.set("n", "<leader>sb", builtin.buffers, {})
-		vim.keymap.set("n", "<leader>sh", builtin.help_tags, {})
-		vim.keymap.set("n", "<leader>sc", function()
-			builtin.colorscheme({
-				enable_preview = true,
-			})
-		end, {})
+		return {
+			{ "<C-p>", builtin.find_files },
+			{ "<leader>sf", builtin.find_files },
+			{ "<leader>sg", builtin.live_grep },
+			{ "<leader>sb", builtin.buffers },
+			{ "<leader>sh", builtin.help_tags },
+			{
+				"<leader>sc",
+				function()
+					builtin.colorscheme({
+						enable_preview = true,
+					})
+				end,
+			},
+		}
+	end,
+	config = function()
+		require("telescope").setup({})
 	end,
 }

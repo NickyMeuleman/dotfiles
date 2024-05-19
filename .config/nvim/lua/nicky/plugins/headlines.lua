@@ -1,6 +1,7 @@
 return {
 	"lukas-reineke/headlines.nvim",
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	ft = { "markdown", "mdx", "markdoc", "norg", "org" },
 	config = function()
 		local shared_opts = {
 			dash_string = "-",

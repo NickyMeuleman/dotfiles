@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"hrsh7th/nvim-cmp",
 	},
+	event = { "InsertEnter", "CmdlineEnter" },
 	config = function()
 		local npairs = require("nvim-autopairs")
 

@@ -1,7 +1,7 @@
 return {
 	"mrcjkb/rustaceanvim",
 	version = "^4", -- Recommended
-	lazy = false, -- This plugin is already lazy
+	ft = { "rust" },
 	dependencies = {
 		"WhoIsSethDaniel/mason-tool-installer.nvim", -- install rust-analyzer LSP
 		"rcarriga/nvim-dap-ui", -- install debug adapter

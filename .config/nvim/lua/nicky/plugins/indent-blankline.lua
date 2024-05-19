@@ -4,6 +4,7 @@ return {
 		"HiPhish/rainbow-delimiters.nvim",
 	},
 	main = "ibl",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		-- use same highlight groups as the rainbow-delimiter plugins
 		-- this way the brackets that delimit a scope in many languages has the same colour as its indentline

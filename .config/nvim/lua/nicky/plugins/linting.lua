@@ -2,10 +2,9 @@ return {
 	"mfussenegger/nvim-lint",
 	dependencies = {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-		},
+		"williamboman/mason.nvim",
 	},
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local M = {}
 

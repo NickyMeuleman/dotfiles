@@ -1,11 +1,6 @@
 return {
 	"stevearc/dressing.nvim",
-	dependencies = {
-		"nvim-telescope/telescope.nvim",
-    dependencies = {
-		"nvim-lua/plenary.nvim",
-    }
-	},
+	event = "VeryLazy",
 	config = function()
 		require("dressing").setup({
 			input = {

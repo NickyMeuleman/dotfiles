@@ -4,6 +4,12 @@ return {
 		"mfussenegger/nvim-dap",
 		"nvim-neotest/nvim-nio",
 	},
+	keys = {
+		{ "<Leader>bt", ":DapToggleBreakpoint<CR>" },
+		{ "<Leader>bc", ":DapContinue<CR>" },
+		{ "<Leader>bx", ":DapTerminate<CR>" },
+		{ "<Leader>bo", ":DapStepOver<CR>" },
+	},
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
@@ -24,8 +30,8 @@ return {
 		dapui.setup()
 
 		-- joinked from https://github.com/LazyVim/LazyVim/blob/f086bcde253c29be9a2b9c90b413a516f5d5a3b2/lua/lazyvim/plugins/extras/lang/typescript.lua#L72
-    -- added deno for TS files
-    -- video for an expanded setup for both front and backend: https://www.youtube.com/watch?v=Ul_WPhS2bis
+		-- added deno for TS files
+		-- video for an expanded setup for both front and backend: https://www.youtube.com/watch?v=Ul_WPhS2bis
 		if not dap.adapters["pwa-node"] then
 			require("dap").adapters["pwa-node"] = {
 				type = "server",
@@ -71,10 +77,5 @@ return {
 				}
 			end
 		end
-
-		vim.keymap.set("n", "<Leader>bt", ":DapToggleBreakpoint<CR>")
-		vim.keymap.set("n", "<Leader>bc", ":DapContinue<CR>")
-		vim.keymap.set("n", "<Leader>bx", ":DapTerminate<CR>")
-		vim.keymap.set("n", "<Leader>bo", ":DapStepOver<CR>")
 	end,
 }

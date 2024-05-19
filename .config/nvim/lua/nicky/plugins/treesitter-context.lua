@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 	},
+	event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		require("treesitter-context").setup({
 			max_lines = 20,

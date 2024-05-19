@@ -17,6 +17,10 @@ return {
 		"onsails/lspkind-nvim", -- icons for completion kind (lsp/text/..)
 		"luckasRanarison/tailwind-tools.nvim", -- colors for tailwind classes
 	},
+	event = {
+		"InsertEnter",
+		"CmdlineEnter",
+	},
 	config = function()
 		local cmp = require("cmp")
 

@@ -11,6 +11,7 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 		"hrsh7th/cmp-nvim-lsp", -- cmp source for lsp
 	},
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("neodev").setup({})
 
