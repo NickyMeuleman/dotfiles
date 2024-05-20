@@ -1,8 +1,8 @@
 return {
 	"stevearc/conform.nvim",
 	dependencies = {
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"williamboman/mason.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	event = "InsertLeave",
 	config = function()

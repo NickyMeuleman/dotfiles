@@ -3,7 +3,64 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-	opts = true,
+	keys = function()
+		local dial_map = require("dial.map")
+
+		return {
+			{
+				"<C-a>",
+				function()
+					dial_map.manipulate("increment", "normal")
+				end,
+			},
+			{
+				"<C-x>",
+				function()
+					dial_map.manipulate("decrement", "normal")
+				end,
+			},
+			{
+				"g<C-a>",
+				function()
+					dial_map.manipulate("increment", "gnormal")
+				end,
+			},
+			{
+				"g<C-x>",
+				function()
+					dial_map.manipulate("decrement", "gnormal")
+				end,
+			},
+			{
+				"<C-a>",
+				function()
+					dial_map.manipulate("increment", "visual")
+				end,
+				mode = "v",
+			},
+			{
+				"<C-x>",
+				function()
+					dial_map.manipulate("decrement", "visual")
+				end,
+				mode = "v",
+			},
+			{
+				"g<C-a>",
+				function()
+					dial_map.manipulate("increment", "gvisual")
+				end,
+				mode = "v",
+			},
+			{
+				"g<C-x>",
+				function()
+					dial_map.manipulate("decrement", "gvisual")
+				end,
+				mode = "v",
+			},
+		}
+	end,
 	config = function()
 		local augend = require("dial.augend")
 
@@ -15,7 +72,7 @@ return {
 		-- this pattern matches the string in `elements` without vim's "magic" setting in a regex capture group
 		local non_word_pattern = "\\C\\V\\(%s\\)"
 
-    -- augend rules that are used multiple times
+		-- augend rules that are used multiple times
 		local equality = augend.constant.new({
 			elements = { "==", "!=" },
 			pattern_regexp = non_word_pattern,
@@ -147,30 +204,5 @@ return {
 			markdown = vim.list_extend(vim.deepcopy(shared_augends), ft_specific.markdown),
 			rust = vim.list_extend(vim.deepcopy(shared_augends), ft_specific.rust),
 		})
-
-		vim.keymap.set("n", "<C-a>", function()
-			require("dial.map").manipulate("increment", "normal")
-		end)
-		vim.keymap.set("n", "<C-x>", function()
-			require("dial.map").manipulate("decrement", "normal")
-		end)
-		vim.keymap.set("n", "g<C-a>", function()
-			require("dial.map").manipulate("increment", "gnormal")
-		end)
-		vim.keymap.set("n", "g<C-x>", function()
-			require("dial.map").manipulate("decrement", "gnormal")
-		end)
-		vim.keymap.set("v", "<C-a>", function()
-			require("dial.map").manipulate("increment", "visual")
-		end)
-		vim.keymap.set("v", "<C-x>", function()
-			require("dial.map").manipulate("decrement", "visual")
-		end)
-		vim.keymap.set("v", "g<C-a>", function()
-			require("dial.map").manipulate("increment", "gvisual")
-		end)
-		vim.keymap.set("v", "g<C-x>", function()
-			require("dial.map").manipulate("decrement", "gvisual")
-		end)
 	end,
 }

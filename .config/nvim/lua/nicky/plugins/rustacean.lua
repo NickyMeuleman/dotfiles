@@ -3,15 +3,13 @@ return {
 	version = "^4", -- Recommended
 	ft = { "rust" },
 	dependencies = {
+		"williamboman/mason.nvim",
+		"mfussenegger/nvim-dap",
+		"nvim-neotest/nvim-nio",
 		"WhoIsSethDaniel/mason-tool-installer.nvim", -- install rust-analyzer LSP
 		"rcarriga/nvim-dap-ui", -- install debug adapter
 		"nvim-treesitter/nvim-treesitter", -- install treesitter parser for Rust
 		"stevearc/dressing.nvim", -- ui plugin used as fallback for non-grouped code-actions
-		dependencies = {
-			"williamboman/mason.nvim",
-			"mfussenegger/nvim-dap",
-			"nvim-neotest/nvim-nio",
-		},
 	},
 	config = function()
 		-- Do not call the nvim-lspconfig.rust_analyzer setup or set up the lsp client for rust-analyzer manually, as doing so may cause conflicts.
