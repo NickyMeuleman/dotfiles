@@ -5,7 +5,10 @@ return {
 	config = function()
 		require("catppuccin").setup({
 			flavour = "frappe",
-			integrations = { headlines = true },
+			integrations = {
+				headlines = true,
+				neotree = true,
+			},
 		})
 		vim.cmd("colorscheme catppuccin")
 	end,
