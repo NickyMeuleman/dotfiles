@@ -6,6 +6,17 @@ return {
 		vim.o.timeoutlen = 1000 -- time to wait for a mapped sequence to complete (in milliseconds)
 	end,
 	config = function()
-		require("which-key").setup({})
+		local wk = require("which-key")
+
+		wk.register({
+			s = "[s]earch",
+			h = "[h]arpoon",
+			t = "[t]est",
+			x = "[x] trouble",
+			b = "de[b]ugging",
+			c = "[c]ode",
+		}, { prefix = "<leader>" })
+
+		wk.setup({})
 	end,
 }

@@ -8,6 +8,7 @@ return {
 			integrations = {
 				headlines = true,
 				neotree = true,
+				which_key = true,
 			},
 		})
 		vim.cmd("colorscheme catppuccin")

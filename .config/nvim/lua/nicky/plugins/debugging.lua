@@ -5,10 +5,10 @@ return {
 		"nvim-neotest/nvim-nio",
 	},
 	keys = {
-		{ "<Leader>bt", ":DapToggleBreakpoint<CR>" },
-		{ "<Leader>bc", ":DapContinue<CR>" },
-		{ "<Leader>bx", ":DapTerminate<CR>" },
-		{ "<Leader>bo", ":DapStepOver<CR>" },
+		{ "<Leader>bt", ":DapToggleBreakpoint<CR>", desc = "[t]oggle breakpoint" },
+		{ "<Leader>bc", ":DapContinue<CR>", desc = "[c]ontinue debugging" },
+		{ "<Leader>bx", ":DapTerminate<CR>", desc = "[x] terminate debugging" },
+		{ "<Leader>bo", ":DapStepOver<CR>", desc = "step [o]ver debug point" },
 	},
 	config = function()
 		local dap = require("dap")

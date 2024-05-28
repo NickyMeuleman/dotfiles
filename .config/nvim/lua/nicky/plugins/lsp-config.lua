@@ -28,6 +28,15 @@ return {
 				Lua = {
 					hint = {
 						enable = true,
+						semicolon = "Disable",
+					},
+					completion = {
+						callSnippet = "Replace",
+						showWord = "Disable",
+					},
+					workspace = {
+						checkThirdParty = "Disable",
+						library = { vim.env.VIMRUNTIME },
 					},
 				},
 			},
@@ -376,9 +385,9 @@ return {
 
 		-- Global mappings.
 		-- See `:help vim.diagnostic.*` for documentation on any of the below functions
-		vim.keymap.set("n", "<space>d", vim.diagnostic.open_float)
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+		vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "[d]iagnostics" })
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "previous diagnostic" })
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "next diagnostic" })
 		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 		-- Use LspAttach autocommand to only map the following keys
@@ -392,18 +401,27 @@ return {
 				-- Buffer local mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf }
+				opts.desc = "go to declaration"
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+				opts.desc = "go to definition"
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+				opts.desc = "hover"
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+				opts.desc = "go to implementation"
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+				opts.desc = "signature help"
 				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+				opts.desc = ""
 				vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
 				vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
 				vim.keymap.set("n", "<space>wl", function()
 					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 				end, opts)
+				opts.desc = "type definition"
 				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+				opts.desc = "rename"
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+				opts.desc = "code actions"
 				vim.keymap.set("n", "<space>ca", function()
 					-- pass in the current line as range, the default is the current cursor position
 					vim.lsp.buf.code_action({
@@ -414,6 +432,7 @@ return {
 					})
 				end, opts)
 				vim.keymap.set("v", "<space>ca", vim.lsp.buf.code_action, opts)
+				opts.desc = "go to references"
 				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 			end,
 		})

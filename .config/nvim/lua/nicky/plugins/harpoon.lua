@@ -13,36 +13,14 @@ return {
 				function()
 					harpoon:list():add()
 				end,
+				desc = "harpoon [a]dd to list",
 			},
 			{
 				"<leader>ht",
 				function()
 					harpoon.ui:toggle_quick_menu(harpoon:list())
 				end,
-			},
-			{
-				"<C-n>",
-				function()
-					harpoon:list():select(1)
-				end,
-			},
-			{
-				"<C-e>",
-				function()
-					harpoon:list():select(2)
-				end,
-			},
-			{
-				"<leader><C-n>",
-				function()
-					harpoon:list():replace_at(1)
-				end,
-			},
-			{
-				"<leader><C-e>",
-				function()
-					harpoon:list():replace_at(2)
-				end,
+				desc = "harpoon [t]oggle list",
 			},
 			-- Toggle previous & next buffers stored within Harpoon list
 			{
@@ -50,12 +28,14 @@ return {
 				function()
 					harpoon:list():prev()
 				end,
+				desc = "go to [p]revious in harpoon list",
 			},
 			{
 				"<C-S-n>",
 				function()
 					harpoon:list():next()
 				end,
+				desc = "go to [n]ext in harpoon list",
 			},
 		}
 
@@ -65,7 +45,7 @@ return {
 				function()
 					harpoon:list():select(pos)
 				end,
-				desc = "Move to harpoon mark #" .. pos,
+				desc = "go to [h]arpoon pos #" .. pos,
 			})
 		end
 
