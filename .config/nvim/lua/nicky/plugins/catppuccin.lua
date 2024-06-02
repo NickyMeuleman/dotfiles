@@ -9,6 +9,9 @@ return {
 				headlines = true,
 				neotree = true,
 				which_key = true,
+				treesitter = true,
+				treesitter_context = true,
+				rainbow_delimiters = true,
 			},
 		})
 		vim.cmd("colorscheme catppuccin")

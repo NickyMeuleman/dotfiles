@@ -388,7 +388,7 @@ return {
 		vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "[d]iagnostics" })
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "previous diagnostic" })
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "next diagnostic" })
-		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+		-- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 		-- Use LspAttach autocommand to only map the following keys
 		-- after the language server attaches to the current buffer
@@ -412,11 +412,11 @@ return {
 				opts.desc = "signature help"
 				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 				opts.desc = ""
-				vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-				vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-				vim.keymap.set("n", "<space>wl", function()
-					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, opts)
+				-- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+				-- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+				-- vim.keymap.set("n", "<space>wl", function()
+				-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+				-- end, opts)
 				opts.desc = "type definition"
 				vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 				opts.desc = "rename"

@@ -15,6 +15,7 @@ return {
 			x = "[x] trouble",
 			b = "de[b]ugging",
 			c = "[c]ode",
+			w = "s[w]ap",
 		}, { prefix = "<leader>" })
 
 		wk.setup({})
