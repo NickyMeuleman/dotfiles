@@ -65,6 +65,31 @@ Similar to how I installed `build-essential` on WSL Ubuntu, Fedora needs some in
 
 `sudo dnf install make automake gcc gcc-c++ kernel-devel cmake`
 
+### Fonts
+
+I noticed emojis don't display in the terminal (for instance the astronaut in astro.dev starter).
+I set the specific font I use in the terminal to have a fallback to an emoji font is a glyph can not be displayed.
+This is done by putting a file at `~/.config/fontconfig/fonts.conf`
+
+Help on the syntax in that file:
+<https://fedoraproject.org/wiki/Fontconfig_packaging_tips>
+
+The specific syntax to use for the fallback (I used the nerdfont version if the jetbrainsmono font)
+<https://blog.sebastian-daschner.com/entries/linux-terminal-font-alacritty-jetbrains-mono-emoji>
+
+Then force it to be applied with `fc-cache --really-force`
+
+Test it by echoing a bunch of emojis in the terminal, most have color now (not that heart outline).
+
+```sh
+echo "♥❤️👍😍🙊🥱🥺✨✅🎊🏄".
+```
+
+This does not show combined emojis, but the parts that make them.
+The zero-width joiner unicode uses to combine emojis into new ones is still visible.
+An example is the astronaut emoji, instead of seeing an astronaut, you see the parts:
+"human,zwj,rocket": 🧑‍🚀
+
 ## Setup
 
 ### Version control: `git`
