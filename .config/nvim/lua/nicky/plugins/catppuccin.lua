@@ -16,6 +16,7 @@ return {
 					enabled = true,
 					colored_indent_levels = true,
 				},
+				neogit = true,
 			},
 		})
 		vim.cmd("colorscheme catppuccin")
