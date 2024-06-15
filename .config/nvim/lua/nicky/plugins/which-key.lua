@@ -9,13 +9,14 @@ return {
 		local wk = require("which-key")
 
 		wk.register({
-			s = "[s]earch",
-			h = "[h]arpoon",
-			t = "[t]est",
-			x = "[x] trouble",
 			b = "de[b]ugging",
 			c = "[c]ode",
+			g = "[g]it",
+			h = "[h]arpoon",
+			s = "[s]earch",
+			t = "[t]est",
 			w = "s[w]ap",
+			x = "[x] trouble",
 		}, { prefix = "<leader>" })
 
 		wk.setup({})
