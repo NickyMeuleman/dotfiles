@@ -33,7 +33,6 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "󰌶 ", texthl = "DiagnosticS
 
 require("nicky.lazy")
 
--- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
@@ -42,8 +41,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
+	desc = "Close some filetypes with [q]",
 	group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
 	pattern = {
 		"PlenaryTestPopup",
