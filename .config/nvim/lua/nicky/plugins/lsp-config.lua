@@ -389,7 +389,6 @@ return {
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "previous diagnostic" })
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "next diagnostic" })
 		-- vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
-
 		-- Use LspAttach autocommand to only map the following keys
 		-- after the language server attaches to the current buffer
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -410,7 +409,7 @@ return {
 				opts.desc = "go to implementation"
 				vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 				opts.desc = "signature help"
-				vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+				vim.keymap.set({ "n", "i", "s" }, "<C-s>", vim.lsp.buf.signature_help, opts)
 				opts.desc = ""
 				-- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
 				-- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
