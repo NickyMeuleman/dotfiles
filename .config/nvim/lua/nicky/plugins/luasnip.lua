@@ -58,8 +58,46 @@ return {
 		local s = ls.snippet
 		local t = ls.text_node
 		local i = ls.insert_node
+		local c = ls.choice_node
+		local sn = ls.snippet_node
 		local fmt = require("luasnip.extras.fmt").fmt
 		local types = require("luasnip.util.types")
+
+		ls.add_snippets("NeogitCommitMessage", {
+			s(
+				{
+					trig = "ncc",
+					name = "conventional commit",
+					desc = "commit message formatted like a conventional commit",
+				},
+				fmt(
+					[[
+		     {type}{scope}:{title}
+
+		     {final}
+		      ]],
+					{
+						type = c(1, {
+							t("feat"),
+							t("fix"),
+							t("chore"),
+							t("ci"),
+							t("docs"),
+							t("refactor"),
+							t("style"),
+							t("test"),
+							i(1, "type"),
+						}),
+						scope = c(2, {
+							sn(nil, { t("("), i(1, "scope"), t(")") }),
+							sn(nil, { i(1, "") }), -- choice nodes need a place to jump to or they stop afterwards, see docs for c()
+						}),
+						title = i(3, "title"),
+						final = i(0),
+					}
+				)
+			),
+		})
 
 		ls.add_snippets("lua", {
 			s(
