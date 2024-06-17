@@ -1,7 +1,9 @@
 ---@diagnostic disable: missing-fields
 return {
 	"numToStr/Comment.nvim",
-	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+	dependencies = {
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
 	event = { "BufReadPost", "BufNewFile" },
 	config = function()
 		require("ts_context_commentstring").setup({
