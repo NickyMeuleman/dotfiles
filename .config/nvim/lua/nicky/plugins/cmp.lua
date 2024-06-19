@@ -11,6 +11,7 @@ return {
 		"petertriho/cmp-git", -- source for git commits (looks at github)
 		"luckasRanarison/tailwind-tools.nvim", -- colors for tailwind classes
 		"hrsh7th/cmp-emoji", -- source for emoji
+		"folke/lazydev.nvim", -- source for neovim
 	},
 	event = {
 		"InsertEnter",
@@ -54,6 +55,7 @@ return {
 			luasnip = "[Snip]",
 			git = "[Git]",
 			emoji = "[Emoji]",
+			lazydev = "[Lazy]",
 		}
 
 		local mapping_next_snip_cmp = function()
@@ -130,10 +132,11 @@ return {
 			-- only the group with the higherst priority will be shown
 			sources = cmp.config.sources({
 				{ name = "luasnip" },
+				{ name = "lazydev" },
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "buffer" },
-				{ name = "emoji", inset = true }, -- trigger char is :
+				{ name = "emoji", insert = true }, -- trigger char is :
 			}),
 		})
 

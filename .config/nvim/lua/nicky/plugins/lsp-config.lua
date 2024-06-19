@@ -2,19 +2,15 @@
 -- 1. mason.nvim
 -- 2. mason-lspconfig.nvim
 -- 3. Setup servers via lspconfig
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		{ "folke/neodev.nvim", opts = {} },
 		"hrsh7th/cmp-nvim-lsp", -- cmp source for lsp
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
-		require("neodev").setup({})
-
 		local lspconfig = require("lspconfig")
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -36,7 +32,6 @@ return {
 					},
 					workspace = {
 						checkThirdParty = "Disable",
-						library = { vim.env.VIMRUNTIME },
 					},
 				},
 			},
