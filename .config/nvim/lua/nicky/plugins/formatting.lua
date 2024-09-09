@@ -41,7 +41,7 @@ return {
 					},
 				},
 				prettier = {
-					condition = function(ctx)
+					condition = function(self, ctx)
 						-- does not take into account the `prettier` key in `package.json`
 						return vim.fs.find({
 							".prettierrc",
@@ -56,7 +56,7 @@ return {
 							"prettier.config.js",
 							"prettier.config.cjs",
 							"prettier.config.mjs",
-						}, { path = ctx.filename, upward = true })[1]
+						}, { path = ctx.filename, upward = true })[1] ~= nil
 					end,
 					options = {
 						-- make prettier aware of filetypes it can parse but aren't automatically inferred
@@ -68,15 +68,15 @@ return {
 					},
 				},
 				["biome-check"] = {
-					condition = function(ctx)
+					condition = function(self, ctx)
 						return vim.fs.find({
 							"biome.json",
 							"biome.jsonc",
-						}, { path = ctx.filename, upward = true })[1]
+						}, { path = ctx.filename, upward = true })[1] ~= nil
 					end,
 				},
 				yamlfmt = {
-					condition = function(ctx)
+					condition = function(self, ctx)
 						-- https://github.com/google/yamlfmt/blob/main/docs/config-file.md
 						local local_config = vim.fs.find({
 							".yamlfmt",
@@ -87,10 +87,10 @@ return {
 						}, { path = ctx.filename, upward = true })[1]
 
 						if not local_config then
-							return vim.fs.find(".yamlfmt", { path = vim.env.HOME .. "/.config/yamlfmt" })[1]
+							return vim.fs.find(".yamlfmt", { path = vim.env.HOME .. "/.config/yamlfmt" })[1] ~= nil
 						end
 
-						return local_config
+						return local_config ~= nil
 					end,
 				},
 			},
@@ -107,10 +107,10 @@ return {
 				-- only apply one linter eg:
 				-- - if biome is used for ts, and prettier is used for md then do not try to use prettier for ts
 				-- - but still allow projects that use prettier for ts (biome.json will not exists and biome will not be available)
-				javascript = { { "biome-check", "prettier" } },
-				typescript = { { "biome-check", "prettier" } },
-				javascriptreact = { { "biome-check", "prettier" } },
-				typescriptreact = { { "biome-check", "prettier" } },
+				javascript = { "biome-check", "prettier", stop_after_first = true },
+				typescript = { "biome-check", "prettier", stop_after_first = true },
+				javascriptreact = { "biome-check", "prettier", stop_after_first = true },
+				typescriptreact = { "biome-check", "prettier", stop_after_first = true },
 				markdown = { "prettier", "injected" },
 				-- prettier v3 does not support mdx v2/3 fully yet: https://github.com/prettier/prettier/issues/12209
 				-- but I use it anyway, because not having formatting is a pain. Only multiline comments seem to be weird.
