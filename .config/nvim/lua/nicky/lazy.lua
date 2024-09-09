@@ -12,4 +12,4 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ import = "nicky.plugins" })
+require("lazy").setup({ import = "nicky.plugins" }, { rocks = { enabled = false } })
