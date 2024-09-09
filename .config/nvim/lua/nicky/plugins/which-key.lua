@@ -8,16 +8,16 @@ return {
 	config = function()
 		local wk = require("which-key")
 
-		wk.register({
-			b = "de[b]ugging",
-			c = "[c]ode",
-			g = "[g]it",
-			h = "[h]arpoon",
-			s = "[s]earch",
-			t = "[t]est",
-			w = "s[w]ap",
-			x = "[x] trouble",
-		}, { prefix = "<leader>" })
+		wk.add({
+			{ "<leader>b", desc = "de[b]ugging" },
+			{ "<leader>c", desc = "[c]ode" },
+			{ "<leader>g", desc = "[g]it" },
+			{ "<leader>h", desc = "[h]arpoon" },
+			{ "<leader>s", desc = "[s]earch" },
+			{ "<leader>t", desc = "[t]est" },
+			{ "<leader>w", desc = "s[w]ap" },
+			{ "<leader>x", desc = "[x] trouble" },
+		})
 
 		wk.setup({})
 	end,
