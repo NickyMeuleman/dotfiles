@@ -144,7 +144,34 @@ return {
 			},
 		})
 
-		lspconfig["tsserver"].setup({
+		lspconfig["clangd"].setup({
+			capabilities = capabilities,
+			root_dir = function(fname)
+				return require("lspconfig.util").root_pattern(
+					"Makefile",
+					"configure.ac",
+					"configure.in",
+					"config.h.in",
+					"meson.build",
+					"meson_options.txt",
+					"build.ninja"
+				)(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+					fname
+				) or require("lspconfig.util").find_git_ancestor(fname)
+			end,
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--header-insertion=iwyu",
+				"--completion-style=detailed",
+				"--function-arg-placeholders",
+				"--fallback-style=llvm",
+			},
+		})
+
+		-- TODO: support move to file code action https://github.com/LazyVim/LazyVim/issues/3534
+		lspconfig["vtsls"].setup({
 			filetypes = {
 				"javascript",
 				"javascriptreact",
@@ -163,77 +190,146 @@ return {
 				client.server_capabilities.documentRangeFormattingProvider = false
 
 				-- INFO:  https://github.com/typescript-language-server/typescript-language-server?tab=readme-ov-file#code-actions-on-save
-				vim.keymap.set("n", "<leader>cS", function()
+				vim.keymap.set("n", "<leader>co", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.organizeImports" },
+							diagnostics = {},
+						},
+					})
+				end, { desc = "[o]rganize imports" })
+
+				vim.keymap.set("n", "<leader>cM", function()
 					vim.lsp.buf.code_action({
 						apply = true,
 						context = {
 							---@diagnostic disable-next-line: assign-type-mismatch
-							only = { "source.sortImports.ts" },
+							only = { "source.addMissingImports.ts" },
 							diagnostics = {},
 						},
 					})
-				end)
+				end, { desc = "Add [M]issing imports" })
+
+				vim.keymap.set("n", "<leader>cu", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							---@diagnostic disable-next-line: assign-type-mismatch
+							only = { "source.removeUnused.ts" },
+							diagnostics = {},
+						},
+					})
+				end, { desc = "Remove [u]nused imports" })
+
+				vim.keymap.set("n", "<leader>cD", function()
+					vim.lsp.buf.code_action({
+						apply = true,
+						context = {
+							only = { "source.fixAll" },
+							diagnostics = {},
+						},
+					})
+				end, { desc = "Fix all (really some) ts [D]iagnostics" })
+
+				vim.keymap.set("n", "<leader>cV", function()
+					vim.lsp.buf_request(0, "workspace/executeCommand", {
+						command = "typescript.selectTypeScriptVersion",
+					})
+				end, { desc = "Select workspace TS [V]ersion" })
 
 				vim.keymap.set("n", "<leader>cR", function()
-					vim.lsp.buf.code_action({
-						apply = true,
-						context = {
-							---@diagnostic disable-next-line: assign-type-mismatch
-							only = { "source.removeUnusedImports.ts" },
-							diagnostics = {},
-						},
+					vim.lsp.buf_request(0, "workspace/executeCommand", {
+						command = "typescript.restartTsServer",
 					})
-				end)
+				end, { desc = "[R]estart TSserver" })
 			end,
 			settings = {
-				-- INFO: https://github.com/typescript-language-server/typescript-language-server/blob/master/docs/configuration.md
-				-- https://github.com/typescript-language-server/typescript-language-server/blob/b224b878652438bcdd639137a6b1d1a6630129e4/src/features/fileConfigurationManager.ts#L89
+				-- INFO: https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
+				vtsls = {
+					experimental = {
+						completion = {
+							enableServerSideFuzzyMatch = true,
+						},
+					},
+					enableMoveToFileCodeAction = true,
+					autoUseWorkspaceTsdk = true,
+				},
 				typescript = {
 					inlayHints = {
-						includeInlayEnumMemberValueHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-					},
-					implementationsCodeLens = {
-						enabled = true,
+						parameterNames = { enabled = "all" },
+						parameterTypes = { enabled = true },
+						variableTypes = { enabled = true },
+						propertyDeclarationTypes = { enabled = true },
+						functionLikeReturnTypes = { enabled = true },
+						enumMemberValues = { enabled = true },
 					},
 					referencesCodeLens = {
 						enabled = true,
 						showOnAllFunctions = true,
 					},
+					implementationsCodeLens = {
+						enabled = true,
+						showOnInterfaceMethods = true,
+					},
+					suggest = {
+						completeFunctionCalls = true,
+					},
+					format = { enable = false },
+					preferences = { preferTypeOnlyAutoImports = true, useAliasesForRenames = false },
+					updateImportsOnFileMove = { enabled = "always" },
 				},
+				-- same settings as typescript
 				javascript = {
 					inlayHints = {
-						includeInlayEnumMemberValueHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-					},
-					implementationsCodeLens = {
-						enabled = true,
+						parameterNames = { enabled = "all" },
+						parameterTypes = { enabled = true },
+						variableTypes = { enabled = true },
+						propertyDeclarationTypes = { enabled = true },
+						functionLikeReturnTypes = { enabled = true },
+						enumMemberValues = { enabled = true },
 					},
 					referencesCodeLens = {
 						enabled = true,
 						showOnAllFunctions = true,
 					},
-				},
-				completions = {
-					completeFunctionCalls = true,
+					implementationsCodeLens = {
+						enabled = true,
+						showOnInterfaceMethods = true,
+					},
+					suggest = {
+						completeFunctionCalls = true,
+					},
+					format = { enable = false },
+					preferences = { preferTypeOnlyAutoImports = true, useAliasesForRenames = false },
+					updateImportsOnFileMove = { enabled = "always" },
 				},
 			},
 		})
 
 		lspconfig["ruff"].setup({
 			capabilities = capabilities,
+			on_attach = function(client, bufnr)
+				client.server_capabilities.hoverProvider = false
+			end,
+		})
+
+		lspconfig["pyright"].setup({
+			capabilities = capabilities,
+		})
+
+		lspconfig["sqls"].setup({
+			capabilities = capabilities,
+			settings = {
+				sqls = {
+					-- connections = {
+					-- 	{
+					-- 		driver = "sqlite3",
+					-- 		-- dataSourceName="~/projects/NickyMeuleman/cs50-2024/week7/favorites/favorites.db"
+					-- 	},
+					-- },
+				},
+			},
 		})
 
 		lspconfig["gopls"].setup({
