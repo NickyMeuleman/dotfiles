@@ -8,6 +8,8 @@ return {
 	config = function()
 		local conform = require("conform")
 
+		local sql_formatter_config_file = os.getenv("HOME") .. "/.config/sql_formatter/sql_formatter.json"
+
 		conform.setup({
 			-- https://github.com/stevearc/conform.nvim/blob/master/doc/formatter_options.md
 			formatters = {
@@ -31,6 +33,7 @@ return {
 							typescript = "ts",
 							typescriptreact = "tsx",
 							yaml = "yaml",
+							sql = "sql",
 						},
 						-- By default the formatters in `formatters_by_ft` are used
 						-- inlude formatters for languages that are normally formatted by an lsp
@@ -93,6 +96,12 @@ return {
 						return local_config ~= nil
 					end,
 				},
+				sql_formatter = {
+					args = vim.fn.empty(vim.fn.glob(sql_formatter_config_file)) == 0
+							and { "--config", sql_formatter_config_file }
+						or nil,
+					-- this expression = 0 means this file exists.
+				},
 			},
 			-- get filetype with :lua print(vim.bo.filetype)
 			-- formatters found in conform docs
@@ -122,6 +131,8 @@ return {
 				yaml = { "yamlfmt" },
 				sh = { "shfmt" },
 				zsh = { "shfmt" },
+				sql = { "sql_formatter" },
+				htmldjango = { "djlint" },
 			},
 		})
 
