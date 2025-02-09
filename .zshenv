@@ -19,6 +19,9 @@ path+=("$HOME/.local/share/fnm")
 # Golang
 path+=("/usr/local/go/bin")
 
+# Deno
+path+=("$HOME/.deno/bin")
+
 # Add custom completions dir to fpath
 fpath+=("$ZDIR/completions")
 
@@ -69,7 +72,7 @@ export FZF_ALT_C_OPTS=" \
 # CTRL-y to copy the command into the Windows clipboard
 export FZF_CTRL_R_OPTS=" \
 --bind 'ctrl-/:toggle-preview' \
---bind 'ctrl-y:execute-silent(echo -n {2..} | clip.exe)+abort' \
+--bind 'ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort' \
 --color header:italic \
 --header 'Press CTRL-Y to copy command into OS clipboard' \
 --preview 'echo {2..} | bat --color=always --language=sh --line-range=:500 --plain' \
@@ -86,5 +89,6 @@ export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS \
 
 export PATH
 export fpath
-export GTK_THEME=Catppuccin-Frappe-Standard-Blue-Dark
-export QT_STYLE_OVERRIDE=kvantum
+
+# https://cs50.readthedocs.io/libraries/cs50/c/
+export LD_LIBRARY_PATH=/usr/local/lib
