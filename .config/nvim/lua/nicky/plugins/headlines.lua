@@ -6,7 +6,7 @@ return {
 		local shared_opts = {
 			dash_string = "-",
 			quote_string = "┃",
-			bullets = { "◉", "○", "✸", "✿" },
+			-- bullets = { "◉", "○", "✸", "✿" },
 			dash_highlight = "Dash",
 			quote_highlight = "Quote",
 			codeblock_highlight = "CodeBlock",
