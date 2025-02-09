@@ -23,23 +23,26 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					-- language servers
-					"lua_ls",
-					"rust_analyzer",
-					"marksman",
-					"jsonls",
-					"yamlls",
-					"taplo",
-					"biome", -- also a linter and a formatter
+					"astro",
 					"bashls", -- uses the shellcheck linter internally
-					"tsserver",
-					"ruff",
+					"biome", -- also a linter and a formatter
+					"cssls",
+					"clangd",
+					"emmet_language_server", -- webdev snippet engine
+					"eslint", -- linter implemented as lsp
 					"gopls",
 					"html",
-					"cssls",
+					"jsonls",
+					"lua_ls",
+					"marksman", -- markdown
+					"pyright",
+					"ruff", -- python
+					"rust_analyzer",
+					"sqls",
 					"tailwindcss",
-					"emmet_language_server",
-					"astro",
-					"eslint", -- linter implemented as lsp
+					"taplo", -- toml
+					"vtsls", -- javascript/typescript
+					"yamlls",
 				},
 			})
 		end,
@@ -59,6 +62,7 @@ return {
 					"prettier",
 					"yamlfmt",
 					"shfmt",
+					"sql-formatter",
 					"goimports",
 					"gofumpt",
 					-- linters
