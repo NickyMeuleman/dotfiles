@@ -36,5 +36,5 @@ alias llta="llt --all"
 # use bat instead of cat
 alias cat="bat --paging=never"
 
-# update all the things!
-alias update="sudo apt update && sudo apt full-upgrade && sudo apt autoremove && install_completions"
+# less typing is good
+alias n="nvim"
