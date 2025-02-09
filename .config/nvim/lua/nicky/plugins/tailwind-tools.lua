@@ -13,6 +13,24 @@ return {
 		"typescriptreact",
 	},
 	config = function()
-		require("tailwind-tools").setup({})
+		require("tailwind-tools").setup({
+			server = {
+				settings = {
+					experimental = {
+						classRegex = {
+							"tw`([^`]*)",
+							'tw="([^"]*)',
+							'tw={"([^"}]*)',
+							"tw\\.\\w+`([^`]*)",
+							"tw\\(.*?\\)`([^`]*)",
+							{ "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+							{ "classnames\\(([^)]*)\\)", "'([^']*)'" },
+							{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+							{ "cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+						},
+					},
+				},
+			},
+		})
 	end,
 }
