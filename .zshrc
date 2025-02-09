@@ -31,7 +31,18 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 eval "$(starship init zsh)"
 
 # node manager: fnm
-eval "$(fnm env --use-on-cd)"
+FNM_PATH="/home/nicky/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/nicky/.local/share/fnm:$PATH"
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
+# pnpm
+export PNPM_HOME="/home/nicky/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # fuzzy finder: fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
