@@ -20,7 +20,7 @@ path+=("$HOME/.local/share/fnm")
 path+=("/usr/local/go/bin")
 
 # Deno
-path+=("$HOME/.deno/bin")
+. "$HOME/.deno/env"
 
 # Add custom completions dir to fpath
 fpath+=("$ZDIR/completions")
@@ -39,12 +39,13 @@ export FZF_DEFAULT_COMMAND="fd \
 --hidden \
 --strip-cwd-prefix \
 --type file"
-# catppuccin frappe theme + extra options
+# catppuccin mocha theme + extra options
 export FZF_DEFAULT_OPTS=" \
 --border \
---color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
---color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
---color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
 --cycle \
 --height 75% \
 --layout=reverse"

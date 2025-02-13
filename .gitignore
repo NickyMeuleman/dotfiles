@@ -1,10 +1,10 @@
 .config/gh/hosts.yml
 wslu/
-.config/zsh/completions/*
-!.config/zsh/completions/.gitkeep
-.config/zsh/.zsh_history
-.config/zsh/plugins/*
-!.config/zsh/plugins/.gitkeep
+zsh/.config/zsh/completions/*
+!zsh/.config/zsh/completions/.gitkeep
+zsh/.config/zsh/.zsh_history
+zsh/.config/zsh/plugins/*
+!zsh/.config/zsh/plugins/.gitkeep
 htop
 .config/bat/themes/*
 !.config/bat/themes/.gitkeep
