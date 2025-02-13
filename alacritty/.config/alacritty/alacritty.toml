@@ -1,3 +1,7 @@
+general.import = [
+"~/projects/catppuccin/alacritty/catppuccin-mocha.toml"
+]
+
 [window]
 padding = { x = 8, y = 8 }
 decorations = "none"
@@ -7,5 +11,3 @@ opacity = 0.95
 size = 18.0
 normal = { family = "JetBrainsMono Nerd Font" }
 
-[general]
-import = ["/home/nicky/projects/catppuccin/alacritty/catppuccin-frappe.toml"]
