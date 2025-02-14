@@ -4,25 +4,25 @@ bold = false
 italic = false
 
 [style.command_name]
-foreground = "cyan"
+foreground = { rgb = { r = 203, g = 166, b = 247 } } # mauve
 underline = false
 bold = false
 italic = false
 
 [style.example_text]
-foreground = "green"
+foreground = { rgb = { r = 166, g = 227, b = 161 } } # green
 underline = false
 bold = false
 italic = false
 
 [style.example_code]
-foreground = "cyan"
+foreground = { rgb = { r = 148, g = 226, b = 213 } } # teal
 underline = false
 bold = false
 italic = false
 
 [style.example_variable]
-foreground = "cyan"
+foreground = { rgb = { r = 116, g = 199, b = 236 } } # sapphire
 underline = true
 bold = false
 italic = false
