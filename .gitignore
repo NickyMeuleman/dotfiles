@@ -1,4 +1,4 @@
-.config/gh/hosts.yml
+gh/.config/gh/hosts.yml
 wslu/
 zsh/.config/zsh/completions/*
 !zsh/.config/zsh/completions/.gitkeep
