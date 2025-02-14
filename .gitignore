@@ -6,8 +6,8 @@ zsh/.config/zsh/.zsh_history
 zsh/.config/zsh/plugins/*
 !zsh/.config/zsh/plugins/.gitkeep
 htop
-.config/bat/themes/*
-!.config/bat/themes/.gitkeep
+bat/.config/bat/themes/*
+!bat/.config/bat/themes/.gitkeep
 .config/broot
 .config/bottom
 .config/btop
