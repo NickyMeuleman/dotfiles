@@ -5,7 +5,7 @@
 add_newline = true
 
 # the colours used in 'style'
-palette = "catppuccin_frappe"
+palette = "catppuccin_mocha"
 
 format = """
 $all\
