@@ -11,7 +11,7 @@ bat/.config/bat/themes/*
 .config/broot
 .config/bottom
 .config/btop
-.config/silicon/themes/*
-.config/silicon/syntaxes/*
-!.config/silicon/themes/.gitkeep
-!.config/silicon/syntaxes/.gitkeep
+silicon/.config/silicon/themes/*
+silicon/.config/silicon/syntaxes/*
+!silicon/.config/silicon/themes/.gitkeep
+!silicon/.config/silicon/syntaxes/.gitkeep
