@@ -1,6 +1,9 @@
 require("nicky.options")
--- Make sure to set `mapleader` before lazy so your mappings are correct
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " " -- character that replaces the special <leader> mapping in keybinds
+vim.g.maplocalleader = "\\"
 require("nicky.keymaps")
 
 -- allow vim to recognize filetypes it doesn't already know about

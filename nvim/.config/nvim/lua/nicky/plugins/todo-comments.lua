@@ -33,14 +33,14 @@ return {
 				WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 			},
 			colors = {
-				default = { "Identifier" },
-				error = { "DiagnosticError" },
-				hint = { "DiagnosticHint"},
-				info = { "DiagnosticInfo" },
-				perf = { "@conditional"},
-				test = { "@function" },
-				warning = { "DiagnosticWarn"},
-			}
+				error = { "DiagnosticError", "ErrorMsg", "#DC2626" },
+				warning = { "DiagnosticWarn", "WarningMsg", "#FBBF24" },
+				info = { "DiagnosticInfo", "#2563EB" },
+				hint = { "DiagnosticHint", "#10B981" },
+				default = { "Identifier", "#7C3AED" },
+				test = { "Identifier", "#FF00FF" },
+				perf = { "@conditional", "#CBA6F7" },
+			},
 		})
 	end,
 }

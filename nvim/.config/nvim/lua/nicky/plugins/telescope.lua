@@ -32,7 +32,7 @@ return {
 	end,
 	config = function()
 		require("telescope").setup({})
-		-- loading extesion needs to happen after setup
+		-- loading extension needs to happen after setup
 		require("telescope").load_extension("fzf")
 	end,
 }
