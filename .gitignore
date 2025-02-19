@@ -1,16 +1,11 @@
 gh/.config/gh/hosts.yml
-wslu/
 zsh/.config/zsh/completions/*
 !zsh/.config/zsh/completions/.gitkeep
 zsh/.config/zsh/.zsh_history
 zsh/.config/zsh/plugins/*
 !zsh/.config/zsh/plugins/.gitkeep
-htop
 bat/.config/bat/themes/*
 !bat/.config/bat/themes/.gitkeep
-.config/broot
-.config/bottom
-.config/btop
 silicon/.config/silicon/themes/*
 silicon/.config/silicon/syntaxes/*
 !silicon/.config/silicon/themes/.gitkeep
