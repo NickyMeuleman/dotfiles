@@ -2,13 +2,22 @@ return {
 	"folke/snacks.nvim",
 	-- WARNING `snacks.nvim` should have a priority of 1000 or higher. Add `priority=1000` to the plugin spec
 	priority = 1000,
+	lazy = false,
+	keys = {
+		{
+			"<leader>gl",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "[L]azyGit",
+		},
+	},
 	opts = {
+		lazygit = {},
 		---@class snacks.indent.Config
 		---@field enabled? boolean
 		indent = {
-			indent = {
-				enabled = true,
-			},
+			indent = { enabled = true },
 			---@class snacks.indent.animate: snacks.animate.Config
 			---@field enabled? boolean
 			--- * out: animate outwards from the cursor
