@@ -13,6 +13,7 @@ return {
 		},
 	},
 	opts = {
+		input = {},
 		lazygit = {},
 		---@class snacks.indent.Config
 		---@field enabled? boolean
