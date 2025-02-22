@@ -12,12 +12,9 @@ return {
 				treesitter = true,
 				treesitter_context = true,
 				rainbow_delimiters = true,
-				indent_blankline = {
-					enabled = true,
-					colored_indent_levels = true,
-				},
 				cmp = true,
 				neogit = true,
+        snacks = true,
 			},
 		})
 		vim.cmd("colorscheme catppuccin")
