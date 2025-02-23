@@ -74,7 +74,6 @@ function install_completion_tool() {
 
   # Execute the full command
   if ! "${cmd_array[@]}" >"$target_path"; then
-    # if ! eval "$full_cmd" > "$target_path"; then
     print -ru2 "Failed to execute: $full_cmd"
     return 1
   fi
@@ -96,31 +95,28 @@ function install_completions() {
   # install_completion_local "$HOME/projects/ClementTsang/bottom" "target/tmp/bottom/completion/_btm"
   # kondo
   # install_completion_tool "kondo --completions zsh" "_kondo"
-  #
-  #
-  #
-  #
-  # # prompt: starship
-  # starship completions zsh >$ZDIR/completions/_starship
+  # starship
+  # install_completion_tool "starship completions zsh" "_starship"
+  # rustup
+  # install_completion_tool "rustup completions zsh" "_rustup"
+  # cargo
+  # install_completion_tool "rustup completions zsh cargo" "_cargo"
+  # fnm
+  # install_completion_tool "fnm completions --shell=zsh" "_fnm"
+  # zoxide
+  # install_completion_local "$HOME/projects/ajeetdsouza/zoxide" "contrib/completions/_zoxide"
+  # fd
+  # This command works, but the repo has a better completions file in it you should use instead
+  # see: https://github.com/sharkdp/fd/commit/ef1bfc750862b751de1e235a5bf7e112c5378187
+  # install_completion_tool "fd --gen-completions zsh" "_fd"
+  # install_completion_local "$HOME/projects/sharkdp/fd" "contrib/completion/_fd"
+
   # # GitHub CLI: gh
   # gh completion -s zsh >$ZDIR/completions/_gh
-  # # Rust language: rustup
-  # rustup completions zsh >$ZDIR/completions/_rustup
-  # # Rust language package tool: cargo
-  # rustup completions zsh cargo >$ZDIR/completions/_cargo
-  # # node manager: fnm
-  # fnm completions --shell=zsh >$ZDIR/completions/_fnm
   # # better cat: bat
   # echo 'manually copy bat completions from the /out/assets/completions folder inside target/release'
   # # build bat with `cargo build --release` and copy the completions from the built output
   # # cp $HOME/projects/sharkdp/bat/target/release/build/bat-c95ebc37c4f6628f/out/assets/completions/bat.zsh $ZDIR/completions/_bat
-  # # smart cd: zoxide
-  # echo 'manually copy zoxide completions from the /contrib/completions folder'
-  # # cp $HOME/projects/ajeetdsouza/zoxide/contrib/completions/_zoxide $ZDIR/completions/_zoxide
-  # # better find: fd
-  # # This command works, but the repo has a better completions file in it you should use instead
-  # # fd --gen-completions zsh > $ZDIR/completions/_fd
-  # # see: https://github.com/sharkdp/fd/commit/ef1bfc750862b751de1e235a5bf7e112c5378187
   # echo 'manually copy fd completions from the /contrib/completion folder'
   # # cp $HOME/projects/sharkdp/fd/contrib/completion/_fd $ZDIR/completions/_fd
   # # better `make`: `just`
