@@ -10,3 +10,5 @@ silicon/.config/silicon/themes/*
 silicon/.config/silicon/syntaxes/*
 !silicon/.config/silicon/themes/.gitkeep
 !silicon/.config/silicon/syntaxes/.gitkeep
+ghostty/.config/ghostty/themes/*
+ghostty/.config/ghostty/themes/.gitkeep
