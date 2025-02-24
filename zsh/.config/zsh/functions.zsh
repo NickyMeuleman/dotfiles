@@ -12,16 +12,18 @@ function zsh_add_plugin() {
   fi
 }
 
-function install_completion_local() {
+function completion_via_local() {
   # arg1: project_dir
   # absolute path to project directory
   # eg: $HOME/projects/bootandy/dust
   # arg2: relative_compfile
   # A relative path from project_dir
-  # eg: completions/_dust
+  # eg: completions/zsh_completions_for_dust
+  # arg3: filename to rename to
+  # eg: _dust
   local dir_path="$1"
   local relative_path="$2"
-  local filename=$(basename "$relative_path")
+  local filename="$3"
   local origin_path="$dir_path/$relative_path"
   local target_path="$ZDIR/completions/$filename"
 
@@ -53,7 +55,7 @@ function install_completion_local() {
   fi
 }
 
-function install_completion_tool() {
+function completion_via_tool() {
   local full_cmd="$1"
   local filename="$2"
   local target_path="$ZDIR/completions/$filename"
@@ -88,43 +90,27 @@ function install_completion_tool() {
 }
 
 function install_completions() {
-  # dust:
-  # install_completion_local "$HOME/projects/bootandy/dust" "completions/_dust"
-  # bottom:
+  completion_via_tool "bat --completion zsh" "_bat"
+  completion_via_tool "fnm completions --shell=zsh" "_fnm"
+  completion_via_tool "gh completion -s zsh" "_gh"
+  completion_via_tool "just --completions zsh" "_just"
+  completion_via_tool "kondo --completions zsh" "_kondo"
+  completion_via_tool "rg --generate complete-zsh" "_rg"
+  completion_via_tool "rustup completions zsh cargo" "_cargo"
+  completion_via_tool "rustup completions zsh" "_rustup"
+  completion_via_tool "starship completions zsh" "_starship"
+
   # generate file with BTM_GENERATE=true cargo build --release --locked
-  # install_completion_local "$HOME/projects/ClementTsang/bottom" "target/tmp/bottom/completion/_btm"
-  # kondo
-  # install_completion_tool "kondo --completions zsh" "_kondo"
-  # starship
-  # install_completion_tool "starship completions zsh" "_starship"
-  # rustup
-  # install_completion_tool "rustup completions zsh" "_rustup"
-  # cargo
-  # install_completion_tool "rustup completions zsh cargo" "_cargo"
-  # fnm
-  # install_completion_tool "fnm completions --shell=zsh" "_fnm"
-  # zoxide
-  # install_completion_local "$HOME/projects/ajeetdsouza/zoxide" "contrib/completions/_zoxide"
-  # fd
+  completion_via_local "$HOME/projects/ClementTsang/bottom" "target/tmp/bottom/completion/_btm" "_btm"
+  # No guarantee the tool version and completion version match (so build from source first)
+  completion_via_local "$HOME/projects/bootandy/dust" "completions/_dust" "_dust"
+  completion_via_local "$HOME/projects/eza-community/eza" "completions/zsh/_eza" "_eza"
   # This command works, but the repo has a better completions file in it you should use instead
   # see: https://github.com/sharkdp/fd/commit/ef1bfc750862b751de1e235a5bf7e112c5378187
-  # install_completion_tool "fd --gen-completions zsh" "_fd"
-  # install_completion_local "$HOME/projects/sharkdp/fd" "contrib/completion/_fd"
-
-  # # GitHub CLI: gh
-  # gh completion -s zsh >$ZDIR/completions/_gh
-  # # better cat: bat
-  # echo 'manually copy bat completions from the /out/assets/completions folder inside target/release'
-  # # build bat with `cargo build --release` and copy the completions from the built output
-  # # cp $HOME/projects/sharkdp/bat/target/release/build/bat-c95ebc37c4f6628f/out/assets/completions/bat.zsh $ZDIR/completions/_bat
-  # echo 'manually copy fd completions from the /contrib/completion folder'
-  # # cp $HOME/projects/sharkdp/fd/contrib/completion/_fd $ZDIR/completions/_fd
-  # # better `make`: `just`
-  # just --completions zsh >$ZDIR/completions/_just
-  # # CLI benchmarks: `hyperfine`
-  # # The maintainer doesn't like this approach of generating completions: https://github.com/sharkdp/hyperfine/issues/293
-  # # cp $HOME/projects/sharkdp/hyperfine/target/release/build/hyperfine-813f970f0b8c8f10/out/_hyperfine $ZDIR/completions/_hyperfine
-  # echo 'manually copy hyperfine completions from the /out folder inside target/release/build/hyperfine-<some string>/'
+  # completion_via_tool "fd --gen-completions zsh" "_fd"
+  completion_via_local "$HOME/projects/sharkdp/fd" "contrib/completion/_fd" "_fd"
+  completion_via_local "$HOME/projects/tealdeer-rs/tealdeer" "completion/zsh_tealdeer" "_tldr"
+  completion_via_local "$HOME/projects/ajeetdsouza/zoxide" "contrib/completions/_zoxide" "_zoxide"
 }
 
 # overwrite fzf functions that get called by trigger-sequence tabbing
