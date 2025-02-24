@@ -1,0 +1,11 @@
+theme = catppuccin-mocha.conf
+font-family = "JetBrainsMono Nerd Font"
+font-size = 18
+# disabling gtk-titlebar keeps the rounding gtk windows have
+# disabling window-decoration would also square the edges
+gtk-titlebar = false
+selection-invert-fg-bg = true
+cursor-style = block
+window-padding-x = 4
+window-padding-y = 4
+background-opacity = 0.95
