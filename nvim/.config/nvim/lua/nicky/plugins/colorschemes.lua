@@ -1,11 +1,11 @@
 return {
 	{
 		"folke/tokyonight.nvim",
-		event = "User ColorschemeLoad",
+		lazy = true,
 	},
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
-		event = "User ColorschemeLoad",
+		lazy = true,
 	},
 }

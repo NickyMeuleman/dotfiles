@@ -3,6 +3,8 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"sindrets/diffview.nvim",
+    -- TODO: replace telescope with snacks.picker once possible
+    -- https://github.com/NeogitOrg/neogit/pull/1654
 		"nvim-telescope/telescope.nvim",
 	},
 	cmd = {

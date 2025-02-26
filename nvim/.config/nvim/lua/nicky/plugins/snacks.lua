@@ -11,8 +11,65 @@ return {
 			end,
 			desc = "[L]azyGit",
 		},
+		{
+			"<C-p>",
+			function()
+				Snacks.picker.files()
+			end,
+			desc = "Search files",
+		},
+		{
+			"<leader>sf",
+			function()
+				Snacks.picker.files()
+			end,
+			desc = "Search [f]iles",
+		},
+		{
+			"<leader>sg",
+			function()
+				Snacks.picker.grep()
+			end,
+			desc = "Search by [g]rep (text)",
+		},
+		{
+			"<leader>sb",
+			function()
+				Snacks.picker.buffers()
+			end,
+			desc = "Search [b]uffers",
+		},
+		{
+			"<leader>sh",
+			function()
+				Snacks.picker.help()
+			end,
+			desc = "Search [h]elp",
+		},
+		{
+			"<leader>st",
+			function()
+				Snacks.picker.git_files()
+			end,
+			desc = "Search git file [t]ree",
+		},
+		{
+			"<leader>sr",
+			function()
+				Snacks.picker.grep_buffers()
+			end,
+			desc = "Search in cu[r]rent buffers",
+		},
+		{
+			"<leader>sc",
+			function()
+				Snacks.picker.colorschemes()
+			end,
+			desc = "Search [c]olorschemes",
+		},
 	},
 	opts = {
+		picker = {},
 		notifier = {},
 		input = {},
 		lazygit = {},
@@ -136,7 +193,7 @@ return {
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)
-    -- https://github.com/folke/snacks.nvim/blob/main/docs/notifier.md#-examples
+		-- https://github.com/folke/snacks.nvim/blob/main/docs/notifier.md#-examples
 		---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
 		local progress = vim.defaulttable()
 		vim.api.nvim_create_autocmd("LspProgress", {

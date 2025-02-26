@@ -9,7 +9,6 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim", -- install rust-analyzer LSP
 		"rcarriga/nvim-dap-ui", -- install debug adapter
 		"nvim-treesitter/nvim-treesitter", -- install treesitter parser for Rust
-		"stevearc/dressing.nvim", -- ui plugin used as fallback for non-grouped code-actions
 	},
 	config = function()
 		-- Do not call the nvim-lspconfig.rust_analyzer setup or set up the lsp client for rust-analyzer manually, as doing so may cause conflicts.
@@ -33,8 +32,9 @@ return {
 					-- not using grouped codeactions because they error with:
 					-- Error executing vim.schedule lua callback: ...vim/lazy/dressing.nvim/lua/dressing/select/telescope.lua:29: attempt to index field 'ctx' (a nil value)
 					-- https://github.com/stevearc/dressing.nvim/issues/128
+          -- similar error with snacks.picker
 					-- vim.keymap.set("n", "<leader>ca", function()
-					-- 	vim.cmd.RustLsp("codeAction")
+						-- vim.cmd.RustLsp("codeAction")
 					-- end, { buffer = bufnr, desc = "Code actions (Rust)" })
 
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
