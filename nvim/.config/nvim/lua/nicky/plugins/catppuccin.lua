@@ -6,15 +6,14 @@ return {
 		require("catppuccin").setup({
 			flavour = "mocha",
 			integrations = {
-				headlines = true,
 				neotree = true,
 				which_key = true,
 				treesitter = true,
 				treesitter_context = true,
 				rainbow_delimiters = true,
-				cmp = true,
 				neogit = true,
-        snacks = true,
+				snacks = true,
+				blink_cmp = true,
 			},
 		})
 		vim.cmd("colorscheme catppuccin")

@@ -7,13 +7,12 @@ return {
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
-		"hrsh7th/cmp-nvim-lsp", -- cmp source for lsp
+		"saghen/blink.cmp", -- cmp source for lsp
 	},
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lspconfig = require("lspconfig")
-
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
@@ -441,6 +440,7 @@ return {
 
 		lspconfig["astro"].setup({
 			capabilities = capabilities,
+			-- capabilities = require("blink-cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()),
 			on_attach = function(_, bufnr)
 				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 			end,
