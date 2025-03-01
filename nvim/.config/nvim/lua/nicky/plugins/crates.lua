@@ -36,11 +36,6 @@ return {
 				completion = true,
 				hover = true,
 			},
-      -- src = {
-      --   cmp = {
-      --     enabled = true
-      --   }
-      -- }
 		})
 	end,
 }

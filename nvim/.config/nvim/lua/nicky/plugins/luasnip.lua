@@ -13,7 +13,7 @@ return {
 		local ls = require("luasnip")
 		return {
 			{
-				"<C-k>",
+				"<C-j>",
 				function()
 					if ls.expand_or_jumpable() then
 						ls.expand_or_jump()
@@ -24,7 +24,7 @@ return {
 				desc = "Next in snippet (expand or jump)",
 			},
 			{
-				"<C-j>",
+				"<C-k>",
 				function()
 					if ls.jumpable(-1) then
 						ls.jump(-1)
@@ -63,10 +63,10 @@ return {
 		local fmt = require("luasnip.extras.fmt").fmt
 		local types = require("luasnip.util.types")
 
-		ls.add_snippets("NeogitCommitMessage", {
+		ls.add_snippets("gitcommit", {
 			s(
 				{
-					trig = "ncc",
+					trig = "cc",
 					name = "conventional commit",
 					desc = "commit message formatted like a conventional commit",
 				},
