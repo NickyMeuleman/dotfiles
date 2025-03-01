@@ -63,10 +63,10 @@ return {
 		local fmt = require("luasnip.extras.fmt").fmt
 		local types = require("luasnip.util.types")
 
-		ls.add_snippets("NeogitCommitMessage", {
+		ls.add_snippets("gitcommit", {
 			s(
 				{
-					trig = "ncc",
+					trig = "cc",
 					name = "conventional commit",
 					desc = "commit message formatted like a conventional commit",
 				},

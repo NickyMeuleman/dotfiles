@@ -3,6 +3,11 @@ return {
 	dependencies = {
 		"MeanderingProgrammer/render-markdown.nvim",
 		{ "L3MON4D3/LuaSnip", version = "v2.*" },
+		{
+			"Kaiser-Yang/blink-cmp-git",
+			dependencies = { "nvim-lua/plenary.nvim" },
+		},
+		"moyiz/blink-emoji.nvim",
 	},
 	build = "cargo build --release",
 	event = "InsertEnter",
@@ -49,18 +54,42 @@ return {
 			},
 		},
 		sources = {
-			default = { "lazydev", "lsp", "path", "markdown", "snippets", "buffer" },
+			default = { "lazydev", "lsp", "path", "markdown", "snippets", "buffer", "emoji" },
+			per_filetype = {
+				gitcommit = { "git", "path", "snippets", "buffer" },
+			},
 			providers = {
-				markdown = {
-					name = "RenderMarkdown",
-					module = "render-markdown.integ.blink",
-					fallbacks = { "lsp" },
+				buffer = {
+					name = "Buff",
+				},
+				cmdline = {
+					name = "CMD",
+				},
+				emoji = {
+					name = "😃",
+					module = "blink-emoji",
+					opts = { insert = true },
+				},
+				git = {
+					name = "Git",
+					module = "blink-cmp-git",
 				},
 				lazydev = {
-					name = "LazyDev",
+					name = "Lazy",
 					module = "lazydev.integrations.blink",
 					-- make lazydev completions top priority (see `:h blink.cmp`)
 					score_offset = 100,
+				},
+				lsp = {
+					name = "LSP",
+				},
+				markdown = {
+					name = "MD",
+					module = "render-markdown.integ.blink",
+					fallbacks = { "lsp" },
+				},
+				snippets = {
+					name = "Snip",
 				},
 			},
 		},
@@ -95,17 +124,7 @@ return {
 						source_name = {
 							ellipsis = false,
 							text = function(ctx)
-								local source_names = {
-									["Buffer"] = "[Buff]",
-									["LSP"] = "[LSP]",
-									["Path"] = "[Path]",
-									["Snippets"] = "[Snip]",
-									["cmdline"] = "[CMD]",
-                  ["LazyDev"] = "[Lazy]",
-									git = "[Git]",
-									emoji = "[Emoji]",
-								}
-								return source_names[ctx.source_name] or ("[" .. ctx.source_name .. "]")
+								return "[" .. ctx.source_name .. "]"
 							end,
 						},
 					},
