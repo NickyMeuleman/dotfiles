@@ -49,12 +49,18 @@ return {
 			},
 		},
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "markdown" },
+			default = { "lazydev", "lsp", "path", "markdown", "snippets", "buffer" },
 			providers = {
 				markdown = {
 					name = "RenderMarkdown",
 					module = "render-markdown.integ.blink",
 					fallbacks = { "lsp" },
+				},
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					-- make lazydev completions top priority (see `:h blink.cmp`)
+					score_offset = 100,
 				},
 			},
 		},
@@ -94,13 +100,11 @@ return {
 									["LSP"] = "[LSP]",
 									["Path"] = "[Path]",
 									["Snippets"] = "[Snip]",
-                  ["cmdline"] = "[CMD]",
+									["cmdline"] = "[CMD]",
+                  ["LazyDev"] = "[Lazy]",
 									git = "[Git]",
 									emoji = "[Emoji]",
-									lazydev = "[Lazy]",
 								}
-                -- vim.print(ctx.source_name)
-                vim.print(ctx.source_id)
 								return source_names[ctx.source_name] or ("[" .. ctx.source_name .. "]")
 							end,
 						},
