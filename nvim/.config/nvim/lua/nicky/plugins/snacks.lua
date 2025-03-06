@@ -69,6 +69,7 @@ return {
 		},
 	},
 	opts = {
+		image = {},
 		picker = {},
 		notifier = {},
 		input = {},
