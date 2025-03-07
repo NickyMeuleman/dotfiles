@@ -15,6 +15,7 @@ return {
 			{ "<leader>h", desc = "[h]arpoon" },
 			{ "<leader>s", desc = "[s]earch" },
 			{ "<leader>t", desc = "[t]est" },
+			{ "<leader>u", desc = "[u]i" },
 			{ "<leader>w", desc = "s[w]ap" },
 			{ "<leader>x", desc = "[x] trouble" },
 		})
