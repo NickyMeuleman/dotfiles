@@ -1,3 +1,12 @@
+-- Terminal Mappings
+local function term_nav(dir)
+	return function(self)
+		return self:is_floating() and "<c-" .. dir .. ">" or vim.schedule(function()
+			vim.cmd.wincmd(dir)
+		end)
+	end
+end
+
 return {
 	"folke/snacks.nvim",
 	-- WARNING `snacks.nvim` should have a priority of 1000 or higher. Add `priority=1000` to the plugin spec
@@ -67,8 +76,58 @@ return {
 			end,
 			desc = "Search [c]olorschemes",
 		},
+		{
+			"<c-/>",
+			function()
+				Snacks.terminal()
+			end,
+			desc = "Toggle Terminal",
+		},
 	},
 	opts = {
+		styles = {
+			terminal = {
+				bo = {
+					filetype = "snacks_terminal",
+				},
+				wo = {},
+				keys = {
+					q = "hide",
+					gf = function(self)
+						local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
+						if f == "" then
+							Snacks.notify.warn("No file under cursor")
+						else
+							self:hide()
+							vim.schedule(function()
+								vim.cmd("e " .. f)
+							end)
+						end
+					end,
+					term_normal = {
+						"<esc>",
+						function(self)
+							-- the default fn with timer didn't work, this simpler one does the job
+							vim.cmd("stopinsert")
+						end,
+						mode = "t",
+						expr = true,
+						desc = "Double escape to normal mode",
+					},
+				},
+			},
+		},
+		terminal = {
+			win = {
+				wo = { winbar = "" },
+				keys = {
+					nav_h = { "<C-h>", term_nav("h"), desc = "Go to Left Window", expr = true, mode = "t" },
+					nav_j = { "<C-j>", term_nav("j"), desc = "Go to Lower Window", expr = true, mode = "t" },
+					nav_k = { "<C-k>", term_nav("k"), desc = "Go to Upper Window", expr = true, mode = "t" },
+					nav_l = { "<C-l>", term_nav("l"), desc = "Go to Right Window", expr = true, mode = "t" },
+				},
+			},
+		},
 		toggle = {},
 		image = {},
 		picker = {},
