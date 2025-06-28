@@ -73,7 +73,8 @@ return {
 		---@diagnostic disable-next-line: missing-fields
 		require("neotest").setup({
 			adapters = {
-				require("rustaceanvim.neotest"),
+        -- TODO: reenable after I install nvim 0.11
+				-- require("rustaceanvim.neotest"),
 				require("neotest-vitest"),
 			},
 		})

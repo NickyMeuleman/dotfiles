@@ -1,3 +1,16 @@
+--- yoinked: https://github.com/LazyVim/LazyVim/commit/9d999fa210065a9903634f1e1a2053627d529dec#diff-38561569aeb10164fbfecfe70e51ffcf441d56d868fe2ca15a7c75b87dad6f03R222
+---@param pkg string
+---@param path? string
+function get_pkg_path(pkg, path)
+	local Snacks = require("snacks")
+	path = path or ""
+	local ret = vim.env.MASON .. "/packages/" .. pkg .. "/" .. path
+	if not vim.loop.fs_stat(ret) then
+		Snacks.notify("warn", ("Mason package path not found for **%s**:\n- `%s`"):format(pkg, path))
+	end
+	return ret
+end
+
 return {
 	"rcarriga/nvim-dap-ui",
 	dependencies = {
@@ -41,8 +54,7 @@ return {
 					command = "node",
 					-- 💀 Make sure to update this path to point to your installation
 					args = {
-						require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-							.. "/js-debug/src/dapDebugServer.js",
+						get_pkg_path("js-debug-adapter", "/js-debug/src/dapDebugServer.js"),
 						"${port}",
 					},
 				},

@@ -21,6 +21,8 @@ return {
 		config = function()
 			-- uses lspconfig specific names
 			require("mason-lspconfig").setup({
+				-- a bug with an update requires this now
+				automatic_enable = false,
 				ensure_installed = {
 					-- language servers
 					"astro",
