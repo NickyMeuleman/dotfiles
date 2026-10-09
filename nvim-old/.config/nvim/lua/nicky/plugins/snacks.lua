@@ -13,6 +13,13 @@ return {
 	priority = 1000,
 	lazy = false,
 	keys = {
+    {
+      "<leader>n",
+      function ()
+        Snacks.picker.notifications()
+      end,
+      desc = "[n]otification History"
+    },
 		{
 			"<leader>gl",
 			function()

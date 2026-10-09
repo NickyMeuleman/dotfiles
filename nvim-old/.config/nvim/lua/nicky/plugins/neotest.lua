@@ -5,7 +5,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
-		"mrcjkb/rustaceanvim",
+		-- "mrcjkb/rustaceanvim",
 		"marilari88/neotest-vitest",
 	},
 	keys = function()

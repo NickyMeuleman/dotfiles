@@ -39,7 +39,7 @@ return {
 					"marksman", -- markdown
 					"pyright",
 					"ruff", -- python
-					"rust_analyzer",
+					-- "rust_analyzer",
 					"sqls",
 					"tailwindcss",
 					"taplo", -- toml
