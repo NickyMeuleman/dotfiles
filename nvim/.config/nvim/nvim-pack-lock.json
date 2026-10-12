@@ -8,13 +8,13 @@
       "rev": "9ee72c26ac1440ee6c95ce708c1d739684be316a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "nvim-web-devicons": {
-      "rev": "58447c1fca354bbf184425e4a8d01deecbd6f3c4",
-      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    "oil-git-status.nvim": {
+      "rev": "a3e2ccb00cb8822115e28a9a1791eda051d940c9",
+      "src": "https://github.com/refractalize/oil-git-status.nvim"
     },
-    "snacks": {
-      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
-      "src": "https://github.com/folke/snacks.nvim"
+    "oil.nvim": {
+      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
+      "src": "https://github.com/stevearc/oil.nvim"
     }
   }
 }

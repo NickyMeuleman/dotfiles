@@ -12,3 +12,4 @@ require("nicky.autocmds")
 require("nicky.pack")
 
 require("nicky.config.ui")
+require("nicky.config.files")
