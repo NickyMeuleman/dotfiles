@@ -3,7 +3,7 @@ local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup,
-    desc = "Highlight when yanking (copying) text",
+	desc = "Highlight when yanking (copying) text",
 	callback = function()
 		vim.highlight.on_yank({ timeout = 250 })
 	end,
