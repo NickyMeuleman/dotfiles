@@ -13,3 +13,5 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear search highlight" })
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open [d]iagnostics float" })
+vim.keymap.set("n", "<leader>D", function() vim.diagnostic.open_float({ scope = "line" }) end, { desc = "Open line [D]iagnostics float" })
