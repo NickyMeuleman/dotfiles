@@ -14,6 +14,7 @@ vim.opt.smartcase = true      -- if you include mixed case in your search, assum
 
 vim.opt.signcolumn = "yes"    -- always show the gutter to the left of line numbers (for git status, errors, warnings)
 vim.opt.cursorline = true     -- highlight the current line
+vim.opt.winborder = "rounded" -- border for floating windows
 
 vim.opt.splitbelow = true     -- force all horizontal splits to go below current window
 vim.opt.splitright = true     -- force all vertical splits to go to the right of current window
