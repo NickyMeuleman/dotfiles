@@ -1,5 +1,6 @@
 vim.pack.add({
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+    "https://github.com/nvim-treesitter/nvim-treesitter",
     "https://github.com/neovim/nvim-lspconfig",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/mason-org/mason-lspconfig.nvim",
@@ -17,9 +18,18 @@ vim.pack.add({
 vim.api.nvim_create_autocmd('PackChanged', {
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
-    if name == 'fff' and (kind == 'install' or kind == 'update') then
+    if kind ~= 'install' and kind ~= 'update' then return end
+
+    if name == 'fff' then
       if not ev.data.active then vim.cmd.packadd('fff') end
       require('fff.download').download_or_build_binary()
+      return
+    end
+
+    if name == 'nvim-treesitter' then
+      if not ev.data.active then vim.cmd.packadd('nvim-treesitter') end
+      vim.cmd('TSUpdate')
+      return
     end
   end,
 })
