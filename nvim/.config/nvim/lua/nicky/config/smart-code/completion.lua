@@ -20,31 +20,32 @@ end
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
 require("blink.cmp").setup({
-	completion = {
-    documentation = { auto_show = true },
-    menu = {
-      draw = {
-        components = {
-          kind_icon = {
-            text = function(ctx)
-              local kind_icon, _ = get_mini_icon(ctx)
-              return kind_icon
-            end,
-            highlight = function(ctx)
-              local _, hl = get_mini_icon(ctx)
-              return hl
-            end,
-          },
-          kind = {
-            highlight = function(ctx)
-              local _, hl = get_mini_icon(ctx)
-              return hl
-            end,
-          }
+completion = {
+  documentation = { auto_show = true },
+  menu = {
+    draw = {
+      treesitter = { "lsp" },
+      components = {
+        kind_icon = {
+          text = function(ctx)
+            local kind_icon, _ = get_mini_icon(ctx)
+            return kind_icon
+          end,
+          highlight = function(ctx)
+            local _, hl = get_mini_icon(ctx)
+            return hl
+          end,
+        },
+        kind = {
+          highlight = function(ctx)
+            local _, hl = get_mini_icon(ctx)
+            return hl
+          end,
         }
       }
     }
-  },
-	signature = { enabled = true },
-  cmdline = { completion = { menu = { auto_show = true } } }
+  }
+},
+signature = { enabled = true },
+cmdline = { completion = { menu = { auto_show = true } } }
 })
