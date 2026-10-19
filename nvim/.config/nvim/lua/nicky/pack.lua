@@ -8,6 +8,7 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets",
     -- v2 is still unstable (2026-10)
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+    "https://github.com/stevearc/conform.nvim",
     "https://github.com/nvim-mini/mini.nvim",
     "https://github.com/stevearc/oil.nvim",
     "https://github.com/refractalize/oil-git-status.nvim",
