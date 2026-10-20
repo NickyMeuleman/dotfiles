@@ -20,6 +20,36 @@ Snacks.toggle.inlay_hints():map("<leader>uh")
 Snacks.toggle.indent():map("<leader>ug")
 Snacks.toggle.dim():map("<leader>uD")
 Snacks.toggle.words():map("<leader>uw")
+Snacks.toggle
+	.new({
+		id = "format_on_save_global",
+		name = "Format on save (Global)",
+		get = function()
+			-- treat unset as true
+			return vim.g.format_on_save ~= false
+		end,
+		set = function(state)
+			vim.g.format_on_save = state
+		end,
+	})
+	:map("<leader>uF")
+Snacks.toggle
+	.new({
+		id = "format_on_save_buffer",
+		name = "Format on save (Buffer)",
+		get = function()
+			return vim.b.format_on_save
+		end,
+		set = function(state)
+			if vim.b.format_on_save == nil then
+				local effective_state = vim.g.format_on_save ~= false
+				vim.b.format_on_save = not effective_state
+			else
+				vim.b.format_on_save = state
+			end
+		end,
+	})
+	:map("<leader>uf")
 
 vim.keymap.set("n", "<leader>un", function()
 	Snacks.notifier.hide()

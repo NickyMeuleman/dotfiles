@@ -3,12 +3,16 @@ require("conform").setup({
 		lua = { "stylua" },
 	},
 	default_format_opts = { lsp_format = "fallback" },
-})
+	format_on_save = function(bufnr)
+		-- Check buffer-local flag first; if nil, check global flag.
+		local global_enabled = vim.g.format_on_save ~= false
+		local buf_enabled = vim.b[bufnr].format_on_save
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		require("conform").format({ bufnr = args.buf })
+		if buf_enabled == false or (buf_enabled == nil and not global_enabled) then
+			return
+		end
+
+		return { timeout_ms = 500, lsp_format = "fallback" }
 	end,
 })
 
