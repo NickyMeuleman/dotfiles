@@ -17,4 +17,5 @@ vim.opt.showmode = false -- statusline already shows this
 require("which-key").setup()
 require("which-key").add({
 	{ "<leader>s", desc = "[s]earch" },
+	{ "<leader>u", desc = "[u]i" },
 })
