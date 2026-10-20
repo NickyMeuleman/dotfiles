@@ -1,3 +1,4 @@
 require("snacks").setup({
-  picker = { enabled = true },
+	picker = {},
+	notifier = {},
 })
