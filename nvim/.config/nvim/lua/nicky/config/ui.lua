@@ -2,6 +2,7 @@ vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 
 require("catppuccin").setup({
 	flavour = "mocha",
+	auto_integrations = true,
 })
 vim.cmd.colorscheme("catppuccin-nvim")
 
@@ -19,3 +20,5 @@ require("which-key").add({
 	{ "<leader>s", desc = "[s]earch" },
 	{ "<leader>u", desc = "[u]i" },
 })
+
+require("rainbow-delimiters.setup").setup({})

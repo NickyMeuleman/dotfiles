@@ -3,6 +3,20 @@ require("snacks").setup({
 	notifier = {},
 	toggle = {},
 	words = { enabled = false },
+	scope = {},
+	indent = {
+		scope = {
+			hl = {
+				"RainbowDelimiterRed",
+				"RainbowDelimiterYellow",
+				"RainbowDelimiterBlue",
+				"RainbowDelimiterOrange",
+				"RainbowDelimiterGreen",
+				"RainbowDelimiterViolet",
+				"RainbowDelimiterCyan",
+			},
+		},
+	},
 })
 
 local Snacks = require("snacks")
