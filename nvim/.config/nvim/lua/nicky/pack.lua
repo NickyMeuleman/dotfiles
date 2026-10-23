@@ -17,6 +17,7 @@ vim.pack.add({
 	"https://github.com/folke/which-key.nvim",
 	"https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/neogitorg/neogit",
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {

@@ -21,6 +21,10 @@
       "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "gitsigns.nvim": {
+      "rev": "683137003522aebd6948358334164a6ba2ca7cd5",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "00b5473cca4db5b410ff4bae724e3b6e21f2687f",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -36,6 +40,10 @@
     "mini.nvim": {
       "rev": "295af26358628c8ba8f007ff6a7e0aec2f642a31",
       "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "neogit": {
+      "rev": "832a2db084ac25c2801fd73a3fab58f3c82ed2ec",
+      "src": "https://github.com/neogitorg/neogit"
     },
     "nvim-lspconfig": {
       "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
@@ -53,9 +61,17 @@
       "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "rainbow-delimiters.nvim": {
+      "rev": "b55decda611755171bc5bf8f4c99603a75de4b41",
+      "src": "https://gitlab.com/HiPhish/rainbow-delimiters.nvim"
+    },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

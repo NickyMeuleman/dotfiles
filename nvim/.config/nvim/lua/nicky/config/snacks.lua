@@ -19,6 +19,7 @@ Snacks.setup({
 			},
 		},
 	},
+	lazygit = {},
 })
 
 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
