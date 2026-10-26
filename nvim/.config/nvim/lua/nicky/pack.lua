@@ -21,6 +21,8 @@ vim.pack.add({
 	"https://github.com/neogitorg/neogit",
 	"https://github.com/windwp/nvim-autopairs",
 	"https://github.com/windwp/nvim-ts-autotag",
+	"https://github.com/folke/trouble.nvim",
+	"https://github.com/folke/todo-comments.nvim",
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {

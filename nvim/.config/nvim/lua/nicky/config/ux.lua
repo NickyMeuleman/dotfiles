@@ -17,8 +17,8 @@ local copy_keymap = function(mode, from_lhs, to_lhs)
 	local rhs = keymap.callback or keymap.rhs
 	vim.keymap.set(mode, to_lhs, rhs, { desc = keymap.desc })
 end
-copy_keymap("x", "an", "<Leader>cs")
-copy_keymap("x", "in", "<Leader>cS")
+copy_keymap("x", "an", "<Leader>ts")
+copy_keymap("x", "in", "<Leader>tS")
 
 -- treesitter queries come from treesitter-text-objects
 ai.setup({
@@ -97,3 +97,60 @@ map_move({ "]]", "][", "[[", "[]" }, "@block.outer", "block")
 
 -- search_method: trigger on 'next' if cursor is on start (eg. trigger inside next quotes when cursor is on opening quote)
 require("mini.surround").setup({ search_method = "cover_or_next" })
+
+require("trouble").setup({})
+vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
+vim.keymap.set(
+	"n",
+	"<leader>xX",
+	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+	{ desc = "Buffer Diagnostics (Trouble)" }
+)
+vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
+vim.keymap.set(
+	"n",
+	"<leader>cl",
+	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+	{ desc = "LSP Definitions / references / ... (Trouble)" }
+)
+vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
+vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
+vim.keymap.set("n", "<leader>xs", "<cmd>Trouble snacks toggle<cr>", { desc = "Snacks Results (Trouble)" })
+vim.keymap.set("n", "<leader>xt", function()
+	require("trouble").toggle()
+end, { desc = "Toggle Last Trouble Window" })
+
+require("todo-comments").setup({
+	keywords = {
+		PERF = { icon = " " },
+		TEST = { icon = " " },
+	},
+})
+
+vim.keymap.set("n", "]t", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+vim.keymap.set("n", "[t", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
+
+vim.keymap.set("n", "<leader>sT", function()
+	---@diagnostic disable-next-line: undefined-field
+	require("snacks.picker").todo_comments()
+end, { desc = "Search [T]odos " })
+
+-- FIX:
+-- multiline test
+-- WARN:
+-- multiline test
+-- TEST:
+-- multiline test
+-- HACK:
+-- multiline test
+-- TODO:
+-- multiline test
+-- NOTE:
+-- multiline test
+-- PERF:
+-- multiline test

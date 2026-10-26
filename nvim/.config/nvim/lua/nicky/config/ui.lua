@@ -20,6 +20,9 @@ require("which-key").add({
 	{ "<leader>s", desc = "[s]earch" },
 	{ "<leader>u", desc = "[u]i" },
 	{ "<leader>g", desc = "[g]it" },
+	{ "<leader>w", desc = "s[w]ap" },
+	{ "<leader>x", desc = "[x] Trouble" },
+	{ "<leader>c", desc = "[c]ode" },
 })
 
 require("rainbow-delimiters.setup").setup({})

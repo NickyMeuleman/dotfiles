@@ -1,7 +1,19 @@
 local Snacks = require("snacks")
 
 Snacks.setup({
-	picker = {},
+	picker = {
+		actions = require("trouble.sources.snacks").actions,
+		win = {
+			input = {
+				keys = {
+					["<c-t>"] = {
+						"trouble_open",
+						mode = { "n", "i" },
+					},
+				},
+			},
+		},
+	},
 	notifier = {},
 	toggle = {},
 	words = { enabled = false },
