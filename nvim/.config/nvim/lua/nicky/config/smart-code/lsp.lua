@@ -40,6 +40,7 @@ local servers = {
 	},
 	tsc = {},
 	biome = {},
+	mdx_analyzer = {},
 }
 
 for name, config in pairs(servers) do

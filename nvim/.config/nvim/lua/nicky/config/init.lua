@@ -7,3 +7,5 @@ require("nicky.config.files")
 require("nicky.config.pickers")
 require("nicky.config.smart-code")
 require("nicky.config.git")
+
+vim.filetype.add({ extension = { mdx = "mdx" } })

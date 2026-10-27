@@ -42,3 +42,7 @@ require("snacks")
 		end,
 	})
 	:map("<leader>uc")
+
+require("render-markdown").setup({
+	file_types = { "markdown", "mdx", "markdoc" },
+})
