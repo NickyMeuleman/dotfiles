@@ -41,4 +41,4 @@ require("snacks")
 			end
 		end,
 	})
-	:map("<leader>ut")
+	:map("<leader>uc")
