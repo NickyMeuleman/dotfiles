@@ -26,3 +26,19 @@ require("which-key").add({
 })
 
 require("rainbow-delimiters.setup").setup({})
+
+require("treesitter-context").setup({ max_lines = 5 })
+require("snacks")
+	.toggle({
+		id = "treesitter_context",
+		name = "Treesitter Context",
+		get = require("treesitter-context").enabled,
+		set = function(state)
+			if state then
+				require("treesitter-context").enable()
+			else
+				require("treesitter-context").disable()
+			end
+		end,
+	})
+	:map("<leader>ut")
