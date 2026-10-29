@@ -6,7 +6,9 @@ require("mason-tool-installer").setup({
 		-- LSP
 		"lua_ls",
 		"tsc",
+		"jsonls",
 		"mdx_analyzer",
+		"tailwindcss",
 		-- Formatter
 		"stylua",
 		"biome",

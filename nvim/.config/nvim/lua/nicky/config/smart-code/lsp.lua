@@ -40,7 +40,9 @@ local servers = {
 	},
 	tsc = {},
 	biome = {},
+	jsonls = {},
 	mdx_analyzer = {},
+	tailwindcss = {},
 }
 
 for name, config in pairs(servers) do
