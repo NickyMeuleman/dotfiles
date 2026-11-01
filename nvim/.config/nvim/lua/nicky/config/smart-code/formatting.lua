@@ -1,6 +1,9 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
+		javascript = { "biome-check" },
+		typescript = { "biome-check" },
+		javascriptreact = { "biome-check" },
 		typescriptreact = { "biome-check" },
 	},
 	default_format_opts = { lsp_format = "fallback" },

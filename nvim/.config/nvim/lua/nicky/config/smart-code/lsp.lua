@@ -42,8 +42,20 @@ local servers = {
 	biome = {},
 	jsonls = {},
 	mdx_analyzer = {},
-	tailwindcss = {},
+	tailwindcss = {
+		settings = {
+			tailwindCSS = {
+				colorDecorators = true,
+				codeLens = {
+					enable = true,
+				},
+			},
+		},
+	},
 }
+
+-- Color Swatches
+-- vim.lsp.document_color.enable(true, nil, { style = "■ " })
 
 for name, config in pairs(servers) do
 	vim.lsp.config(name, config)
