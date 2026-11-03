@@ -5,6 +5,7 @@ require("conform").setup({
 		typescript = { "biome-check" },
 		javascriptreact = { "biome-check" },
 		typescriptreact = { "biome-check" },
+		rust = { "rustfmt" },
 	},
 	default_format_opts = { lsp_format = "fallback" },
 	format_on_save = function(bufnr)

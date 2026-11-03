@@ -11,7 +11,10 @@ local function get_mini_icon(ctx)
 			return mini_icon, mini_hl
 		end
 	end
-	local mini_icon, mini_hl, _ = require("mini.icons").get("lsp", ctx.kind)
+	local mini_icon, mini_hl, is_default = require("mini.icons").get("lsp", ctx.kind)
+	if is_default then
+		return nil, nil
+	end
 	return mini_icon, mini_hl
 end
 
@@ -20,6 +23,9 @@ end
 require("blink.cmp").setup({
 	completion = {
 		documentation = { auto_show = true },
+		-- trigger = {
+		-- 	show_on_insert_on_trigger_character = true,
+		-- },
 		menu = {
 			draw = {
 				treesitter = { "lsp" },
@@ -30,8 +36,20 @@ require("blink.cmp").setup({
 							if hex then
 								return "󱓻"
 							end
+
 							local icon, _ = get_mini_icon(ctx)
-							return icon or "󰆧"
+							if icon then
+								return icon
+							end
+
+							if ctx.kind_icon then
+								return ctx.kind_icon
+							end
+							if ctx.item and ctx.item.kind_icon then
+								return ctx.item.kind_icon
+							end
+
+							return "󰆧"
 						end,
 						highlight = function(ctx)
 							local hex = require("blink.cmp.sources.lsp.hacks.tailwind").get_hex_color(ctx.item)
@@ -42,14 +60,29 @@ require("blink.cmp").setup({
 								end
 								return hl
 							end
+
 							local _, hl = get_mini_icon(ctx)
-							return hl or ("BlinkCmpKind" .. ctx.kind)
+							if hl then
+								return hl
+							end
+
+							if ctx.kind_hl then
+								return ctx.kind_hl
+							end
+
+							return ("BlinkCmpKind" .. ctx.kind)
 						end,
 					},
 					kind = {
 						highlight = function(ctx)
 							local _, hl = get_mini_icon(ctx)
-							return hl
+							if hl then
+								return hl
+							end
+							if ctx.kind_hl then
+								return ctx.kind_hl
+							end
+							return ("BlinkCmpKind" .. ctx.kind)
 						end,
 					},
 				},

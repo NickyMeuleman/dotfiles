@@ -41,6 +41,7 @@ local servers = {
 	tsc = {},
 	biome = {},
 	jsonls = {},
+	taplo = {},
 	mdx_analyzer = {},
 	tailwindcss = {
 		settings = {

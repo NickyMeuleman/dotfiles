@@ -25,6 +25,14 @@ vim.pack.add({
 	"https://github.com/folke/todo-comments.nvim",
 	"https://github.com/nvim-treesitter/nvim-treesitter-context",
 	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	{
+		src = "https://github.com/mrcjkb/rustaceanvim",
+		version = vim.version.range("^9"),
+	},
+	"https://github.com/saecki/crates.nvim",
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/antoinemadec/FixCursorHold.nvim",
+	"https://github.com/nvim-neotest/neotest",
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {

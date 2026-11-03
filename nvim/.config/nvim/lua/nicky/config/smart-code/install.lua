@@ -7,6 +7,7 @@ require("mason-tool-installer").setup({
 		"lua_ls",
 		"tsc",
 		"jsonls",
+		"taplo",
 		"mdx_analyzer",
 		"tailwindcss",
 		-- Formatter
