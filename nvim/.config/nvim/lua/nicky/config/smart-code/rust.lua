@@ -35,6 +35,9 @@ vim.g.rustaceanvim = {
 				inlayHints = {
 					closureReturnTypeHints = { enable = "with_block" },
 				},
+				diagnostics = {
+					experimental = { enable = true },
+				},
 			},
 		},
 	},

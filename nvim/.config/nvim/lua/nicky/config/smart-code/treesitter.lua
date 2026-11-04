@@ -17,6 +17,8 @@ local parsers = {
 	"vimdoc",
 	"yaml",
 	"jsx",
+	"sql",
+	"json",
 }
 require("nvim-treesitter").install(parsers)
 
