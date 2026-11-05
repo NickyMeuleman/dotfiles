@@ -4,14 +4,17 @@ require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		-- LSP
-		"lua_ls",
-		"tsc",
 		"jsonls",
-		"taplo",
+		"just",
+		"lua_ls",
 		"mdx_analyzer",
 		"tailwindcss",
+		"taplo",
+		"tsc",
+		"yamlls",
 		-- Formatter
-		"stylua",
 		"biome",
+		"sqruff",
+		"stylua",
 	},
 })

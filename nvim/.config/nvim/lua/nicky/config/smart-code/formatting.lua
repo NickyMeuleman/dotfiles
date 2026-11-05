@@ -2,13 +2,15 @@ require("conform").setup({
 	formatters_by_ft = {
 		javascript = { "biome-check" },
 		javascriptreact = { "biome-check" },
+		json = { "biome-check" },
+		jsonc = { "biome-check" },
 		lua = { "stylua" },
 		rust = { "injected", "rustfmt" },
+		sql = { "sqruff" },
 		toml = { "taplo" },
 		typescript = { "biome-check" },
 		typescriptreact = { "biome-check" },
-		sql = { "sqruff" },
-		json = { "biome-check" },
+		yaml = { "biome-check" },
 	},
 	default_format_opts = { lsp_format = "fallback" },
 	format_on_save = function(bufnr)

@@ -40,7 +40,26 @@ local servers = {
 	},
 	tsc = {},
 	biome = {},
-	jsonls = {},
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
+	yamlls = {
+		settings = {
+			yaml = {
+				schemaStore = {
+					enable = false,
+					-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+					url = "",
+				},
+				schemas = require("schemastore").yaml.schemas(),
+			},
+		},
+	},
 	taplo = {},
 	mdx_analyzer = {},
 	just = {},
