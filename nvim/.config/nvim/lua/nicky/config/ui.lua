@@ -1,8 +1,5 @@
 vim.opt.termguicolors = true -- enable 24-bit RGB color in the TUI
 
--- Let Treesitter take precedence over LSP semantic tokens.
-vim.hl.priorities.semantic_tokens = 90
-
 require("catppuccin").setup({
 	flavour = "mocha",
 	auto_integrations = true,

@@ -94,7 +94,7 @@
   (#match? @injection.content "/\\*!([a-zA-Z]+:)?re2c")
   (#set! injection.language "re2c"))
 
-; apply sql syntax highlighting string literal argument of sqlx::query()
+; sqlx macro where SQL is the first argument eg. sqlx::query!("sql")
 (macro_invocation
   macro: (scoped_identifier
     path: (identifier) @_macro_path
@@ -108,5 +108,45 @@
       ((string_content) @injection.content))
     ])
   (#eq? @_macro_path "sqlx")
-  (#match? @_macro_name "query(_as|_scalar|)")
+  (#any-of? @_macro_name "query" "query_unchecked" "query_scalar" "query_scalar_unchecked")
+  (#set! injection.language "sql"))
+
+; sqlx macro where SQL is right after the first comma eg. sqlx::query_as!(Type, "sql", ...)
+(macro_invocation
+  macro: (scoped_identifier
+    path: (identifier) @_macro_path
+    name: (identifier) @_macro_name)
+  (token_tree
+    "," .
+    [
+      (string_literal
+        (string_content) @injection.content)
+      (raw_string_literal
+        (string_content) @injection.content)
+    ])
+  (#eq? @_macro_path "sqlx")
+  (#any-of? @_macro_name "query_as" "query_as_unchecked")
+  (#set! injection.language "sql"))
+
+; sqlx runtime API: sqlx::query("sql"), sqlx::query_as::<_, T>("sql"), ...
+(call_expression
+  function: [
+    (scoped_identifier
+      path: (identifier) @_path
+      name: (identifier) @_name)
+    (generic_function
+      function: (scoped_identifier
+        path: (identifier) @_path
+        name: (identifier) @_name))
+  ]
+  arguments: (arguments
+    .
+    [
+      (string_literal
+        (string_content) @injection.content)
+      (raw_string_literal
+        (string_content) @injection.content)
+    ])
+  (#eq? @_path "sqlx")
+  (#any-of? @_name "query" "query_as" "query_scalar" "query_with" "query_as_with" "query_scalar_with" "raw_sql")
   (#set! injection.language "sql"))

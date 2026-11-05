@@ -38,6 +38,12 @@ vim.g.rustaceanvim = {
 				diagnostics = {
 					experimental = { enable = true },
 				},
+				semanticHighlighting = {
+					-- let treesitter take precedence over LSP semantic tokens inside strings.
+					strings = { enable = false },
+					-- alternative that applies to all tokens in all languages
+					-- vim.hl.priorities.semantic_tokens = 90
+				},
 			},
 		},
 	},
