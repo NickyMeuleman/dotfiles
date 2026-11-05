@@ -38,7 +38,22 @@ local servers = {
 			},
 		},
 	},
-	tsc = {},
+	tsc = {
+		settings = {
+			-- INFO: https://github.com/microsoft/TypeScript/blob/main/tools/userPreferences.schema.json
+			["js/ts"] = {
+				preferences = {
+					preferTypeOnlyAutoImports = true,
+				},
+				suggest = {
+					autoImports = true,
+					includeCompletionsForImportStatements = true,
+					classMemberSnippets = { enabled = true },
+					objectLiteralMethodSnippets = { enabled = true },
+				},
+			},
+		},
+	},
 	biome = {},
 	jsonls = {
 		settings = {
