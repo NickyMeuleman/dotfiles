@@ -1,5 +1,29 @@
 local servers = {
-	-- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
+	astro = {
+		-- Astro LSP supports neither TS7's Go-rewrite nor its native `tsc --lsp` protocol (Nov 2026).
+		-- To keep TS7 features in ordinary files, we run a DUAL installation in the project:
+		-- 1. Standard package: `typescript` (TS7) -> Used by your project & `tsc` LSP.
+		-- 2. Alias package: `pnpm add -D typescript@npm:@typescript/typescript6` -> For Astro LSP only.
+		before_init = function(_, config)
+			local util = require("lspconfig.util")
+			local local_ts6 = vim.fs.joinpath(config.root_dir, "node_modules", "@typescript", "typescript6", "lib")
+			local tsdk = ""
+
+			-- Force Astro to use the isolated TS6 programmatic API folder if present
+			if vim.fn.isdirectory(local_ts6) == 1 then
+				tsdk = local_ts6
+			else
+				-- Fallback to standard node_modules/typescript/lib if the alias isn't used
+				tsdk = util.get_typescript_server_path(config.root_dir)
+			end
+
+			config.init_options = config.init_options or {}
+			config.init_options.typescript = config.init_options.typescript or {}
+			config.init_options.typescript.tsdk = tsdk
+		end,
+	},
+	cssls = {},
+	html = {},
 	lua_ls = {
 		on_init = function(client)
 			client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
@@ -56,6 +80,7 @@ local servers = {
 	},
 	biome = {},
 	jsonls = {
+		---@type lspconfig.settings.jsonls
 		settings = {
 			json = {
 				schemas = require("schemastore").json.schemas(),
@@ -64,7 +89,11 @@ local servers = {
 		},
 	},
 	yamlls = {
+		---@type lspconfig.settings.yamlls
 		settings = {
+			redhat = {
+				telemetry = { enabled = false },
+			},
 			yaml = {
 				schemaStore = {
 					enable = false,
@@ -79,16 +108,8 @@ local servers = {
 	mdx_analyzer = {},
 	just = {},
 	sqruff = {},
-	tailwindcss = {
-		settings = {
-			tailwindCSS = {
-				colorDecorators = true,
-				codeLens = {
-					enable = true,
-				},
-			},
-		},
-	},
+	-- INFO: https://github.com/tailwindlabs/tailwindcss-intellisense
+	tailwindcss = {},
 }
 
 -- Color Swatches

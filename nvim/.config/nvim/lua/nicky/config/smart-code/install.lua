@@ -4,6 +4,9 @@ require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = {
 		-- LSP
+		"astro",
+		"cssls",
+		"html",
 		"jsonls",
 		"just",
 		"lua_ls",
